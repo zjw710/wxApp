@@ -2,6 +2,9 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 
+import { Slide } from "../../components/slide/Slide";
+import { Search } from "../../components/search/Search";
+
 export default class Index extends Component {
 
   /**
@@ -28,6 +31,8 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
+        <Search></Search>
+        <Slide></Slide>
         <Text>Hello world!</Text>
       </View>
     )
