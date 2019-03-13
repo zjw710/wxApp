@@ -1,0 +1,27 @@
+.magic-square{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin:40px 0px;
+    // border: 1px solid red;
+    &-view{
+        width: 19%;
+        height: 140px;
+        // border: 1px solid red;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    & Text{
+        font-size: 30px;
+        color: #595959;
+        margin-top: 10px;
+    }
+    & Image{
+        width: 95px;
+        height: 95px;
+    }
+}

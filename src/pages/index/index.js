@@ -2,8 +2,10 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 
-import { Slide } from "../../components/slide/Slide";
-import { Search } from "../../components/search/Search";
+import { Slide } from "../../components/Slide/Slide";
+import { Search } from "../../components/Search/Search";
+import { MagicSquare } from "../../components/MagicSquare/MagicSquare";
+import { GoodsList } from "../../components/GoodsList/GoodsList";
 
 export default class Index extends Component {
 
@@ -33,7 +35,9 @@ export default class Index extends Component {
       <View className='index'>
         <Search></Search>
         <Slide></Slide>
-        <Text>Hello world!</Text>
+        <MagicSquare></MagicSquare>
+        <GoodsList></GoodsList>
+        {/* <Text>Hello world!</Text> */}
       </View>
     )
   }

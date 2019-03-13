@@ -18,23 +18,23 @@ export default class Slide extends Component {
     componentDidHide() { }
 
     render() {
+        const img_lists = [
+            {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg'},
+            {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg'}]
         return (
             <Swiper className='slide'
-                className='test-h'
                 indicatorColor='#999'
                 indicatorActiveColor='#333'
                 circular
                 indicatorDots
                 autoplay>
-                <SwiperItem>                    
-                    <Image src={img1}></Image>
-                </SwiperItem>
-                <SwiperItem>
-                    <Image src={img2}></Image>
-                </SwiperItem>
-                <SwiperItem>
-                    <Image src={img1}></Image>
-                </SwiperItem>
+                {img_lists.map((item)=>{
+                    return(
+                        <SwiperItem>
+                            <Image src={item.src}></Image>
+                        </SwiperItem>
+                    )
+                })}            
             </Swiper>
         )        
     }

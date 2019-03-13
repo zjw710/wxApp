@@ -20,10 +20,13 @@ export default class Search extends Component {
     render() {
         return (
             <View className='search'>
-                <AtIcon value='star-2' size='10'></AtIcon>
+                <View className='search-border'>
+                    {/* <AtIcon value='star-2' size='10'></AtIcon> */}
 
-                <Input type='text' placeholder='请输入查询内容'/>
+                    <Input type='text' placeholder='请输入查询内容' />
+                </View>
             </View>
+            
         )
     }
 }
