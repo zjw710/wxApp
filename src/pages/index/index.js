@@ -34,11 +34,12 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
+        <ImageList></ImageList>
         <Search></Search>
         <Slide></Slide>
         <MagicSquare></MagicSquare>
         <GoodsList></GoodsList>
-        <ImageList></ImageList>
+        
         {/* <Text>Hello world!</Text> */}
       </View>
     )
