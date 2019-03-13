@@ -34,16 +34,19 @@ export default class MagicSquare extends Component {
             { txt: '优选', icon: icon1 }, 
             { txt: '百科', icon: icon2 }]
         return (
-            <View className='magic-square'>
-                {magic_lists.map((item)=>{
-                    return(
-                        <View className='magic-square-view'>
-                            <Image src={item.icon}></Image>
-                            <Text>{item.txt}</Text>
-                        </View>
-                    )
-                })}                               
+            <View className='magic'>
+                <View className='magic-square'>
+                    {magic_lists.map((item) => {
+                        return (
+                            <View className='magic-square-view'>
+                                <Image src={item.icon}></Image>
+                                <Text>{item.txt}</Text>
+                            </View>
+                        )
+                    })}
+                </View>
             </View>
+            
         )
     }
 }

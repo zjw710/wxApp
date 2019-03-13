@@ -5,3 +5,23 @@
         height: 100%;
     }
 }
+
+.scrolslide{
+    // height: 4050px;
+    margin: 0px 0px;
+    background-color: white;
+    &-imgs{
+        //设置为可左右滑动
+        display:inline-block;        
+        white-space:nowrap;
+        margin: 20px 0px;
+        & Image{            
+            height: 300px;
+            width: 500px;
+            margin: 0px 10px;
+            border-radius: 3%;
+        }
+    }
+
+    
+}

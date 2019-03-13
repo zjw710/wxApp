@@ -6,6 +6,7 @@ import { Slide } from "../../components/Slide/Slide";
 import { Search } from "../../components/Search/Search";
 import { MagicSquare } from "../../components/MagicSquare/MagicSquare";
 import { GoodsList } from "../../components/GoodsList/GoodsList";
+import { ImageList } from "../../components/ImageList/ImageList";
 
 export default class Index extends Component {
 
@@ -37,6 +38,7 @@ export default class Index extends Component {
         <Slide></Slide>
         <MagicSquare></MagicSquare>
         <GoodsList></GoodsList>
+        <ImageList></ImageList>
         {/* <Text>Hello world!</Text> */}
       </View>
     )
