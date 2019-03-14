@@ -17,7 +17,7 @@ export default class ImageList extends Component {
     componentDidHide() { }
 
     render() {
-        var style = 'style1'
+        var style = 'style2'
 
         const img_lists = [
             { title:'小户型二居室',src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDgsOjgBSjUzamGBjDuBTi0BEBl.jpg' },
@@ -27,7 +27,7 @@ export default class ImageList extends Component {
 
 
         return (
-            <View className='style2'>
+            <View className={style}>
                 <View className='img'>
                     <View className= 'img-title'>
                         <Text>-二手精选-</Text>
@@ -37,7 +37,10 @@ export default class ImageList extends Component {
                             return (
                                 <View className='img-lists-item'>
                                     <Image src={item.src}></Image>
-                                    <Text>{item.title}</Text>
+                                    <View>
+                                        <Text>{item.title}</Text>
+                                    </View>
+                                    
                                 </View>
 
                             )

@@ -7,6 +7,8 @@ import { Search } from "../../components/Search/Search";
 import { MagicSquare } from "../../components/MagicSquare/MagicSquare";
 import { GoodsList } from "../../components/GoodsList/GoodsList";
 import { ImageList } from "../../components/ImageList/ImageList";
+import { ArticleList } from "../../components/ArticleList/ArticleList";
+import { TabBar } from "../../components/TabBar/TabBar";
 
 export default class Index extends Component {
 
@@ -17,9 +19,12 @@ export default class Index extends Component {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
+
   config: Config = {
     navigationBarTitleText: '首页'
+    
   }
+  
 
   componentWillMount () { }
 
@@ -32,15 +37,18 @@ export default class Index extends Component {
   componentDidHide () { }
 
   render () {
+    var name = 'test'
+    var current = 0
     return (
-      <View className='index'>
-        <ImageList></ImageList>
-        <Search></Search>
+      <View className='index'>        
+        <Search name={name}></Search>
         <Slide></Slide>
         <MagicSquare></MagicSquare>
-        <GoodsList></GoodsList>
         
-        {/* <Text>Hello world!</Text> */}
+        <ImageList></ImageList>
+        <GoodsList></GoodsList>
+        <ArticleList></ArticleList>      
+                
       </View>
     )
   }

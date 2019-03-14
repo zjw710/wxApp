@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { Swiper, SwiperItem, Image, View,Text  } from '@tarojs/components'
+import { Swiper, SwiperItem,Image, View  } from '@tarojs/components'
 import './Slide.scss'
 import img1 from "../../images/ad1.png";
 import img2 from "../../images/ad2.png";
@@ -19,52 +19,52 @@ export default class Slide extends Component {
     componentDidHide() { }
 
     render() {
-        var style = 'style1'
+        var style = 'style2'
 
         const img_lists = [
             { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg' },
             { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg' },
             {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg'},
             {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg'}]
-    
-        //选择不同样式  
-        if (style =='style1') {
-            var show_result = <ScrollView
-                                className='scrolslide'
-                                scrollX
-                                scrollWithAnimation
-                            >
-                                <View className='scrolslide-imgs'>
-                                    {img_lists.map((item) => {
-                                        return (
-                                            <Image src={item.src}></Image>
-                                        )
-                                    })}
-                                </View>
-                            </ScrollView>
-        }else{
-            var show_result = <Swiper className='slide'
+        if (style == 'style1') {
+            var slide = <Swiper
+                            className='slide'
                             indicatorColor='#999'
                             indicatorActiveColor='#333'
-                            circular='false'
+                            circular
                             indicatorDots
                             autoplay>
-                            {img_lists.map((item) => {
-                                return (
-                                    <SwiperItem>
-                                        <Image src={item.src}></Image>
-                                    </SwiperItem>
-                                )
-                            })}
-                        </Swiper>
-        }
+                            <View className='slide-imgs'>
+                                {img_lists.map((item) => {
+                                    return (
+                                        <SwiperItem>
+                                            <Image src={item.src}></Image>
+                                        </SwiperItem>
 
-        return (    
+                                    )
+                                })}
+                            </View>
+                        </Swiper>
+        }else{
+            var slide = <ScrollView
+                            className='scrolslide'
+                            scrollX
+                            scrollWithAnimation>
+                            <View className='scrolslide-imgs'>
+                                {img_lists.map((item) => {
+                                    return (
+                                        <Image src={item.src}></Image>
+                                    )
+                                })}
+                            </View>
+                        </ScrollView>
+        }        
+        return (
             <View>
-                {show_result}    
-            </View>    
-                
+                {slide}
+            </View>            
         )        
     }
 }
+
 

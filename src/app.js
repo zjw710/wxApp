@@ -1,6 +1,6 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import Index from './pages/index'
-
+import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 import './app.scss'
 
 class App extends Component {
@@ -14,27 +14,57 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/index/find',
       'pages/index/index'
+      
+
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      list: [{
+        pagePath: "pages/index/index",
+        text: "首页",
+        iconPath: './images/home.png',
+        selectedIconPath: './images/home-active.png'
+      }, {
+        pagePath: "pages/index/find",
+        text: "发现",
+        iconPath: "./images/find.png",
+        selectedIconPath: "./images/find-active.png"
+      }, {
+        pagePath: "pages/index/index",
+        text: "看房",
+        iconPath: "./images/action.png",
+        selectedIconPath: "./images/action-active.png"
+      }, {
+        pagePath: "pages/index/index",
+        text: "我的",
+        iconPath: "./images/user.png",
+        selectedIconPath: "./images/user-active.png"
+      }],
+      color: '#333',
+      selectedColor: '#333',
+      backgroundColor: '#fff',
+      borderStyle: 'white'
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Index />
     )

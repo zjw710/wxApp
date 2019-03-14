@@ -5,7 +5,13 @@ import icon1 from "../../images/ad1.png";
 import { AtIcon } from 'taro-ui'
 
 export default class Search extends Component {
+    constructor(props) {
+        
+        super(props)
+        // console.log("Search:")
+        // console.log(props)
 
+    }
 
     componentWillMount() { }
 
@@ -24,6 +30,7 @@ export default class Search extends Component {
                     {/* <AtIcon value='star-2' size='10'></AtIcon> */}
 
                     <Input type='text' placeholder='请输入查询内容' />
+                    {/* <Text>{this.props.name}</Text> */}
                 </View>
             </View>
             

@@ -1,11 +1,10 @@
 // 公共样式
 .goods{
+    margin-bottom: 20px;
     background-color: white;
-    .goods-title{
+    &-title{
         display: flex;
         flex-direction: row;
-    }
-    &-title{
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #f0f0f0;
@@ -26,20 +25,116 @@
             border: 0 solid #ccc;
             border-width: 3px 3px 0 0;
             transform: matrix(1, 1, -1, 1, 0, 0);
+        }                
+    }
+    &-lists-item-desc{
+        // 超出一行隐藏
+        &-title,&-desc,.goods-lists-item-desc-txt Text{
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            -webkit-box-orient: vertical;
         }
-                
+    }
+
+}
+//样式一与样式二共用样式
+.style1,.style2{
+    .goods{ 
+        .goods-lists{
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
+//样式三
+.style3{
+    .goods{ 
+        &-lists{
+            display:flex;    
+            &-item{
+                width: 500px;
+                height: auto;
+                margin: 0px 10px;
+                
+                border: none !important;
+                margin-bottom: 0px !important;
+                & Image{
+                    height: 380px !important;
+                }
+                
+                &-desc-txt{                    
+                    justify-content: space-between !important;
+                    & Button{
+                        display: none;
+                    }
+                    & Text{
+                        width: 300px !important;
+                    }
+                }
+            }
+        }
+        &-slide{
+            height: auto;
+            display: flex;
+            align-items: center;
+            overflow-x:auto;
+            &-list{
+                display: flex;
+            }
+            //隐藏滚动条
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+}
+//样式4
+.style4{
+    .goods{ 
+        &-lists{
+            display:flex;
+            flex-wrap: wrap;   
+            justify-content:flex-start; 
+            &-item{
+                width: 50%;
+                height: auto;
+                
+                border: none !important;
+                margin-bottom: 0px !important;
+                & Image{
+                    height: 330px !important;
+                    width: 330px !important ; 
+                }
+                &-desc{
+                    width: 330px !important ; 
+                }
+                
+                &-desc-txt Button{
+                    display: none;
+                }
+                &-desc-txt Text{
+                    
+                    width: 400px !important;
+                }
+            }
+        }
+    }
+}
+ 
 // 样式一
 .style1{
     .goods{        
-        .goods-lists,.goods-lists-item,.goods-lists-item-desc,.goods-lists-item-desc-txt{
+        .goods-lists-item,.goods-lists-item-desc,.goods-lists-item-desc-txt{
             display: flex;
         }
         .goods-lists-item,.goods-lists-item-desc-txt{
             flex-direction: row;
         }
-        .goods-lists,.goods-lists-item-desc{
+        .goods-lists-item-desc{
             flex-direction: column;
         }        
         
@@ -59,13 +154,11 @@
                     margin-top: 10px;
                     color: #888;     
                     font-size: 32px;   
-                    // 超过隐藏
-                    // -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    // // text-overflow:ellipsis;                // // text-overflow:ellipsis;
-                    white-space: nowrap;
+                                        
                     &-title{
-                        color: black;                                 
+                        color: black;  
+                        
+                        
                     }
                     &-desc{  
                         font-size: 27px;            
@@ -91,22 +184,23 @@
         }
     }
 }
-//样式2
-.style2{
+//样式2、样式3与样式4排版一样共用样式
+.style2,.style3,.style4{
     .goods{
-        .goods-lists,.goods-lists-item,.goods-lists-item-desc,.goods-lists-item-desc-txt{
+        .goods-lists-item,.goods-lists-item-desc,.goods-lists-item-desc-txt{
             display: flex;
         }
         .goods-lists-item-desc-txt{
             flex-direction: row;
         }
-        .goods-lists,.goods-lists-item-desc,.goods-lists-item{
+        .goods-lists-item-desc,.goods-lists-item{
             flex-direction: column;
         }
         &-lists{   
             margin: 10px 20px;                     
             &-item{                
                 align-items: center;
+                
                 border-bottom: 1px solid #eee;
                 margin-bottom: 40px;
                 & Image{
@@ -121,11 +215,6 @@
                     margin: 30px 0px;
                     color: #888;     
                     font-size: 32px;   
-                    // 超过隐藏
-                    // -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    // // text-overflow:ellipsis;                // // text-overflow:ellipsis;
-                    white-space: nowrap;
                     &-title{
                         color: black;                                 
                     }
