@@ -5,7 +5,17 @@ import './ImageList.scss'
 
 export default class ImageList extends Component {
 
+    constructor(props) {
 
+        super(props)
+        var style = 'style1'
+        if (this.props.show_style) {
+            style = this.props.show_style
+        }
+        this.setState({
+            style: style
+        })
+    }
     componentWillMount() { }
 
     componentDidMount() { }
@@ -17,7 +27,7 @@ export default class ImageList extends Component {
     componentDidHide() { }
 
     render() {
-        var style = 'style2'
+        var style = this.state.style
 
         const img_lists = [
             { title:'小户型二居室',src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDgsOjgBSjUzamGBjDuBTi0BEBl.jpg' },

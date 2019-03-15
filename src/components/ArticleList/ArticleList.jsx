@@ -3,13 +3,15 @@ import { View, Input, Text, Image } from '@tarojs/components'
 // import './ArticleList.scss'
 
 export default class ArticleList extends Component {
-    constructor(){
-        super(...arguments)
+    constructor(props){
+        super(props)
+        this.goToPage = this.goToPage.bind(this)
+        var hid_title = this.props.hid_title ? this.props.hid_title : false        
         this.setState({
-            style:"style1"
+            style:"style1",
+            hid_title: hid_title
         })
     }
-
     componentWillMount() { }
 
     componentDidMount() { }
@@ -26,6 +28,11 @@ export default class ArticleList extends Component {
 
     componentDidHide() { }
 
+    goToPage(path) {
+        Taro.navigateTo({
+            url: path
+        })
+    }
     render() {
         var style = this.state.style
 
@@ -37,6 +44,7 @@ export default class ArticleList extends Component {
             { title: '长租市场规模超万亿 将长期保持9%以上增速', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-01', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
             { title: '楼市“降温” 刚需户“上车”时间到了吗？', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
         ]
+        var all_path = '/pages/index/index/article'
         var common_view = <View className='article-lists'>
                             {article_arr.map((item, index) => {
                                 return (
@@ -71,12 +79,15 @@ export default class ArticleList extends Component {
         }else{
             var article_lists = <View>{common_view}</View>
         }
-        
+        var article_title = null
+        if (!this.state.hid_title) {
+            article_title = <View className='article-title' onClick={this.goToPage.bind(this, all_path)}>
+                                <Text className='goods-title-desc'>房产知识</Text>
+                                <Text className='article-title-all'>查看全部</Text>
+                            </View>
+        }
         var article = <View className='article'>
-                        <View className='article-title'>
-                            <Text className='goods-title-desc'>房产知识</Text>
-                            <Text className='article-title-all'>查看全部</Text>
-                        </View>
+                        {article_title}
                         {article_lists}
                     </View>
         return (

@@ -12,13 +12,8 @@ import { TabBar } from "../../../components/TabBar/TabBar";
 
 export default class Index extends Component {
 
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
+
+
 
   config: Config = {
     navigationBarTitleText: '首页'
@@ -36,6 +31,7 @@ export default class Index extends Component {
 
   componentDidHide () { }
   
+  
   render () {
     return (
       <View className='index'>        
@@ -43,8 +39,8 @@ export default class Index extends Component {
         <Slide></Slide>
         <MagicSquare></MagicSquare>
         
-        <ImageList></ImageList>
-        <GoodsList show_style={'style3'}></GoodsList>
+        <ImageList show_style={'style1'}></ImageList>
+        <GoodsList show_style={'style1'}></GoodsList>
         <ArticleList show_style={'style3'}></ArticleList>      
         <TabBar current_tab={0}></TabBar>
       </View>

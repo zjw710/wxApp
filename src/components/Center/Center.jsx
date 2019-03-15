@@ -27,15 +27,15 @@ export default class Center extends Component {
 
     goToPage(path){
         Taro.navigateTo({
-            url: `/pages/index/` + path
+            url: path
         })
     }
 
     render() {
         var user_info = { src: header,name:'Tigo007'}
-        var order_info = [{ desc: '未支付', src: icon_01, path: 'user/order?type=1' }, { desc: '已支付', src: icon_02, path: 'user/order?type=2' }, { desc: '已完成', src: icon_03, path: 'user/order?type=3' }, { desc: '已取消', src: icon_04, path: 'user/order?type=4'}]
-        var other_list = [{ desc: '我的订单', src: icon_01, path: 'user/order' }, { desc: '我的购物车', src: icon_02, path: 'user/order' }, { desc: '我的资料', src: icon_03, path: 'user/order' }, { desc: '关于我们', src: icon_04, path: 'user/order' }]
-        var all_path = 'user/order'
+        var order_info = [{ desc: '未支付', src: icon_01, path: '/pages/index/user/order?type=1' }, { desc: '已支付', src: icon_02, path: '/pages/index/user/order?type=2' }, { desc: '已完成', src: icon_03, path: '/pages/index/user/order?type=3' }, { desc: '已取消', src: icon_04, path: '/pages/index/user/order?type=4'}]
+        var other_list = [{ desc: '我的订单', src: icon_01, path: '/pages/index/user/order' }, { desc: '我的购物车', src: icon_02, path: '/pages/index/user/order' }, { desc: '我的资料', src: icon_03, path: '/pages/index/user/order' }, { desc: '关于我们', src: icon_04, path: '/pages/index/user/order' }]
+        var all_path = '/pages/index/user/order'
         return (
             <View className='center'>
                 <View className='center-header'>   
