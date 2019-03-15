@@ -5,7 +5,7 @@ import { AtTabBar } from 'taro-ui'
 
 export default class TabBar extends Component {
 
-    constructor(props) {
+    constructor() {
         
         super(...arguments)     
         this.state = {
@@ -13,33 +13,29 @@ export default class TabBar extends Component {
         }
         // this.handleClick = this.handleClick.bind(this)
     }
-    handleClick(value,e) {
-        console.log('value:')
-        console.log(e)
-        
-        value = 1
+    handleClick(value) {
         this.setState({
             current: value
         })
         switch (value) {
             case 0:
                 Taro.redirectTo({
-                    url: `/pages/index/index`
+                    url: `/pages/index/index/index`
                 })
                 break;
             case 1:
                 Taro.redirectTo({
-                    url: `/pages/index/find`
+                    url: `/pages/index/find/find`
                 })
                 break;
             case 2:
                 Taro.redirectTo({
-                    url: `/pages/index/action`
+                    url: `/pages/index/action/action`
                 })
                 break;
             case 3:
                 Taro.redirectTo({
-                    url: `/pages/index/user`
+                    url: `/pages/index/user/user`
                 })
                 break;
             default:
@@ -47,31 +43,26 @@ export default class TabBar extends Component {
         }
     }
     componentWillMount() {
-        console.log('componentWillMount')
      }
 
     componentDidMount() {
-        console.log('componentDidMount')
      }
 
     componentWillUnmount() { 
-        console.log('componentWillUnmount')
     }
 
     componentDidShow() {
-        console.log(this.props)
         this.setState({
             current: this.props.current_tab
         })
      }
 
     componentDidHide() {
-        console.log('componentDidHide')
      }
 
     render() {
         // var name = this.props.name
-        var current = this.props.current_tab
+        // var current = this.props.current_tab
         return (
             <View className='tab-bar'>
                 <View style='height:50px;'></View>

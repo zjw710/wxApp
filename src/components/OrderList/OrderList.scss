@@ -1,0 +1,76 @@
+.order{    
+    &-list{        
+        display: flex;
+        flex-direction: column;
+        font-size: 31px;
+        margin-top: 15px;
+        
+        &-item{
+            background-color: white;
+            margin-bottom: 15px;
+            &-title{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border-bottom: 1px solid #f0f0f0;
+                margin-bottom: 20px;
+                & Text{
+                    margin:20px 25px;
+                }
+                &-sta{
+                    color: rgb(87, 190, 173);                    
+                    margin-right: 50px !important;
+                }
+            }
+            &-goods{
+                display: flex;
+                flex-direction: column;
+                margin: 10px 15px;
+                &-item{
+                    display: flex;
+                    flex-direction: row;
+                    margin:10px 0px;
+                    &-img{
+                        // width: 30%;
+                        & Image{
+                            width: 200px;
+                            height: 200px;
+                        }
+                    }
+                    &-desc{
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 20px;
+                        & View{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                        }
+                        & Text{
+                            margin-bottom: 10px;
+                            //显示两行，超出显示省略号
+                            text-overflow: -o-ellipsis-lastline;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;                            
+                            -webkit-box-orient: vertical;
+                        }
+                        &-price{
+                            color: #888;  
+                            text-decoration: line-through;
+                        }
+                        &-name{
+                            -webkit-line-clamp: 1;
+                            line-clamp: 1;
+                        }
+                        &-desc{
+                            -webkit-line-clamp: 2;
+                            line-clamp: 2;
+                            color: #888;   
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

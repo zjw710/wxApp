@@ -33,9 +33,9 @@ export default class ImageList extends Component {
                         <Text>-二手精选-</Text>
                     </View>
                     <View className='img-lists'>
-                        {img_lists.map((item) => {
+                        {img_lists.map((item, index) => {
                             return (
-                                <View className='img-lists-item'>
+                                <View taroKey={index} className='img-lists-item'>
                                     <Image src={item.src}></Image>
                                     <View>
                                         <Text>{item.title}</Text>

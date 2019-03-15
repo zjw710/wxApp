@@ -14,10 +14,12 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/find',
-      'pages/index/index'
+      'pages/index/user/user',
+      'pages/index/user/order',   
+      'pages/index/index/index',
+      'pages/index/find/find',                        
+      'pages/index/action/action'
       
-
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -25,33 +27,33 @@ class App extends Component {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
-    tabBar: {
-      list: [{
-        pagePath: "pages/index/index",
-        text: "首页",
-        iconPath: './images/home.png',
-        selectedIconPath: './images/home-active.png'
-      }, {
-        pagePath: "pages/index/find",
-        text: "发现",
-        iconPath: "./images/find.png",
-        selectedIconPath: "./images/find-active.png"
-      }, {
-        pagePath: "pages/index/index",
-        text: "看房",
-        iconPath: "./images/action.png",
-        selectedIconPath: "./images/action-active.png"
-      }, {
-        pagePath: "pages/index/index",
-        text: "我的",
-        iconPath: "./images/user.png",
-        selectedIconPath: "./images/user-active.png"
-      }],
-      color: '#333',
-      selectedColor: '#333',
-      backgroundColor: '#fff',
-      borderStyle: 'white'
-    }
+    // tabBar: {
+    //   list: [{
+    //     pagePath: "pages/index/index",
+    //     text: "首页",
+    //     iconPath: './images/home.png',
+    //     selectedIconPath: './images/home-active.png'
+    //   }, {
+    //     pagePath: "pages/index/find",
+    //     text: "发现",
+    //     iconPath: "./images/find.png",
+    //     selectedIconPath: "./images/find-active.png"
+    //   }, {
+    //     pagePath: "pages/index/index",
+    //     text: "看房",
+    //     iconPath: "./images/action.png",
+    //     selectedIconPath: "./images/action-active.png"
+    //   }, {
+    //     pagePath: "pages/index/index",
+    //     text: "我的",
+    //     iconPath: "./images/user.png",
+    //     selectedIconPath: "./images/user-active.png"
+    //   }],
+    //   color: '#333',
+    //   selectedColor: '#333',
+    //   backgroundColor: '#fff',
+    //   borderStyle: 'white'
+    // }
   }
 
   componentDidMount() { }

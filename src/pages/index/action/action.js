@@ -1,13 +1,13 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import './index.scss'
-
-import { Slide } from "../../components/Slide/Slide";
-import { Search } from "../../components/Search/Search";
-import { DataForm } from "../../components/DataForm/DataForm";
+import { View, Text, Switch, Navigator } from '@tarojs/components'
+import './action.scss'
 
 
-export default class Find extends Component {
+import { DataForm } from "../../../components/DataForm/DataForm";
+import { TabBar } from "../../../components/TabBar/TabBar";
+
+
+export default class Action extends Component {
 
     /**
      * 指定config的类型声明为: Taro.Config
@@ -38,9 +38,8 @@ export default class Find extends Component {
         var current = 1
         return (
             <View className='index'>
-                <Search name={name}></Search>
-                <Slide></Slide>
-                <DataForm></DataForm>
+                <DataForm></DataForm>                
+                <TabBar current_tab={2}></TabBar>
             </View>
         )
     }

@@ -81,7 +81,7 @@
             height: auto;
             display: flex;
             align-items: center;
-            overflow-x:auto;
+            overflow-x:auto !important;
             &-list{
                 display: flex;
             }

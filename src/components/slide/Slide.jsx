@@ -35,9 +35,9 @@ export default class Slide extends Component {
                             indicatorDots
                             autoplay>
                             <View className='slide-imgs'>
-                                {img_lists.map((item) => {
+                                {img_lists.map((item,index) => {
                                     return (
-                                        <SwiperItem>
+                                        <SwiperItem taroKey={index}>
                                             <Image src={item.src}></Image>
                                         </SwiperItem>
 
@@ -51,9 +51,9 @@ export default class Slide extends Component {
                             scrollX
                             scrollWithAnimation>
                             <View className='scrolslide-imgs'>
-                                {img_lists.map((item) => {
+                                {img_lists.map((item,index) => {
                                     return (
-                                        <Image src={item.src}></Image>
+                                        <Image taroKey={index} src={item.src}></Image>
                                     )
                                 })}
                             </View>

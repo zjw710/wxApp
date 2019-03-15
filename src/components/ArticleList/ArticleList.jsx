@@ -3,7 +3,12 @@ import { View, Input, Text, Image } from '@tarojs/components'
 // import './ArticleList.scss'
 
 export default class ArticleList extends Component {
-
+    constructor(){
+        super(...arguments)
+        this.setState({
+            style:"style1"
+        })
+    }
 
     componentWillMount() { }
 
@@ -11,12 +16,19 @@ export default class ArticleList extends Component {
 
     componentWillUnmount() { }
 
-    componentDidShow() { }
+    componentDidShow() { 
+        if (this.props.show_style) {
+            this.setState({
+                style: this.props.show_style
+            })
+        }
+    }
 
     componentDidHide() { }
 
     render() {
-        var style = "style4"
+        var style = this.state.style
+
         const article_arr = [
             { title: '楼市“降温” ?', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg',
                 imgs: ['http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg']
@@ -26,9 +38,9 @@ export default class ArticleList extends Component {
             { title: '楼市“降温” 刚需户“上车”时间到了吗？', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
         ]
         var common_view = <View className='article-lists'>
-                            {article_arr.map((item) => {
+                            {article_arr.map((item, index) => {
                                 return (
-                                    <View className='article-lists-item'>
+                                    <View taroKey={index} className='article-lists-item'>
                                         <View className='article-lists-item-topimg'>
                                             <Image src={item.img}></Image>
                                         </View>

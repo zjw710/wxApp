@@ -36,9 +36,9 @@ export default class MagicSquare extends Component {
         return (
             <View className='magic'>
                 <View className='magic-square'>
-                    {magic_lists.map((item) => {
+                    {magic_lists.map((item, index) => {
                         return (
-                            <View className='magic-square-view'>
+                            <View taroKey={index} className='magic-square-view'>
                                 <Image src={item.icon}></Image>
                                 <Text>{item.txt}</Text>
                             </View>

@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input,Button } from '@tarojs/components'
+import { View, Input,Button, Textarea } from '@tarojs/components'
 import './DataForm.scss'
-
 
 export default class DataForm extends Component {
     constructor(props) {
@@ -23,21 +22,28 @@ export default class DataForm extends Component {
     componentDidHide() { }
 
     render() {
-        var title_lists = ['联系姓名', '联系电话', '联系地址', '咨询时间','留言'] 
+        var title_lists = [{ txt: '联系姓名' }, { txt: '联系电话' }, { txt: '联系地址'}, { txt: '咨询时间'},{txt:'留言',type:'rich'}]
+
         return (
             <View className='form'>
                 <View className='form-title'>
                     <Text>买卖房屋登记</Text>
                 </View>
                 <View className='form-lists'>
-                    {title_lists.map((item)=>{
+                    {title_lists.map((item,index)=>{
                         return(
-                            <View className='form-lists-item'>
+                            <View taroKey={index} className='form-lists-item'>
                                 <View className='form-lists-item-txt'>
-                                    <Text className='form-lists-item-txt-tag'>*</Text><Text>{item}：</Text>
+                                    <Text className='form-lists-item-txt-tag'>*</Text><Text>{item.txt}</Text>
                                 </View>
-                                <View className='form-lists-item-input'>
-                                    <Input placeholder={'请输入'+item}></Input>
+                                <View className='form-lists-item-input'>                                   
+                                    {item.type=='rich'?(
+                                            <Textarea placeholder={'请输入' + item.txt}></Textarea>
+                                        ):(
+                                            <Input placeholder={'请输入' + item.txt}></Input>
+                                        )
+                                    }
+                                    
                                 </View>
                             </View>
                         )
