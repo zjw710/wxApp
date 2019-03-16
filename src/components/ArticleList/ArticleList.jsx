@@ -38,11 +38,7 @@ export default class ArticleList extends Component {
     componentWillUnmount() { }
 
     componentDidShow() { 
-        // if (this.props.show_style) {
-        //     this.setState({
-        //         style: this.props.show_style
-        //     })
-        // }
+
     }
 
     componentDidHide() { }
@@ -97,25 +93,22 @@ export default class ArticleList extends Component {
                                 )
                             })}
                         </View>
-        if (style == 'style4') {
-            var article_lists = <View className='article-slide'>
-                                    <View className='article-slide-list'>
-                                        {common_view}
+
+        var article_lists_style1 = <View className='article-slide' style={style != 'style4' ? 'display:none;' : ''}>
+                                        <View className='article-slide-list'>
+                                            {common_view}
+                                        </View>
                                     </View>
-                                </View>
-        }else{
-            var article_lists = <View>{common_view}</View>
-        }
-        var article_title = null
-        if (!this.state.hid_title) {
-            article_title = <View className='article-title' onClick={this.goToPage.bind(this, all_path)}>
+        var article_lists_style2 = <View style={style == 'style4' ? 'display:none;' : ''}>{common_view}</View>
+
+        var article_title = <View className='article-title' onClick={this.goToPage.bind(this, all_path)} style={this.state.hid_title ? 'display:none;' : ''}>
                                 <Text className='goods-title-desc'>房产知识</Text>
                                 <Text className='article-title-all'>查看全部</Text>
-                            </View>
-        }
+                            </View>        
         var article = <View className='article'>
                         {article_title}
-                        {article_lists}
+                        {article_lists_style1}
+                        {article_lists_style2}
                     </View>
         return (
             <View className={style}>            

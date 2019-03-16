@@ -40,9 +40,7 @@ export default class Slide extends Component {
     componentDidHide() { }
 
     render() {
-        //涉及到滑块的，动态选择style总会有问题，暂时想不到解决方案
-        //var style = this.state.style  //如果这种方法传style，总是不生效    
-        var style = 'style2'
+        var style = this.state.style
 
         const img_lists = [
             { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg' },
@@ -50,42 +48,48 @@ export default class Slide extends Component {
             {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg'},
             {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg'}]
         var slide = null
-        if (style == 'style2') {
-            var slide = <Swiper
-                            className='slide'
-                            indicatorColor='#999'
-                            indicatorActiveColor='#333'
-                            circular
-                            indicatorDots
-                            autoplay>
-                            <View className='slide-imgs'>
-                                {img_lists.map((item,index) => {
-                                    return (
-                                        <SwiperItem taroKey={index}>
-                                            <Image src={item.src}></Image>
-                                        </SwiperItem>
 
-                                    )
-                                })}
-                            </View>
-                        </Swiper>
-        } else{
-            var slide = <ScrollView
-                            className='scrolslide'
-                            scrollX
-                            scrollWithAnimation>
-                            <View className='scrolslide-imgs'>
-                                {img_lists.map((item,index) => {
-                                    return (
-                                        <Image taroKey={index} src={item.src}></Image>
-                                    )
-                                })}
-                            </View>
-                        </ScrollView>
-        }        
+        var slide2 = <Swiper 
+                        className='slide'
+                        indicatorColor='#999'
+                        indicatorActiveColor='#333'
+                        circular
+                        indicatorDots
+                        autoplay>
+                        <View className='slide-imgs'>
+                            {img_lists.map((item,index) => {
+                                return (
+                                    <SwiperItem taroKey={index}>
+                                        <Image src={item.src}></Image>
+                                    </SwiperItem>
+
+                                )
+                            })}
+                        </View>
+                    </Swiper>
+
+        var slide1 = <ScrollView
+                        className='scrolslide'
+                        scrollX
+                        scrollWithAnimation>
+                        <View className='scrolslide-imgs'>
+                            {img_lists.map((item,index) => {
+                                return (
+                                    <Image taroKey={index} src={item.src}></Image>
+                                )
+                            })}
+                        </View>
+                    </ScrollView>
+    
         return (
             <View>
-                {slide}
+                <View style={style!='style1'?'display:none;':''}>
+                    {slide1}
+                </View>
+                <View style={style != 'style2' ? 'display:none;' : ''}>
+                    {slide2}
+                </View>
+                
             </View>            
         )        
     }

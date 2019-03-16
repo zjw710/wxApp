@@ -37,8 +37,7 @@ export default class Index extends Component {
       <View className='index'>        
         <Search></Search>
         <Slide show_style={'style2'}></Slide>
-        <MagicSquare show_style={'style1'}></MagicSquare>
-        
+        <MagicSquare show_style={'style3'}></MagicSquare>        
         <ImageList show_style={'style3'}></ImageList>
         <GoodsList show_style={'style1'}></GoodsList>
         <ArticleList show_style={'style4'}></ArticleList>      

@@ -39,9 +39,7 @@ export default class GoodsList extends Component {
 
     componentWillUnmount() { }
 
-    componentDidShow() { 
-
-        
+    componentDidShow() {         
     }
 
     componentDidHide() { }
@@ -81,36 +79,26 @@ export default class GoodsList extends Component {
                             })}
                         </View> 
         //滑块样式                        
-        if (style == 'style3') {
-            var goods_list = <View className='goods-slide'>
-                                <View className="goods-slide-list">
-                                    {common_view}
-                                </View>
-                            </View> 
-        }else{
-            var goods_list = <View>{common_view}</View>
-            
-        }   
-        var goods_title = null 
-        if (!this.state.hid_title) {
-            goods_title = <View className='goods-title'>
+        var g_list_style1 = <View className='goods-slide' style={style != 'style3' ? 'display:none;' : ''}>
+                                    <View className="goods-slide-list">
+                                        {common_view}
+                                    </View>
+                                </View> 
+
+        var g_list_style2 = <View style={style == 'style3' ? 'display:none;' : ''}>{common_view}</View>             
+        var goods_title = <View className='goods-title' style={this.state.hid_title ? 'display:none;' : ''}>
                                 <Text className='goods-title-desc'>热门预约</Text>
                                 <Text className='goods-title-all'>查看全部</Text>
-                            </View>
-        }else{
-            goods_title = <View></View>
-        }
-                  
+                            </View>                  
         const goods = <View className='goods'>
                         {goods_title}
-                        {goods_list} 
+                        {g_list_style1} 
+                        {g_list_style2} 
                     </View>  
         return (
             <View className={style}>                
                     {goods}                
-            </View>
-            
-            
+            </View>                        
         )
     }
 }

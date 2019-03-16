@@ -94,5 +94,48 @@
 }
 
 .style3{
-    
+    .magic{
+        &-square{
+            display: flex;
+            flex-direction: column;
+
+            &-view{
+                &-view{
+                    display: flex;
+                    flex-direction: row;
+                    height: 300px;                    
+                    &-txt{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 50%;   
+                        background-color: rgb(247, 103, 167);   
+                        color: white;      
+                        &-title{
+                            font-size: 35px;
+                            margin-bottom: 10px;
+                        }
+                        &-desc{
+                            font-size: 30px;  
+                            color: rgba(255,255,255,0.8);                           
+                        }         
+                    }
+                    &-img{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 50%;
+                        background-color: white;
+                        & Image{
+                            width: 150px;
+                            height: 150px;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
 }
