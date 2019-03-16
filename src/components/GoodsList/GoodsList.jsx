@@ -3,12 +3,29 @@ import { View, Text, Image, Button, ScrollView } from '@tarojs/components'
 import './GoodsList.scss'
 
 export default class GoodsList extends Component {
-    constructor() {
-        super(...arguments)
-        var show_style = this.props.show_style ? this.props.show_style :'style1'
-        var hid_title = this.props.hid_title ? this.props.hid_title : false        
+    constructor(props) {
+        super(props)
+        var hid_title = this.props.hid_title ? this.props.hid_title : false  
+        var style = 'style1'
+        switch (this.props.show_style) {
+            case 'style1':
+                style = 'style1'
+                break;
+            case 'style2':
+                style = 'style2'
+                break;
+            case 'style3':
+                style = 'style3'
+                break;
+            case 'style4':
+                style = 'style4'
+                break;
+            default:
+                style = 'style1'
+                break;
+        }      
         this.setState({
-            style: show_style,
+            style: style,
             hid_title: hid_title
         })
 

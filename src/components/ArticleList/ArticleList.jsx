@@ -6,9 +6,28 @@ export default class ArticleList extends Component {
     constructor(props){
         super(props)
         this.goToPage = this.goToPage.bind(this)
-        var hid_title = this.props.hid_title ? this.props.hid_title : false        
+        var hid_title = this.props.hid_title ? this.props.hid_title : false    
+
+        var style = 'style1'
+        switch (this.props.show_style) {
+            case 'style1':
+                style = 'style1'
+                break;
+            case 'style2':
+                style = 'style2'
+                break;
+            case 'style3':
+                style = 'style3'
+                break;
+            case 'style4':
+                style = 'style4'
+                break;
+            default:
+                style = 'style1'
+                break;
+        }       
         this.setState({
-            style:"style1",
+            style: style,
             hid_title: hid_title
         })
     }
@@ -19,11 +38,11 @@ export default class ArticleList extends Component {
     componentWillUnmount() { }
 
     componentDidShow() { 
-        if (this.props.show_style) {
-            this.setState({
-                style: this.props.show_style
-            })
-        }
+        // if (this.props.show_style) {
+        //     this.setState({
+        //         style: this.props.show_style
+        //     })
+        // }
     }
 
     componentDidHide() { }
@@ -34,7 +53,15 @@ export default class ArticleList extends Component {
         })
     }
     render() {
-        var style = this.state.style
+
+        //此处如果不这样写，渲染style4会有问题，不要问我，我也不知道为什么
+        if (this.state.style != 'style4') {
+            var style1 = this.state.style
+        } else {
+            var style1 = "style4"
+        }
+        //如果不先传给style1，再传给style,则渲染的元素会缺少goods-slide
+        var style = style1     
 
         const article_arr = [
             { title: '楼市“降温” ?', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg',

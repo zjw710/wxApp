@@ -12,23 +12,29 @@
 }
 .style1{
     .img{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
         &-lists,&-lists-item{
             display: flex;
         }
-        &-lists{        
+        &-lists{    
+            width: 100%;    
             flex-direction: row;
             flex-wrap: wrap;
             margin-top: 20px;
-            justify-content: center;
+            justify-content: flex-start;
             
             &-item{
                 position: relative;
-                width: 45%;
-                margin: 0px 10px;
+                width: 50%;
+                // margin: 0px 10px;
                 & View{
                     position: absolute;
                     top: 200px;                    
-                    width: 100%;
+                    width: 350px;
+                    margin-left: 15px;
                     line-height: 50px;
                     background-color: rgba(0,0,0,.2); 
                     Text{
@@ -38,9 +44,9 @@
                     }
                 }
                 & Image{
-                width: 100%;
+                width: 350px;
                 height: 250px;
-                margin:10px 0px;
+                margin:10px 15px;
                 border-radius: 5%;
             }
             }
@@ -61,7 +67,7 @@
                 width: 90%;
                 margin-bottom: 20px;
                 & Image{
-                    width: 100%;
+                    width: 800px;
                     height: 400px;
                     border-radius: 3%;
                 }
@@ -79,6 +85,69 @@
                 }
             }
             
+        }
+    }
+}
+.style3{
+    .img{
+        &-main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            // width: 90%;
+            & Image{
+                width: 710px;
+                height: 480px;
+            }
+            & View{
+                position: absolute;
+                background-color: rgba(0,0,0,.2);
+                width: 710px;
+                height: 60px;
+                top: 400px;    
+                & Text{
+                    color: white;
+                    font-size: 35px;
+                    margin-left: 20px;
+                }            
+            }
+        }
+        &-lists{
+            display: flex;
+            flex-direction: row;
+            margin: 20px 10px;
+            overflow-x:auto;  
+            //隐藏滚动条
+            &::-webkit-scrollbar {
+                display: none;
+            }    
+            .selected{
+                & Image{
+                    border: 1px solid #57bead;
+                }
+                
+            }      
+            &-item{     
+                margin: 15px 0px;           
+                & Image{
+                    width: 180px;
+                    height: 180px;
+                    margin: 0px 10px;
+                    border-radius: 5%;
+                }
+                & Text{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+//共同属性
+.style1,.style2{
+    .img{
+        &-main{
+            display: none;
         }
     }
 }

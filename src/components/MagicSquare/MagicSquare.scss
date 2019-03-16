@@ -1,30 +1,98 @@
-.magic{
-    &-square{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        
-        margin:40px 0px;
-        justify-content: center;
-        &-view{
-            width: 19%;
-            height: 140px;
-            // border: 1px solid red;            
-
+.style1{
+    .magic{
+        &-square{
             display: flex;
             flex-direction: column;
-            align-items: center;
+            flex-wrap: wrap;
             
-            margin-top: 20px;            
-        }
-        & Text{
-            font-size: 30px;
-            color: #595959;
-            margin-top: 10px;
-        }
-        & Image{
-            width: 95px;
-            height: 95px;
+            margin:20px 0px;
+            &-first{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                
+            }
+            &-second{
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                &-view{
+                    width: 20%;
+                }
+            }
+            &-first-view,&-second-view{
+                    // width: 19%;
+                height: 140px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;                
+                margin-top: 20px;            
+            }
+            & Text{
+                font-size: 30px;
+                color: #595959;
+                margin-top: 10px;
+            }
+            & Image{
+                width: 95px;
+                height: 95px;
+            }
         }
     }
+}
+.style2{
+    .magic{
+        &-square{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+
+            &-view{
+                width: 50%;  
+                display: flex;
+                flex-direction: row;  
+                justify-content: center;                                                            
+                &-view{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 95%;
+                    height: 200px;
+                    margin: 10px 0px;
+                    background-color: rgb(87, 190, 173);
+                    border-radius: 10%;
+
+                    
+                    &-txt{
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 30px;
+                        color: white;
+                        &-title{
+                            font-size: 35px;
+                        }
+                        &-desc{
+                            font-size: 25px;  
+                            color: rgba(255,255,255,0.8);                           
+                        }
+                    }
+                    &-img{
+                        margin-right: 30px;
+                        & Image{
+                            width: 100px;
+                            height: 100px;
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
+    }
+}
+
+.style3{
+    
 }

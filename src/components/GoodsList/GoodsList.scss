@@ -1,5 +1,6 @@
 // 公共样式
 .goods{
+    
     margin-bottom: 20px;
     background-color: white;
     &-title{
@@ -78,6 +79,7 @@
             }
         }
         &-slide{
+            //可左右滑动
             height: auto;
             display: flex;
             align-items: center;

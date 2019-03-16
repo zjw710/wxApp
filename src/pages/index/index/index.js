@@ -36,12 +36,12 @@ export default class Index extends Component {
     return (
       <View className='index'>        
         <Search></Search>
-        <Slide></Slide>
-        <MagicSquare></MagicSquare>
+        <Slide show_style={'style2'}></Slide>
+        <MagicSquare show_style={'style1'}></MagicSquare>
         
-        <ImageList show_style={'style1'}></ImageList>
+        <ImageList show_style={'style3'}></ImageList>
         <GoodsList show_style={'style1'}></GoodsList>
-        <ArticleList show_style={'style3'}></ArticleList>      
+        <ArticleList show_style={'style4'}></ArticleList>      
         <TabBar current_tab={0}></TabBar>
       </View>
     )
