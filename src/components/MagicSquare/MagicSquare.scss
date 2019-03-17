@@ -139,3 +139,90 @@
         }
     }
 }
+.style4{
+    .magic{
+        margin: 10px 0px;
+        &-square{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            &>View{
+                display: flex;
+                flex-direction: column;   
+        
+            }
+            &-view{    
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 420px;
+                &-view{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 380px;
+                    height: 380px;
+                    border-radius: 10%;
+                    margin: 10px 10px;
+                    &-txt{
+                        color: black;
+                        display: flex;
+                        flex-direction: column;
+                        &-title{
+                            font-size: 35px;
+                            margin-bottom: 10px;
+                        }
+                        &-desc{
+                            font-size: 30px;  
+                            color: #888;                         
+                        }   
+                    }
+                    &-img{     
+                        margin-top: 20px;   
+                        & Image{
+                            width: 200px;
+                            height: 200px;
+                        }
+                    }
+                }
+            }
+            &-secview{                
+                &-view{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 300px;
+                    height: 180px;                    
+                    border-radius: 10%;
+                    margin: 10px 0px;
+                    &-txt{
+                        display: flex;
+                        flex-direction: column;
+                        color: black;
+                        &-title{
+                            font-size: 35px;
+                            margin-bottom: 10px;
+                        }
+                        &-desc{
+                            font-size: 30px;  
+                            color: #888;                           
+                        }   
+                    }
+                    &-img{
+                        margin-left: 10px;
+                        & Image{
+                            
+                            width: 100px;
+                            height: 100px;
+                        }
+                    }
+                }
+            }
+        
+         
+        }
+    }
+}
