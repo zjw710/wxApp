@@ -9,11 +9,7 @@ import { GoodsList } from "../../../components/GoodsList/GoodsList";
 import { ImageList } from "../../../components/ImageList/ImageList";
 import { ArticleList } from "../../../components/ArticleList/ArticleList";
 import { TabBar } from "../../../components/TabBar/TabBar";
-import { GoodsDetail } from "../../../components/GoodsDetail/GoodsDetail";
 export default class Index extends Component {
-
-
-
 
   config: Config = {
     navigationBarTitleText: '首页'
@@ -34,11 +30,10 @@ export default class Index extends Component {
   
   render () {
     return (
-      <View className='index'>    
-        <GoodsDetail></GoodsDetail>    
+      <View className='index'>            
         <Search></Search>
         <Slide show_style={'style2'}></Slide>
-        <MagicSquare show_style={'style4'}></MagicSquare>        
+        <MagicSquare show_style={'style1'}></MagicSquare>        
         <ImageList show_style={'style1'}></ImageList>
         <GoodsList show_style={'style2'}></GoodsList>
         <ArticleList show_style={'style4'}></ArticleList>      

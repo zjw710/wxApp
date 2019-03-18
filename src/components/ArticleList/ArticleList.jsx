@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Input, Text, Image } from '@tarojs/components'
-// import './ArticleList.scss'
+import './ArticleList.scss'
 
 export default class ArticleList extends Component {
     constructor(props){

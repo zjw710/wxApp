@@ -35,6 +35,7 @@ export default class MagicSquare extends Component {
         this.setState({
             style: style,//样式，支持style1，style2,style3
         })
+        this.goToPage = this.goToPage.bind(this)
     }
     componentWillMount() {
   
@@ -55,12 +56,17 @@ export default class MagicSquare extends Component {
     componentDidHide() {
 
      }
+    goToPage(path){
+        Taro.navigateTo({
+            url: path
+        })
+    }
 
     render() {
         var style = this.state.style
         
         const magic_lists = [
-            { txt: '二手房',desc:'最新二手房', icon: icon1, v_style:'background-color: rgb(247, 193, 20);' }, //,txt_style:'background-color: rgb(247, 103, 167);'
+            { txt: '二手房',desc:'最新二手房', icon: icon1, v_style:'background-color: rgb(247, 193, 20);',path:'/pages/index/other/other' }, //,txt_style:'background-color: rgb(247, 103, 167);'
             { txt: '新房', desc: '最新新房', icon: icon2, v_style:'background-color: rgb(184, 210, 0);' }, //,txt_style:'background-color: rgb(252, 145, 112);' 
             // { txt: '租房', icon: icon3, v_style:'background-color: rgb(247, 193, 20); background-image: none;' }, 
             // { txt: '卖房', icon: icon4, v_style:'background-color: rgb(184, 210, 0); background-image: none;' }, 
@@ -101,7 +107,7 @@ export default class MagicSquare extends Component {
                             <View className='magic-square-first'>
                                 {first_row.map((item, index) => {
                                     return (
-                                        <View taroKey={index} className='magic-square-first-view'>
+                                        <View taroKey={index} className='magic-square-first-view'  onClick={this.goToPage.bind(this,item.path)}>
                                             <Image src={item.icon}></Image>
                                             <Text>{item.txt}</Text>
                                         </View>
