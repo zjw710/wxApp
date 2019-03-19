@@ -2,6 +2,8 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import Index from './pages/index'
 import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 import './app.scss'
+import { Api } from "./utils/services";
+import '@tarojs/async-await'
 
 class App extends Component {
 
@@ -56,14 +58,23 @@ class App extends Component {
     //   borderStyle: 'white'
     // }
   }
+  componentWillMount() {
+    // console.log('app componentWillMount++')
+  }
+  componentDidMount() {
+    // console.log('app componentDidMount')
+   }
 
-  componentDidMount() { }
+  componentDidShow() { 
+    // console.log('app componentDidShow')
+  }
 
-  componentDidShow() { }
-
-  componentDidHide() { }
+  componentDidHide() {
+    // console.log('app componentDidHide')
+   }
 
   componentDidCatchError() { }
+
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

@@ -8,22 +8,6 @@ export default class Slide extends Component {
     constructor(props) {
 
         super(props)
-        var style = 'style1'
-        //支持三种样式
-        switch (this.props.show_style) {
-            case 'style1':
-                style = 'style1'
-                break;
-            case 'style2':
-                style = 'style2'
-                break;
-            default:
-                style = 'style1'
-                break;
-        }
-        this.setState({
-            style: style,//样式，支持style1，style2,style3
-        })
         this.goToPage = this.goToPage.bind(this)
     }
     componentWillMount() { }
@@ -48,13 +32,29 @@ export default class Slide extends Component {
     }
 
     render() {
-        var style = this.state.style
+        var style = this.props.show_style
+        switch (style) {
+            case 'style1':
+                style = 'style1'
+                break;
+            case 'style2':
+                style = 'style2'
+                break;
+            default:
+                style = 'style1'
+                break;
+        }
 
-        const img_lists = [
-            { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg',path:'/pages1/index/other/other'},
-            { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg' },
-            {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg'},
-            {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg'}]
+        var img_arr = [{ src: '', path: '' }]
+        if (this.props.slide_img_arr) {
+            img_arr = this.props.slide_img_arr
+        }
+        
+            // [
+            // { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg',path:'/pages/index/other/other'},
+            // { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg' },
+            // {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg'},
+            // {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg'}]
         var slide = null
 
         var slide2 = <Swiper 
@@ -65,7 +65,7 @@ export default class Slide extends Component {
                         indicatorDots
                         autoplay>
                         <View className='slide-imgs'>
-                            {img_lists.map((item,index) => {
+                        {img_arr.map((item,index) => {
                                 return (
                                     <SwiperItem taroKey={index} onClick={this.goToPage.bind(this,item.path)}>
                                         <Image src={item.src}></Image>
@@ -81,7 +81,7 @@ export default class Slide extends Component {
                         scrollX
                         scrollWithAnimation>
                         <View className='scrolslide-imgs'>
-                            {img_lists.map((item,index) => {
+                        {img_arr.map((item,index) => {
                                 return (
                                     <Image taroKey={index} src={item.src}  onClick={this.goToPage.bind(this,item.path)}></Image>
                                 )

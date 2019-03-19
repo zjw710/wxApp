@@ -6,30 +6,6 @@ export default class ArticleList extends Component {
     constructor(props){
         super(props)
         this.goToPage = this.goToPage.bind(this)
-        var hid_title = this.props.hid_title ? this.props.hid_title : false    
-
-        var style = 'style1'
-        switch (this.props.show_style) {
-            case 'style1':
-                style = 'style1'
-                break;
-            case 'style2':
-                style = 'style2'
-                break;
-            case 'style3':
-                style = 'style3'
-                break;
-            case 'style4':
-                style = 'style4'
-                break;
-            default:
-                style = 'style1'
-                break;
-        }       
-        this.setState({
-            style: style,
-            hid_title: hid_title
-        })
     }
     componentWillMount() { }
 
@@ -49,21 +25,43 @@ export default class ArticleList extends Component {
         })
     }
     render() {
-        var style = this.state.style     
+        var style = this.props.show_style   
+        switch (style) {
+            case 'style1':
+                style = 'style1'
+                break;
+            case 'style2':
+                style = 'style2'
+                break;
+            case 'style3':
+                style = 'style3'
+                break;
+            case 'style4':
+                style = 'style4'
+                break;
+            default:
+                style = 'style1'
+                break;
+        }   
+        
+        var article_arr = [{ title: '', desc: '', c_time: '', img: '', imgs:[],path:''}]
+        if (this.props.article_arr) {
+            article_arr = this.props.article_arr
+        }        
 
-        const article_arr = [
-            { title: '楼市“降温” ?', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg',
-                imgs: ['http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg']
-            },
-            { title: '二手房60-90㎡中小户型成交占比1/3 中介共谋发展，长租市场规模超万亿 将长期保持9%以上增速', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-02', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
-            { title: '长租市场规模超万亿 将长期保持9%以上增速', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-01', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
-            { title: '楼市“降温” 刚需户“上车”时间到了吗？', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
-        ]
+        // var article_arr = [
+        //     { title: '楼市“降温” ?', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg',
+        //         imgs: ['http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg']
+        //     },
+        //     { title: '二手房60-90㎡中小户型成交占比1/3 中介共谋发展，长租市场规模超万亿 将长期保持9%以上增速', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-02', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
+        //     { title: '长租市场规模超万亿 将长期保持9%以上增速', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-01', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
+        //     { title: '楼市“降温” 刚需户“上车”时间到了吗？', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
+        // ]
         var all_path = '/pages/index/index/article'
         var common_view = <View className='article-lists'>
                             {article_arr.map((item, index) => {
                                 return (
-                                    <View taroKey={index} className='article-lists-item'>
+                                    <View taroKey={index} className='article-lists-item' onClick={this.goToPage.bind(this, item.path)}>
                                         <View className='article-lists-item-topimg'>
                                             <Image src={item.img}></Image>
                                         </View>
@@ -93,7 +91,7 @@ export default class ArticleList extends Component {
                                     </View>
         var article_lists_style2 = <View style={style == 'style4' ? 'display:none;' : ''}>{common_view}</View>
 
-        var article_title = <View className='article-title' onClick={this.goToPage.bind(this, all_path)} style={this.state.hid_title ? 'display:none;' : ''}>
+        var article_title = <View className='article-title' onClick={this.goToPage.bind(this, all_path)} style={this.props.hid_title ? 'display:none;' : ''}>
                                 <Text className='goods-title-desc'>房产知识</Text>
                                 <Text className='article-title-all'>查看全部</Text>
                             </View>        

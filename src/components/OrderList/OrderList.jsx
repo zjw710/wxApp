@@ -16,6 +16,7 @@ export default class OrderList extends Component {
         this.setState({
             sel_tab: sel_tab
         })
+        this.goToPage = this.goToPage.bind(this)
 
     }
     // 重新选择菜单
@@ -33,6 +34,11 @@ export default class OrderList extends Component {
     componentDidShow() { }
 
     componentDidHide() { }
+    goToPage(path) {
+        Taro.navigateTo({
+            url: path
+        })
+    }
 
     render() {
         var menu_list = ['全部', '待支付', '已支付', '已完成', '已取消']
@@ -40,7 +46,7 @@ export default class OrderList extends Component {
             {
                 order_no:'201903151025',sta:2,sta_desc:'已支付',goods_list:[
                     { src: 'https://img10.360buyimg.com/n7/jfs/t1/24714/24/8640/124174/5c77ab53E9e515e2e/8b1aa5d1fc7a5e23.jpg', g_name: '小米手机', g_desc:'小米8屏幕指纹版 6GB+128GB 黑色 全网通4G 双卡双待 全面屏拍照游戏智能',o_price:10.00,price:8.00},                
-                ]
+                ], path: '/pages/index/other/other'
             },
             {
                 order_no: '201903151025', sta: 1, sta_desc: '未支付', goods_list: [
@@ -67,7 +73,7 @@ export default class OrderList extends Component {
                 <View className='order-list'>
                     {order_list.map((item,index)=>{
                         return(
-                            <View taroKey={index} className='order-list-item'>
+                            <View taroKey={index} className='order-list-item' onClick={this.goToPage.bind(this, item.path)}>
                                 <View className='order-list-item-title'>
                                     <Text>订单号:{item.order_no}</Text>
                                     <Text className='order-list-item-title-sta'>{item.sta_desc}</Text>

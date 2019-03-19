@@ -22,15 +22,23 @@ export default class DataForm extends Component {
     componentDidHide() { }
 
     render() {
-        var title_lists = [{ txt: '联系姓名' }, { txt: '联系电话' }, { txt: '联系地址'}, { txt: '咨询时间'},{txt:'留言',type:'rich'}]
+        var form_row_arr = [{ txt: '', type: '' }]
+        if (this.props.form_row_arr) {
+            form_row_arr = this.props.form_row_arr
+        }
+        var form_title = ''
+        if (this.props.form_title) {
+            form_title = this.props.form_title
+        }
+        // [{ txt: '联系姓名' }, { txt: '联系电话' }, { txt: '联系地址'}, { txt: '咨询时间'},{txt:'留言',type:'rich'}]
 
         return (
             <View className='form'>
                 <View className='form-title'>
-                    <Text>买卖房屋登记</Text>
+                    <Text>{form_title}</Text>
                 </View>
                 <View className='form-lists'>
-                    {title_lists.map((item,index)=>{
+                    {form_row_arr.map((item,index)=>{
                         return(
                             <View taroKey={index} className='form-lists-item'>
                                 <View className='form-lists-item-txt'>
@@ -42,8 +50,7 @@ export default class DataForm extends Component {
                                         ):(
                                             <Input placeholder={'请输入' + item.txt}></Input>
                                         )
-                                    }
-                                    
+                                    }                                    
                                 </View>
                             </View>
                         )

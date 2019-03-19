@@ -33,8 +33,17 @@ export default class Center extends Component {
 
     render() {
         var user_info = { src: header,name:'Tigo007'}
-        var order_info = [{ desc: '未支付', src: icon_01, path: '/pages/index/user/order?type=1' }, { desc: '已支付', src: icon_02, path: '/pages/index/user/order?type=2' }, { desc: '已完成', src: icon_03, path: '/pages/index/user/order?type=3' }, { desc: '已取消', src: icon_04, path: '/pages/index/user/order?type=4'}]
-        var other_list = [{ desc: '我的订单', src: icon_01, path: '/pages/index/user/order' }, { desc: '我的购物车', src: icon_02, path: '/pages/index/user/order' }, { desc: '我的资料', src: icon_03, path: '/pages/index/user/order' }, { desc: '关于我们', src: icon_04, path: '/pages/index/user/order' }]
+        var order_sta_arr = [{ desc: '', src: '', path: '' }]
+        if (this.props.order_sta_arr){
+            order_sta_arr = this.props.order_sta_arr
+        }        
+        var center_title_arr = [{ desc: '', src: '', path: '' }]
+        if (this.props.center_title_arr) {
+            center_title_arr = this.props.center_title_arr
+        }
+        
+        // [{ desc: '未支付', src: icon_01, path: '/pages/index/user/order?type=1' }, { desc: '已支付', src: icon_02, path: '/pages/index/user/order?type=2' }, { desc: '已完成', src: icon_03, path: '/pages/index/user/order?type=3' }, { desc: '已取消', src: icon_04, path: '/pages/index/user/order?type=4'}]
+        // var other_list = [{ desc: '我的订单', src: icon_01, path: '/pages/index/user/order' }, { desc: '我的购物车', src: icon_02, path: '/pages/index/user/order' }, { desc: '我的资料', src: icon_03, path: '/pages/index/user/order' }, { desc: '关于我们', src: icon_04, path: '/pages/index/user/order' }]
         var all_path = '/pages/index/user/order'
         return (
             <View className='center'>
@@ -50,7 +59,7 @@ export default class Center extends Component {
                         <View className='allow-span'></View>
                     </View>
                     <View className='center-order-items'>
-                        {order_info.map((item, index) => {
+                        {order_sta_arr.map((item, index) => {
                             return (
                                 <View taroKey={index} className='center-order-items-icon' onClick={this.goToPage.bind(this, item.path)}>
                                     <Image src={item.src}></Image>
@@ -61,7 +70,7 @@ export default class Center extends Component {
                     </View>                    
                 </View>
                 <View className='center-other'>
-                    {other_list.map((item, index)=>{
+                    {center_title_arr.map((item, index)=>{
                         return(
                             <View taroKey={index} className='center-other-item' onClick={this.goToPage.bind(this, item.path)}>
                                 <View className='center-other-item-desc'>
@@ -72,8 +81,6 @@ export default class Center extends Component {
                             </View>
                         )
                     })}
-                    
-
                 </View>
             </View>
 

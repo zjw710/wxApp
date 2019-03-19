@@ -10,6 +10,7 @@ export default class Search extends Component {
         super(props)
         // console.log("Search:")
         // console.log(props)
+        this.goToPage = this.goToPage.bind(this)
 
     }
 
@@ -22,6 +23,11 @@ export default class Search extends Component {
     componentDidShow() { }
 
     componentDidHide() { }
+    goToPage(path) {
+        Taro.navigateTo({
+            url: path
+        })
+    }
 
     render() {
         return (
