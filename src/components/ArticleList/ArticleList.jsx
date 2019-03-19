@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Input, Text, Image } from '@tarojs/components'
-// import './ArticleList.scss'
+import './ArticleList.scss'
 
 export default class ArticleList extends Component {
     constructor(props){
@@ -49,15 +49,7 @@ export default class ArticleList extends Component {
         })
     }
     render() {
-
-        //此处如果不这样写，渲染style4会有问题，不要问我，我也不知道为什么
-        if (this.state.style != 'style4') {
-            var style1 = this.state.style
-        } else {
-            var style1 = "style4"
-        }
-        //如果不先传给style1，再传给style,则渲染的元素会缺少goods-slide
-        var style = style1     
+        var style = this.state.style     
 
         const article_arr = [
             { title: '楼市“降温” ?', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg',

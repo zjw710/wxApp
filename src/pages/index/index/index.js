@@ -40,7 +40,7 @@ export default class Index extends Component {
         <MagicSquare show_style={'style3'}></MagicSquare>        
         <ImageList show_style={'style3'}></ImageList>
         <GoodsList show_style={'style1'}></GoodsList>
-        <ArticleList show_style={'style4'}></ArticleList>      
+        <ArticleList show_style={'style1'} hid_title={false}></ArticleList>      
         <TabBar current_tab={0}></TabBar>
       </View>
     )

@@ -45,14 +45,7 @@ export default class GoodsList extends Component {
     componentDidHide() { }
 
     render() {
-        //此处如果不这样写，渲染style3会有问题，不要问我，我也不知道为什么
-        if (this.state.style != 'style3') {
-            var style1 = this.state.style
-        }else{
-            var style1 = "style3"
-        }
-        //如果不先传给style1，再传给style,则渲染的元素会缺少goods-slide
-        var style = style1
+        var style = this.state.style
         
         const goods_lists = [
             { title: '刚需优选小户型,长租-告别宿舍生活从此更舒适', desc: '4口之家小户型，优惠新房任你选,4口之家小户型，优惠新房任你选', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCSsOjgBSjtj5zaBzCyBTj8AkBl.jpg', price: '200万元', sale: '29套', remain:'86套'},
