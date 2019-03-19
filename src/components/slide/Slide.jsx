@@ -24,6 +24,7 @@ export default class Slide extends Component {
         this.setState({
             style: style,//样式，支持style1，style2,style3
         })
+        this.goToPage = this.goToPage.bind(this)
     }
     componentWillMount() { }
 
@@ -32,6 +33,7 @@ export default class Slide extends Component {
     componentWillUnmount() { }
 
     componentDidShow() { 
+
         this.setState({
             style: this.props.show_style,//样式，支持style1，style2,style3
         })
@@ -39,11 +41,17 @@ export default class Slide extends Component {
 
     componentDidHide() { }
 
+    goToPage(path){
+        Taro.navigateTo({
+            url: path
+        })
+    }
+
     render() {
         var style = this.state.style
 
         const img_lists = [
-            { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg' },
+            { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg',path:'/pages1/index/other/other'},
             { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg' },
             {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg'},
             {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg'}]
@@ -59,7 +67,7 @@ export default class Slide extends Component {
                         <View className='slide-imgs'>
                             {img_lists.map((item,index) => {
                                 return (
-                                    <SwiperItem taroKey={index}>
+                                    <SwiperItem taroKey={index} onClick={this.goToPage.bind(this,item.path)}>
                                         <Image src={item.src}></Image>
                                     </SwiperItem>
 
@@ -75,13 +83,14 @@ export default class Slide extends Component {
                         <View className='scrolslide-imgs'>
                             {img_lists.map((item,index) => {
                                 return (
-                                    <Image taroKey={index} src={item.src}></Image>
+                                    <Image taroKey={index} src={item.src}  onClick={this.goToPage.bind(this,item.path)}></Image>
                                 )
                             })}
                         </View>
                     </ScrollView>
     
         return (
+
             <View>
                 <View style={style!='style1'?'display:none;':''}>
                     {slide1}
