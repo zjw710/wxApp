@@ -17,10 +17,6 @@ export default class Slide extends Component {
     componentWillUnmount() { }
 
     componentDidShow() { 
-
-        this.setState({
-            style: this.props.show_style,//样式，支持style1，style2,style3
-        })
     }
 
     componentDidHide() { }
@@ -32,7 +28,16 @@ export default class Slide extends Component {
     }
 
     render() {
-        var style = this.props.show_style
+        var style = "style1"
+        var img_data = [{ src: '', path: '' }]
+
+        //获取传入参数
+        if (this.props.slide_img_arr) {
+            var slide_img_arr = this.props.slide_img_arr
+            img_data = slide_img_arr['data']
+            style = slide_img_arr['style']
+        } 
+
         switch (style) {
             case 'style1':
                 style = 'style1'
@@ -45,10 +50,6 @@ export default class Slide extends Component {
                 break;
         }
 
-        var img_arr = [{ src: '', path: '' }]
-        if (this.props.slide_img_arr) {
-            img_arr = this.props.slide_img_arr
-        }
         
             // [
             // { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg',path:'/pages/index/other/other'},
@@ -65,7 +66,7 @@ export default class Slide extends Component {
                         indicatorDots
                         autoplay>
                         <View className='slide-imgs'>
-                        {img_arr.map((item,index) => {
+                        {img_data.map((item,index) => {
                                 return (
                                     <SwiperItem taroKey={index} onClick={this.goToPage.bind(this,item.path)}>
                                         <Image src={item.src}></Image>
@@ -81,7 +82,7 @@ export default class Slide extends Component {
                         scrollX
                         scrollWithAnimation>
                         <View className='scrolslide-imgs'>
-                        {img_arr.map((item,index) => {
+                        {img_data.map((item,index) => {
                                 return (
                                     <Image taroKey={index} src={item.src}  onClick={this.goToPage.bind(this,item.path)}></Image>
                                 )

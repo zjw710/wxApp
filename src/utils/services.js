@@ -91,5 +91,25 @@ function get_config() {
     const params = {}
     return fetchApi(path, params)
 }
+/**
+ * 获取首页数据
+ */
+function get_home(){
 
-export const Api = { get_config}
+    const params = { article_list: '', imgs_list: '', goods_list: ''}
+    return get_data(params)
+}
+/**
+ * 获取文章数据
+ * @param {第几页} page 
+ * @param {分类} cat 
+ */
+function get_article(page,cat) {
+    const params = {article_list:{page:page,cat:cat}}
+    return get_data(params)
+}
+function get_data(params) {
+    let path = 'get_data'
+    return fetchApi(path, params)
+}
+export const Api = { get_config, get_home, get_article}

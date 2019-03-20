@@ -25,7 +25,23 @@ export default class ArticleList extends Component {
         })
     }
     render() {
-        var style = this.props.show_style   
+        //初始化参数
+        var style = 'style1'
+        var article_data = [{ title: '', desc: '', c_time: '', img: '', imgs:[],path:''}]
+        var title = ''
+        var hid_title = true
+        //获取传入参数
+        if (this.props.article_arr) {
+            var article_arr = this.props.article_arr    
+            article_data = article_arr['data']
+            style = article_arr['style']
+            title = article_arr['title']
+        }    
+
+        if (title) {
+            hid_title = false
+        }
+        //对样式进行判断
         switch (style) {
             case 'style1':
                 style = 'style1'
@@ -42,24 +58,12 @@ export default class ArticleList extends Component {
             default:
                 style = 'style1'
                 break;
-        }   
-        
-        var article_arr = [{ title: '', desc: '', c_time: '', img: '', imgs:[],path:''}]
-        if (this.props.article_arr) {
-            article_arr = this.props.article_arr
-        }        
+        }
 
-        // var article_arr = [
-        //     { title: '楼市“降温” ?', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg',
-        //         imgs: ['http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg']
-        //     },
-        //     { title: '二手房60-90㎡中小户型成交占比1/3 中介共谋发展，长租市场规模超万亿 将长期保持9%以上增速', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-02', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
-        //     { title: '长租市场规模超万亿 将长期保持9%以上增速', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-01', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
-        //     { title: '楼市“降温” 刚需户“上车”时间到了吗？', desc: '近日广东楼市市场有降温现象，多地各大楼盘纷纷加入到降价促销大军。而在广州，包括珠江新城、五羊新城等多地各大楼盘纷纷加入到降价促销大军', c_time: '2019-08-03', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg'},
-        // ]
+
         var all_path = '/pages/index/index/article'
         var common_view = <View className='article-lists'>
-                            {article_arr.map((item, index) => {
+                            {article_data.map((item, index) => {
                                 return (
                                     <View taroKey={index} className='article-lists-item' onClick={this.goToPage.bind(this, item.path)}>
                                         <View className='article-lists-item-topimg'>
@@ -91,8 +95,8 @@ export default class ArticleList extends Component {
                                     </View>
         var article_lists_style2 = <View style={style == 'style4' ? 'display:none;' : ''}>{common_view}</View>
 
-        var article_title = <View className='article-title' onClick={this.goToPage.bind(this, all_path)} style={this.props.hid_title ? 'display:none;' : ''}>
-                                <Text className='goods-title-desc'>房产知识</Text>
+        var article_title = <View className='article-title' onClick={this.goToPage.bind(this, all_path)} style={hid_title ? 'display:none;' : ''}>
+                                <Text className='goods-title-desc'>{title}</Text>
                                 <Text className='article-title-all'>查看全部</Text>
                             </View>        
         var article = <View className='article'>

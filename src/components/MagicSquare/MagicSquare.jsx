@@ -34,8 +34,16 @@ export default class MagicSquare extends Component {
     }
 
     render() {
-        //支持的样式
-        var style = this.props.show_style
+        //需要行初始化渲染一次
+        var magic_data = [{ txt: '', desc: '', icon: '', v_style: '', path: '', txt_style: '' }]    
+        var style = 'style'
+        //获取传入参数
+        if (this.props.magic_arr) {
+            var magic_arr = this.props.magic_arr
+            magic_data = magic_arr['data']
+            style = magic_arr['style']
+        } 
+
         switch (style) {
             case 'style1':
                 style = 'style1'
@@ -53,19 +61,14 @@ export default class MagicSquare extends Component {
                 style = 'style1'
                 break;
         }
-        //需要行初始化渲染一次，不然会报错
-        var magic_arr = [{ txt: '', desc: '', icon: '', v_style: '', path: '',txt_style:''}]                        
-        if (this.props.magic_arr) {
-            magic_arr = this.props.magic_arr
-        }
-
-        var length = magic_arr.length
+                            
+        var length = magic_data.length
         // var show_view = <View></View>
         //样式三中，元素左右调转
         if (style == 'style3') {
             for (let i = 0; i < length; i++) {
                 if (i%2 == 1) {
-                    magic_arr[i].v_style += 'flex-flow: row-reverse;'
+                    magic_data[i].v_style += 'flex-flow: row-reverse;'
                 } 
             }
         }
@@ -77,13 +80,13 @@ export default class MagicSquare extends Component {
         if (length > 5) {
             for (let i = 0; i < length; i++) {
                 if (i < 5) {
-                    first_row[i] = magic_arr[i];
+                    first_row[i] = magic_data[i];
                 } else {
-                    second_row[i - 5] = magic_arr[i];
+                    second_row[i - 5] = magic_data[i];
                 }
             }
         } else {
-            first_row = magic_arr
+            first_row = magic_data
         }
         var style1 = <View className='magic'>
                         <View className='magic-square'>
@@ -112,7 +115,7 @@ export default class MagicSquare extends Component {
 
         var style2 = <View className='magic'>
                         <View className='magic-square'>
-                        {magic_arr.map((item, index) => {
+                        {magic_data.map((item, index) => {
                                 return (
                                     <View taroKey={index} className='magic-square-view' onClick={this.goToPage.bind(this, item.path)}>
                                         <View className='magic-square-view-view' style={item.v_style}>                                            
@@ -138,9 +141,9 @@ export default class MagicSquare extends Component {
                 break;
             }
             if (i == 0) {
-                first_col = magic_arr[i];
+                first_col = magic_data[i];
             } else {
-                second_col[i - 1] = magic_arr[i];
+                second_col[i - 1] = magic_data[i];
             }
         }
 

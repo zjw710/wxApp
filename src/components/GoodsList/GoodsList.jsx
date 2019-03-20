@@ -26,7 +26,17 @@ export default class GoodsList extends Component {
         })
     } 
     render() {
-        var style = this.props.show_style
+        //初始化参数
+        var goods_data = [{ title: '', desc: '', img: '', price: '', sale: '', remain: '', path: '' }]
+        var style = 'style1'
+
+        //获取传入参数
+        if (this.props.goods_arr) {
+            var goods_arr = this.props.goods_arr
+            goods_data = goods_arr['data']
+            style = goods_arr['style']
+        }  
+
         switch (style) {
             case 'style1':
                 style = 'style1'
@@ -43,19 +53,14 @@ export default class GoodsList extends Component {
             default:
                 style = 'style1'
                 break;
-        }
-        var goods_arr = [{ title: '', desc: '', img: '', price: '', sale: '', remain: '',path:'' }]
-        if (this.props.goods_arr) {
-            goods_arr = this.props.goods_arr
-        }
-        
+        }        
             // [
             // { title: '刚需优选小户型,长租-告别宿舍生活从此更舒适', desc: '4口之家小户型，优惠新房任你选,4口之家小户型，优惠新房任你选', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCSsOjgBSjtj5zaBzCyBTj8AkBl.jpg', price: '200万元', sale: '29套', remain:'86套'},
             // { title: '长租-告别宿舍生活从此更舒适', desc: '度假式居住环境帮你减压', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCfsOjgBSji6falBTCyBTj8AkBl.jpg', price: '100万', sale: '2000套', remain: '86套' },
             // { title: '刚需优选小户型', desc: '4口之家小户型，优惠新房任你选1', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCSsOjgBSjtj5zaBzCyBTj8AkBl.jpg', price: '100万', sale: '20套', remain: '86套' },]
 
         var common_view = <View className='goods-lists'>
-                            {goods_arr.map((item,index) => {
+                            {goods_data.map((item,index) => {
                                 return (
                                     <View taroKey={index} className='goods-lists-item' onClick={this.goToPage.bind(this, item.path)}>
                                         <Image src={item.img}></Image>

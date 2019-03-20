@@ -35,7 +35,23 @@ export default class ImageList extends Component {
         })
     }
     render() {
-        var style = this.props.show_style
+
+        var img_data = [{ title: '', src: '', path: '' }]
+        var style = 'style1'
+        var title = ''
+        var hid_title = true
+
+        //获取传入参数
+        if (this.props.img_arr) {
+            var img_arr = this.props.img_arr
+            img_data = img_arr['data']
+            style = img_arr['style']
+            title = img_arr['title']
+        } 
+        if (title) {
+            hid_title = false
+        }
+
         switch (style) {
             case 'style1':
                 style = 'style1'
@@ -50,15 +66,7 @@ export default class ImageList extends Component {
                 style = 'style1'
                 break;
         }
-
-        var img_arr = [{ title: '', src: '', path: '' }]
-        var img_title = ''
-        if (this.props.img_arr) {
-            img_arr = this.props.img_arr
-        }
-        if (this.props.img_title) {
-            img_title = this.props.img_title
-        }
+    
         
             // [
             // { title:'小户型二居室',src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDgsOjgBSjUzamGBjDuBTi0BEBl.jpg' },
@@ -71,19 +79,19 @@ export default class ImageList extends Component {
         return (
             <View className={style}>
                 <View className='img'>
-                    <View className='img-title' style={this.props.hid_title ? 'display:none;' : ''}>
-                        <Text>{img_title}</Text>
+                    <View className='img-title' style={hid_title ? 'display:none;' : ''}>
+                        <Text>{title}</Text>
                     </View>
                     {/* 主图 */}
-                    <View className='img-main' onClick={this.goToPage.bind(this, img_arr[this.state.img_index].path)}>
-                        <Image src={img_arr[this.state.img_index].src}></Image>
+                    <View className='img-main' onClick={this.goToPage.bind(this, img_data[this.state.img_index].path)}>
+                        <Image src={img_data[this.state.img_index].src}></Image>
                         <View>
-                            <Text>{img_arr[this.state.img_index].title}</Text>
+                            <Text>{img_data[this.state.img_index].title}</Text>
                         </View>
                     </View>
                     {/* 图片列表 */}
                     <View className='img-lists'>
-                        {img_arr.map((item, index) => {
+                        {img_data.map((item, index) => {
                             return (
                                 <View taroKey={index} className={index == this.state.img_index ? "img-lists-item selected" :"img-lists-item"} onClick={this.selectImg.bind(this,index)}>
                                     <Image src={item.src}></Image>
