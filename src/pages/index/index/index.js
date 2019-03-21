@@ -9,12 +9,6 @@ import { GoodsList } from "../../../components/GoodsList/GoodsList";
 import { ImageList } from "../../../components/ImageList/ImageList";
 import { ArticleList } from "../../../components/ArticleList/ArticleList";
 import { TabBar } from "../../../components/TabBar/TabBar";
-
-import { Article } from "./article";
-
-import icon1 from "../../../images/icon_01.png";
-import icon2 from "../../../images/icon_02.png";
-
 import {Api} from "../../../utils/services";
 
 export default class Index extends Component {
@@ -30,14 +24,20 @@ export default class Index extends Component {
   constructor(props) {
     super(props)   
 
+    // console.log('Index constructor')
+    this.setState({
+      magic_arr: null,
+      slide_img_arr: null      
+    });
+
     // console.log('constructor')
   }  
   componentWillMount() {
     this.initConfig()   
     Api.get_home()
       .then(res=>{
-        console.log('get_home：') 
-        console.log(res)
+        // console.log('get_home：') 
+        // console.log(res)
         this.setState({
           article_arr: res['article_arr'],
           goods_arr: res['goods_arr'],
@@ -90,46 +90,61 @@ export default class Index extends Component {
   
   render () {    
     //初始化魔方模块数据
-    var magic_arr = { data: [{ txt: "", desc: "", icon: "", v_style: "", txt_style: "", path: "" }], style: 'style2'}
+    var magic_arr = null
     if (this.state.magic_arr) {
       magic_arr = this.state.magic_arr
-    }
-    var magic_data = magic_arr['data']
+    }    
 
     //初始化轮播图模块数据
-    var slide_img_arr = { data: [{ src: "", path: "" }], style: 'style1'} 
+    var slide_img_arr = null
     if (this.state.slide_img_arr) {
       slide_img_arr = this.state.slide_img_arr
-    }    
-    var slide_data = slide_img_arr['data']  
+    }        
     
     //初始化图片列表数据
-    var imgs_arr = { style: 'style1', data: [{ title: "", src: "", path:""}] }
+    var imgs_arr = []
     if (this.state.imgs_arr) {
       imgs_arr = this.state.imgs_arr
     }
-
+    let ImageList = imgs_arr.map((item,index) => {
+                            return (
+                              <ImageList taroKey={index} style={"order:" + item['order'] + ";"} img_arr={item} ></ImageList>
+                            )
+                          })                          
     //初始化商品列表数据
-    var goods_arr = { style: 'style1', data: [{ title: "", desc: "", img: "", price: "", sale: "", remain: "", path: "" }] }
+    var goods_arr = []
     if (this.state.goods_arr) {
       goods_arr = this.state.goods_arr
     }
+    let GoodsList = goods_arr.map((item, index) => {
+                            return (  
+                              <GoodsList taroKey={index} style={"order:" + item['order'] + ";"} show_more={item['show_more']} goods_arr={item}></GoodsList>
+                            )
+                          })
+                                          
     //初始化文章列表数据
-    var article_arr ={}// { style: 'style1', data: [{ title: "", path: "", desc: "", c_time: "", img: "", imgs: ""}] }
+    var article_arr =[]
     if (this.state.article_arr) {
       article_arr = this.state.article_arr
     }
+    let ArticleList =  article_arr.map((item, index) => {
+                            return (                              
+                              <ArticleList taroKey={index} style={"order:" + item['order']+";"} show_more={item['show_more']} article_arr={item}></ArticleList>  
+                            )
+                          })
 
 
+    let current_tab = 0
     return (
       <View className='index'>    
         <Search></Search>               
         <Slide slide_img_arr={slide_img_arr}></Slide>
-        <MagicSquare magic_arr={magic_arr}></MagicSquare>        
-        <ImageList img_arr={imgs_arr}></ImageList>
-        <GoodsList goods_arr={goods_arr}></GoodsList>
-        <ArticleList article_arr={article_arr}></ArticleList>   
-        <TabBar current_tab={0}></TabBar>
+        <MagicSquare magic_arr={magic_arr}></MagicSquare>     
+        {ImageList}                
+        {GoodsList}
+        {ArticleList}                
+        
+        <TabBar style="order:999;" current_tab={current_tab}></TabBar>
       </View>
     )
   }

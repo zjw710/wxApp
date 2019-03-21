@@ -16,13 +16,13 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index/index',
-      'pages/index/index/article',
-      'pages/index/other/other',
-      'pages/index/user/user',
-      'pages/index/user/order',         
+      'pages/index/index/index',      
+      'pages/index/user/user',             
       'pages/index/find/find',                        
-      'pages/index/action/action'
+      'pages/index/action/action',
+      'pages/index/other/order',  
+      'pages/index/other/article',
+      'pages/index/other/other'
       
     ],
     window: {

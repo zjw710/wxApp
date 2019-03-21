@@ -4,6 +4,9 @@ import './TabNavList.scss'
 import { GoodsList } from "../GoodsList/GoodsList";
 import { TabNav } from "../TabNav/TabNav";
 
+/**
+ * 该组件废弃，已经合并到GoodsList里去了
+ */
 export default class TabNavList extends Component {
     constructor(props) {
 

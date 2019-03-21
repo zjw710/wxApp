@@ -28,8 +28,10 @@ export default class Slide extends Component {
     }
 
     render() {
-        var style = "style1"
-        var img_data = [{ src: '', path: '' }]
+        
+        var init_img_arr = { style:'style1',data: [{ src: '', path: '' }]}
+        var style = init_img_arr['style']
+        var img_data = init_img_arr['data']
 
         //获取传入参数
         if (this.props.slide_img_arr) {

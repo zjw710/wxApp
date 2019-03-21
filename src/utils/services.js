@@ -96,8 +96,11 @@ function get_config() {
  */
 function get_home(){
 
-    const params = { article_list: '', imgs_list: '', goods_list: ''}
-    return get_data(params)
+    // const params = { get_article: '', imgs_list: '', get_goods: ''}
+    // return get_data(params)
+    let path = 'get_home'
+    const params = {}
+    return fetchApi(path, params)
 }
 /**
  * 获取文章数据
@@ -105,11 +108,38 @@ function get_home(){
  * @param {分类} cat 
  */
 function get_article(page,cat) {
-    const params = {article_list:{page:page,cat:cat}}
-    return get_data(params)
-}
-function get_data(params) {
-    let path = 'get_data'
+    // const params = {article_list:{page:page,cat:cat}}
+    // return get_data(params)
+
+    let path = 'get_article'
+    const params = { page: page,cat:cat}
     return fetchApi(path, params)
 }
-export const Api = { get_config, get_home, get_article}
+/**
+ * 获取商品数据
+ * @param {第几页} page 
+ * @param {分类} cat 
+ */
+function get_goods(page, cat) {
+    // const params = { goods_list: { page: page, cat: cat } }
+    // return get_data(params)
+
+    let path = 'get_goods'
+    const params = { page: page, cat: cat }
+    return fetchApi(path, params)
+}
+/**
+ * 获取action页数据
+ * @param {第几页} page 
+ * @param {分类} cat 
+ */
+function get_action() {
+    let path = 'get_action'
+    const params = {}
+    return fetchApi(path, params)
+}
+// function get_data(params) {
+//     let path = 'get_data'
+//     return fetchApi(path, params)
+// }
+export const Api = { get_config, get_home, get_article, get_goods, get_action}
