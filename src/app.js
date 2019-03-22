@@ -20,9 +20,12 @@ class App extends Component {
       'pages/index/user/user',             
       'pages/index/find/find',                        
       'pages/index/action/action',
-      'pages/index/other/order',  
+      'pages/index/other/order',        
       'pages/index/other/article',
-      'pages/index/other/other'
+      'pages/index/other/articleinfo',
+      'pages/index/other/goods', 
+      'pages/index/other/goodsinfo'
+       
       
     ],
     window: {

@@ -3,6 +3,9 @@ import { View, Input,Button, Textarea } from '@tarojs/components'
 import './DataForm.scss'
 
 export default class DataForm extends Component {
+    static defaultProps = {
+        form_arr: { title: '', style: '', summit: '提交', data: [] }//data: [{ txt: '', type: '' }]
+    }
     constructor(props) {
 
         super(props)
@@ -22,14 +25,19 @@ export default class DataForm extends Component {
     componentDidHide() { }
 
     render() {
-        var form_row_arr = [{ txt: '', type: '' }]
-        if (this.props.form_row_arr) {
-            form_row_arr = this.props.form_row_arr
-        }
-        var form_title = ''
-        if (this.props.form_title) {
-            form_title = this.props.form_title
-        }
+        // let init_form_arr = { title: '', style: '',summit:'提交', data: [{ txt: '', type: '' }] }
+        // let form_data = init_form_arr['data']
+        // let form_title = init_form_arr['title']
+        // if (this.props.form_arr) {
+        let form_arr = this.props.form_arr
+        let form_data = form_arr['data']
+        let form_title = form_arr['title']
+        let summit = form_arr['summit']
+
+        console.log("form_arr:")
+        console.log(form_arr)
+        // }
+
         // [{ txt: '联系姓名' }, { txt: '联系电话' }, { txt: '联系地址'}, { txt: '咨询时间'},{txt:'留言',type:'rich'}]
 
         return (
@@ -38,7 +46,7 @@ export default class DataForm extends Component {
                     <Text>{form_title}</Text>
                 </View>
                 <View className='form-lists'>
-                    {form_row_arr.map((item,index)=>{
+                    {form_data.map((item,index)=>{
                         return(
                             <View taroKey={index} className='form-lists-item'>
                                 <View className='form-lists-item-txt'>
@@ -56,7 +64,7 @@ export default class DataForm extends Component {
                         )
                     })} 
                     <View className='form-lists-summit'>
-                        <Button >提交</Button>
+                        <Button >{summit}</Button>
                     </View>                   
                 </View>
                 

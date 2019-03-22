@@ -5,6 +5,8 @@ import './find.scss'
 // import { TabNavList } from "../../../components/TabNavList/TabNavList";
 import { TabBar } from "../../../components/TabBar/TabBar";
 import { GoodsList } from "../../../components/GoodsList/GoodsList";
+import { BaseComponent } from "../../../components/BaseComponent/BaseComponent";
+import { Api } from "../../../utils/services";
 
 
 export default class Find extends Component {
@@ -43,14 +45,12 @@ export default class Find extends Component {
         }
     }
     render() {
-        var current = 1
-
+        var current_tab = 1
         return (
-            <View className='index'>
+            <View className='index'>                
+                <BaseComponent loadFun={() => Api.get_find()}></BaseComponent>
+                <TabBar current_tab={current_tab}></TabBar>
                 
-                {/* <TabNavList goods_arr={goods_arr}></TabNavList> */}
-                <GoodsList show_more={true} getChild={(ref) => { this.getChild(ref) }}></GoodsList>
-                <TabBar current_tab={1}></TabBar>
             </View>
         )
     }

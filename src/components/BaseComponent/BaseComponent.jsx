@@ -1,64 +1,215 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
-import { BaseComponent } from "../../../components/BaseComponent/BaseComponent";
-import { TabBar } from "../../../components/TabBar/TabBar";
-import { Api } from "../../../utils/services";
-import './index.scss'
+import { View, Text } from '@tarojs/components'
+// import './index.scss'
 
-export default class Index extends Component {
+import { Slide } from "../Slide/Slide";
+import { Search } from "../Search/Search";
+import { MagicSquare } from "../MagicSquare/MagicSquare";
+import { GoodsList } from "../GoodsList/GoodsList";
+import { ImageList } from "../ImageList/ImageList";
+import { ArticleList } from "../ArticleList/ArticleList";
+import { DataForm } from "../DataForm/DataForm";
+import { GoodsDetail } from "../GoodsDetail/GoodsDetail";
+import { ArticleDetail } from "../ArticleDetail/ArticleDetail";
 
-  config: Config = {
-    navigationBarTitleText: '首页',
-    enablePullDownRefresh: true 
-    
-  }
-  static defaultProps = {
-    isEnable: true
-  }
-  constructor(props) {
-    super(props)     
-  }  
-  componentWillMount() {
+import { Api } from "../../utils/services";
 
+export default class BaseComponent extends Component {
 
-  }
+    config: Config = {
+        navigationBarTitleText: '首页',
+        enablePullDownRefresh: true
 
-  componentDidMount () {
-    // console.log('componentDidMount') 
-   }
+    }
+    static defaultProps = {
+        isEnable: true,
+        loadFun:null
+    }
+    constructor(props) {
+        super(props)
 
-  componentWillUnmount () {
-    // console.log('componentWillUnmount') 
-   }
+        // console.log('Index constructor')
+        // this.setState({
+        //     magic_arr: null,
+        //     slide_img_arr: null
+        // });
 
-  componentDidShow () {
-    // console.log('componentDidShow') 
-   }
+        // console.log('constructor')
+        this.IS_INIT = 0
+    }
+    componentWillMount() {
+        this.initConfig()
+        
+        // console.log('componentWillMount') 
+        // this.loadData()
+    }
 
-  componentDidHide () {
-    // console.log('componentDidHide') 
-   }
+    componentDidMount() {
+        // console.log('componentDidMount') 
+    }
 
-  /**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-  onPullDownRefresh() {    
-    this.initConfig()
-      .then(() => {        
-        Taro.stopPullDownRefresh()//加载完成停止加载
-        this.componentDidShow()
-      })  
-  }
-  
-  render () {       
-    let current_tab = 0
-    return (
-      <View className='index'>    
-        <BaseComponent loadFun={() => Api.get_home()}></BaseComponent>
-        <TabBar current_tab={current_tab}></TabBar>
-      </View>
-    )
-  }
+    componentWillUnmount() {
+        // console.log('componentWillUnmount') 
+    }
+
+    componentDidShow() {        
+        // console.log('componentDidShow') 
+    }
+
+    componentDidHide() {
+        // console.log('componentDidHide') 
+    }
+    loadData(loadFun){
+        this.IS_INIT = 1
+        loadFun()
+            .then(res => {
+                // console.log('get_home：') 
+                // console.log(res)
+                this.setState({
+                    article_arr: res['article_arr'],
+                    goods_arr: res['goods_arr'],
+                    imgs_arr: res['imgs_arr'],
+                    form_arr: res['form_arr'],
+                    goods_detail_arr: res['goods_detail_arr'],
+                    art_detail_arr: res['article_detail_arr']
+                });
+            })
+    }
+    /**
+     * 初始化页面配置
+     */
+    initConfig() {
+        return Api.get_config()
+            .then(res => {
+                this.setState({
+                    magic_arr: res['magic_arr'],
+                    slide_img_arr: res['slide_img_arr']
+                });
+            })
+    }
+    /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+    onPullDownRefresh() {
+        this.initConfig()
+            .then(() => {
+                Taro.stopPullDownRefresh()//加载完成停止加载
+                this.componentDidShow()
+            })
+    }
+    render() {
+        //如果未加载数据，则进行加载
+        if (!this.IS_INIT && this.props.loadFun) {
+            this.loadData(this.props.loadFun)
+        }
+        
+
+        //初始化图片列表数据
+        var imgs_arr = []
+        if (this.state.imgs_arr) {
+            imgs_arr = this.state.imgs_arr
+        }
+        let ImageList = imgs_arr.map((item, index) => {
+            return (
+                <ImageList taroKey={index} style={"order:" + item['order'] + ";"} img_arr={item} ></ImageList>
+            )
+        })
+        //初始化商品列表数据
+        var goods_arr = []
+        if (this.state.goods_arr) {
+            goods_arr = this.state.goods_arr
+        }
+        let GoodsList = goods_arr.map((item, index) => {
+            return (
+                <GoodsList taroKey={index} style={"order:" + item['order'] + ";"} show_more={item['show_more']} goods_arr={item}></GoodsList>
+            )
+        })
+
+        //初始化文章列表数据
+        var article_arr = []
+        if (this.state.article_arr) {
+            article_arr = this.state.article_arr
+        }
+        let ArticleList = article_arr.map((item, index) => {
+            return (
+                <ArticleList taroKey={index} style={"order:" + item['order'] + ";"} show_more={item['show_more']} article_arr={item}></ArticleList>
+            )
+        })
+
+        //初始化魔方模块数据
+        var magic_arr = []
+        if (this.state.magic_arr) {
+            magic_arr = this.state.magic_arr
+        }
+
+        
+        let MagicSquare = magic_arr.map((item, index) => {
+            return (                
+                <MagicSquare taroKey={index} style={"order:" + item['order'] + ";"} magic_arr={item}></MagicSquare>
+            )
+        })
+        //初始化轮播图模块数据
+        var slide_img_arr = []
+        if (this.state.slide_img_arr) {
+            slide_img_arr = this.state.slide_img_arr
+        }
+        
+        let Slide = slide_img_arr.map((item, index) => {
+            return (
+                <Slide taroKey={index} style={"order:" + item['order'] + ";"} slide_img_arr={item}></Slide>
+            )
+        })
+        //表单提交初始数据
+
+        var form_arr = []
+        if (this.state.form_arr) {
+            form_arr = this.state.form_arr
+        }
+        let DataForm = form_arr.map((item, index) => {
+            return (
+                <DataForm taroKey={index} style={"order:" + item['order'] + ";"} form_arr={item}></DataForm>
+            )
+        })
+        //初始化商品详情模块数据
+        var goods_detail_arr = []
+        if (this.state.goods_detail_arr) {
+            goods_detail_arr = this.state.goods_detail_arr
+        }
+
+        let GoodsDetail = goods_detail_arr.map((item, index) => {
+            return (
+                <GoodsDetail taroKey={index} style={"order:" + item['order'] + ";"} goods_detail={item}></GoodsDetail>
+            )
+        })
+        //初始化文章详情模块数据
+        var art_detail_arr = []
+        if (this.state.art_detail_arr) {
+            art_detail_arr = this.state.art_detail_arr
+        }
+        console.log("art_detail_arr:")
+        console.log(art_detail_arr)
+        let ArticleDetail = art_detail_arr.map((item, index) => {
+            return (
+                <ArticleDetail taroKey={index} style={"order:" + item['order'] + ";"} article_detail={item}></ArticleDetail>
+            )
+        })
+
+        let Search = <Search></Search>
+
+        return (
+            <View className='index'>
+                {ArticleDetail}
+                {GoodsDetail}
+                {DataForm}
+                {Search}
+                {Slide}
+                {MagicSquare}
+                {ImageList}
+                {GoodsList}
+                {ArticleList}                
+            </View>
+        )
+    }
 }
 
 // var slide_img_arr = [

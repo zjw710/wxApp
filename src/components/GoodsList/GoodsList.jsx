@@ -4,13 +4,14 @@ import './GoodsList.scss'
 import { AtLoadMore } from 'taro-ui'
 import { TabNav } from "../TabNav/TabNav";
 import { Api } from "../../utils/services";
+import { Common } from "../../utils/common";
 
-var C_PAGE = 1//当前页数
-var PAGE_SIZE = 10//一页多少条数据
-var HAS_MORE = true//是否还有更多数据
-var SHOW_MORE = false//是否隐藏加载更多
-var CAT = 0//分类,默认为全部
-var IS_INIT = 0
+// var C_PAGE = 1//当前页数
+// var PAGE_SIZE = 10//一页多少条数据
+// var HAS_MORE = true//是否还有更多数据
+// var SHOW_MORE = false//是否隐藏加载更多
+// var CAT = 0//分类,默认为全部
+// var IS_INIT = 0
 
 export default class GoodsList extends Component {
     constructor(props) {
@@ -24,7 +25,13 @@ export default class GoodsList extends Component {
             sel_tab: sel_tab,
             // goods_arr: goods_arr,
             load_status: 'more'
-        })        
+        })     
+        this.C_PAGE = 1//当前页数
+        this.PAGE_SIZE = 10//一页多少条数据
+        this.HAS_MORE = true//是否还有更多数据
+        this.SHOW_MORE = false//是否隐藏加载更多
+        this.CAT = 0//分类,默认为全部
+        this.IS_INIT = 0   
     }
 
     componentWillMount() { 
@@ -39,7 +46,7 @@ export default class GoodsList extends Component {
 
     componentWillUnmount() { 
         // console.log('componentWillUnmount')
-        IS_INIT = 0
+        this.IS_INIT = 0
     }
 
     componentDidShow() {         
@@ -47,7 +54,7 @@ export default class GoodsList extends Component {
 
     componentDidHide() { 
         // console.log('componentDidHide')
-        IS_INIT = 0
+        this.IS_INIT = 0
     }
     
     /**
@@ -71,7 +78,7 @@ export default class GoodsList extends Component {
         this.setState({
             sel_tab: index
         })
-        CAT = index
+        this.CAT = index
         this.loadMore()
 
     }
@@ -79,68 +86,69 @@ export default class GoodsList extends Component {
      * 初始化加载状态
      */
     initLoadSta() {
-        C_PAGE = 1
-        HAS_MORE = true
-        SHOW_MORE = true
+        this.C_PAGE = 1
+        this.HAS_MORE = true
+        this.SHOW_MORE = true
         this.setState({
             load_status: 'more'
         })
-        IS_INIT = 1
+        this.IS_INIT = 1
     }
     /**
      * 加载更多数据
      */
     loadMore() {
-        if (!HAS_MORE) {
-            // console.log("已经没有更多数据了")
-            return
-        }
-        this.setState({
-            load_status: 'loading'
-        })
-        return Api.get_goods(C_PAGE, CAT)
-            .then(res => {
-                if (!res) {
-                    return
-                }
-                // console.log()
-                var goods_data_new = res['goods_arr']['data']
-                if (goods_data_new) {
-                    var goods_arr = this.state.goods_arr ? this.state.goods_arr : []
-                    //如果是第一页，直接覆盖数据
-                    if (C_PAGE == 1) {
-                        goods_arr = res['goods_arr']
-                    } else {
-                        var goods_data = goods_arr['data']
-                        goods_data.push.apply(goods_data, goods_data_new)
-                        goods_arr['data'] = goods_data
-                    }
+        Common.loadMore(this, (page, cat) => Api.get_goods(page, cat), 'goods_arr')
+        // if (!HAS_MORE) {
+        //     // console.log("已经没有更多数据了")
+        //     return
+        // }
+        // this.setState({
+        //     load_status: 'loading'
+        // })
+        // return Api.get_goods(C_PAGE, CAT)
+        //     .then(res => {
+        //         if (!res) {
+        //             return
+        //         }
+        //         // console.log()
+        //         var goods_data_new = res['goods_arr']['data']
+        //         if (goods_data_new) {
+        //             var goods_arr = this.state.goods_arr ? this.state.goods_arr : []
+        //             //如果是第一页，直接覆盖数据
+        //             if (C_PAGE == 1) {
+        //                 goods_arr = res['goods_arr']
+        //             } else {
+        //                 var goods_data = goods_arr['data']
+        //                 goods_data.push.apply(goods_data, goods_data_new)
+        //                 goods_arr['data'] = goods_data
+        //             }
 
-                    this.setState({
-                        goods_arr: goods_arr
-                    })
+        //             this.setState({
+        //                 goods_arr: goods_arr
+        //             })
 
-                    if (goods_data_new.length < PAGE_SIZE) {
-                        HAS_MORE = true
-                        this.setState({
-                            load_status: 'loading'
-                        })
-                    }
-                    C_PAGE++
+        //             if (goods_data_new.length < PAGE_SIZE) {
+        //                 HAS_MORE = true
+        //                 this.setState({
+        //                     load_status: 'loading'
+        //                 })
+        //             }
+        //             C_PAGE++
 
-                } else {                    
-                    HAS_MORE = false
-                    this.setState({
-                        load_status: 'noMore'
-                    })
-                }
-            })
+        //         } else {                    
+        //             HAS_MORE = false
+        //             this.setState({
+        //                 load_status: 'noMore'
+        //             })
+        //         }
+        //     })
     }        
     render() {
         // console.log('this.state.goods_arr:')
         // console.log(this.state.goods_arr)
         //如果需要请求网络进行初始化，但未初始化，则初始化一次
-        if (this.props.show_more && !IS_INIT) {
+        if (this.props.show_more && !this.IS_INIT) {
             this.initLoadSta()
             this.loadMore()
         }
@@ -162,8 +170,8 @@ export default class GoodsList extends Component {
             style = goods_arr['style']
             title = goods_arr['title']
             menus = goods_arr['menus']
-        } else if (this.state.goods_arr) {
-            let goods_arr = this.state.goods_arr
+        } else if (this.state.data_arr) {
+            let goods_arr = this.state.data_arr
             goods_data = goods_arr['data']
             style = goods_arr['style']
             title = goods_arr['title']
@@ -240,7 +248,7 @@ export default class GoodsList extends Component {
             <View className={style}>      
                 {show_tabnav && <TabNav menu_list={menus} sel_tab={this.state.sel_tab} changeTab={(index) => { this.changeTab(index) }}></TabNav>}                          
                 {goods}                
-                {SHOW_MORE && <AtLoadMore style="height:10px;" status={this.state.load_status} />}
+                {this.SHOW_MORE && <AtLoadMore style="height:10px;" status={this.state.load_status} />}
             </View>                        
         )
     }

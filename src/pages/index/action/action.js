@@ -8,6 +8,7 @@ import { TabBar } from "../../../components/TabBar/TabBar";
 import { ImageList } from "../../../components/ImageList/ImageList"; 
 import { Slide } from "../../../components/Slide/Slide"; 
 import { Api } from "../../../utils/services";
+import { BaseComponent } from "../../../components/BaseComponent/BaseComponent";
 
 export default class Action extends Component {
 
@@ -24,16 +25,16 @@ export default class Action extends Component {
 
     }
     componentWillMount() { 
-        Api.get_action()
-            .then(res => {
-                // console.log('get_home：') 
-                // console.log(res)
-                this.setState({
-                    imgs_arr: res['imgs_arr'],
-                    imgs_arr1: res['imgs_arr'],
-                    imgs_arr2: res['imgs_arr'],
-                });
-            })
+        // Api.get_action()
+        //     .then(res => {
+        //         // console.log('get_home：') 
+        //         // console.log(res)
+        //         this.setState({
+        //             imgs_arr: res['imgs_arr'],
+        //             imgs_arr1: res['imgs_arr'],
+        //             imgs_arr2: res['imgs_arr'],
+        //         });
+        //     })
     }
 
     componentDidMount() { }
@@ -45,8 +46,6 @@ export default class Action extends Component {
     componentDidHide() { }
 
     render() {
-        let current_tab = 2
-
         //初始化图片列表数据
         let imgs_arr = null
         if (this.state.imgs_arr) {
@@ -59,15 +58,18 @@ export default class Action extends Component {
                                         { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg', path: '/pages/index/other/other' }
                                     ]	
                                 }
-        let form_row_arr = [{ txt: '联系姓名' }, { txt: '联系电话' }, { txt: '联系地址' }, { txt: '咨询时间' }, { txt: '留言', type: 'rich' }]
+        let form_row_arr = { title:'-买卖房屋登记-',style:'style1',data:[{ txt: '联系姓名' }, { txt: '联系电话' }, { txt: '联系地址' }, { txt: '咨询时间' }, { txt: '留言', type: 'rich' }]}
         let form_title = '-买卖房屋登记-'
+        let current_tab = 2
         return (
             <View className='index'>
-                <Slide slide_img_arr={slide_img_arr}></Slide>
+                {/* <Slide slide_img_arr={slide_img_arr}></Slide>
                 <ImageList img_arr={imgs_arr}></ImageList>
                 <ImageList img_arr={imgs_arr}></ImageList>
                 <ImageList img_arr={imgs_arr}></ImageList>
                 <DataForm form_row_arr={form_row_arr} form_title={form_title}></DataForm>                
+                <TabBar current_tab={current_tab}></TabBar> */}
+                <BaseComponent loadFun={() => Api.get_action()}></BaseComponent>
                 <TabBar current_tab={current_tab}></TabBar>
             </View>
         )

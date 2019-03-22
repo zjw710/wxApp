@@ -4,6 +4,13 @@ import './GoodsDetail.scss'
 import { ImageList } from "../ImageList/ImageList";
 
 export default class GoodsDetail extends Component {
+    static defaultProps = {
+        goods_detail: {
+            style: 'style1', order: 1, data: {
+                title: '', desc: '', img: '', imgs: { style: '', title: '', data: [] }, price: '', sale: '', remain: ''
+            }
+        }//data:[{title:'',src:'',path:''}]
+    }
     constructor(props) {
         
         super(props)
@@ -21,15 +28,11 @@ export default class GoodsDetail extends Component {
     componentDidHide() { }
 
     render() {
-        var goods_info = { title: '刚需优选小户型,长租-告别宿舍生活从此更舒适', desc: '4口之家小户型，优惠新房任你选,4口之家小户型，优惠新房任你选', img: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACCSsOjgBSjtj5zaBzCyBTj8AkBl.jpg', price: '200万元', sale: '29套', remain:'86套'}
-        var img_arr = [
-            { title: '小户型二居室', src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDgsOjgBSjUzamGBjDuBTi0BEBl.jpg', path: '/pages/index/other/other' },
-            { title: '温馨三居室', src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDWsOjgBSjqwrkdMO4FOLQEQGU.jpg' },
-            { title: '温馨四居室', src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDWsOjgBSjqwrkdMO4FOLQEQGU.jpg' },
-            { title: '短租旅居没问题', src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDzsOjgBSjUmOSHBDDuBTi0BEBl.jpg' },
-            { title: '新房优惠任你选', src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDLsOjgBSjByYC7BDDuBTi0BEBl.jpg' }
-        ]  
-        var style = this.props.show_style
+        let goods_detail = this.props.goods_detail
+        var goods_data = goods_detail.data
+        var img_arr = goods_data.imgs
+
+        var style = goods_detail.style
         switch (style) {
             case 'style1':
                 style = 'style1'
@@ -47,20 +50,20 @@ export default class GoodsDetail extends Component {
                 style = 'style1'
                 break;
         }
+        // console.log(goods_data)
 
         var detail_goods = <View className='detail-goods' style={style != 'style4' ? 'display:none;' : ''}>
                                 <View className='detail-goods-img'>
-                                    <Image src={goods_info.img}></Image>
+                                    <Image src={goods_data.img}></Image>
                                 </View>
 
                                 <View className='detail-goods-desc'>
-                                    <Text className='detail-goods-desc-title'>{goods_info.title}</Text>
-                                    <Text className='detail-goods-desc-desc'>{goods_info.desc}</Text>
-
+                                    <Text className='detail-goods-desc-title'>{goods_data.title}</Text>
+                                    <Text className='detail-goods-desc-desc'>{goods_data.desc}</Text>
                                     <View className='detail-goods-desc-txt'>
-                                        <Text className='detail-goods-desc-txt-price'>价格:￥{goods_info.price}</Text>
-                                        <Text>已预约:{goods_info.sale}</Text>
-                                        <Text>剩:{goods_info.remain}</Text>
+                                        <Text className='detail-goods-desc-txt-price'>价格:￥{goods_data.price}</Text>
+                                        <Text>已预约:{goods_data.sale}</Text>
+                                        <Text>剩:{goods_data.remain}</Text>
                                     </View>
                                 </View>
                             </View>

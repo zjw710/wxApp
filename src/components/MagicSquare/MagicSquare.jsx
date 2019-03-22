@@ -3,7 +3,9 @@ import { View,Text,Image } from '@tarojs/components'
 import './MagicSquare.scss'
 
 export default class MagicSquare extends Component {
-
+    static defaultProps = {
+        magic_arr: { style: 'style1', data: [{ txt: '', desc: '', icon: '', v_style: '', path: '', txt_style: '' }] }
+    }
     constructor(props) {
         super(props)        
         this.goToPage = this.goToPage.bind(this)
@@ -34,16 +36,11 @@ export default class MagicSquare extends Component {
     }
 
     render() {
-        //需要行初始化渲染一次
-        var init_magic_arr = {style:'style1',data:[{ txt: '', desc: '', icon: '', v_style: '', path: '', txt_style: '' }]}
-        var style = init_magic_arr['style']
-        var magic_data = init_magic_arr['data']
-        //获取传入参数
-        if (this.props.magic_arr) {
-            var magic_arr = this.props.magic_arr
-            magic_data = magic_arr['data']
-            style = magic_arr['style']
-        } 
+        //获取传入参数  
+        let magic_arr = this.props.magic_arr
+        let magic_data = magic_arr['data']
+        let style = magic_arr['style']
+  
 
         switch (style) {
             case 'style1':

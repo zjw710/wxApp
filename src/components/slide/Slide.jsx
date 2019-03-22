@@ -4,7 +4,9 @@ import './Slide.scss'
 
 
 export default class Slide extends Component {
-
+    static defaultProps = {
+        slide_img_arr: { style: 'style1', data: [{ src: '', path: '' }] }
+    }
     constructor(props) {
 
         super(props)
@@ -28,17 +30,11 @@ export default class Slide extends Component {
     }
 
     render() {
-        
-        var init_img_arr = { style:'style1',data: [{ src: '', path: '' }]}
-        var style = init_img_arr['style']
-        var img_data = init_img_arr['data']
 
         //获取传入参数
-        if (this.props.slide_img_arr) {
-            var slide_img_arr = this.props.slide_img_arr
-            img_data = slide_img_arr['data']
-            style = slide_img_arr['style']
-        } 
+        let slide_img_arr = this.props.slide_img_arr
+        let img_data = slide_img_arr['data']
+        let style = slide_img_arr['style']
 
         switch (style) {
             case 'style1':

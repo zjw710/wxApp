@@ -103,7 +103,7 @@ function get_home(){
     return fetchApi(path, params)
 }
 /**
- * 获取文章数据
+ * 获取文章数据列表
  * @param {第几页} page 
  * @param {分类} cat 
  */
@@ -116,7 +116,16 @@ function get_article(page,cat) {
     return fetchApi(path, params)
 }
 /**
- * 获取商品数据
+ * 获取文章详情
+ * 
+ */
+function get_article_detail(art_id) {
+    let path = 'get_article_detail'
+    const params = { art_id: art_id}
+    return fetchApi(path, params)
+}
+/**
+ * 获取商品数据列表
  * @param {第几页} page 
  * @param {分类} cat 
  */
@@ -129,12 +138,26 @@ function get_goods(page, cat) {
     return fetchApi(path, params)
 }
 /**
+ * 获取商品详情 
+ */
+function get_goods_info(g_id) {
+    let path = 'get_goods_info'
+    const params = { g_id: g_id}
+    return fetchApi(path, params)
+}
+/**
  * 获取action页数据
- * @param {第几页} page 
- * @param {分类} cat 
  */
 function get_action() {
     let path = 'get_action'
+    const params = {}
+    return fetchApi(path, params)
+}
+/**
+ * 获取find页数据
+ */
+function get_find() {
+    let path = 'get_find'
     const params = {}
     return fetchApi(path, params)
 }
@@ -142,4 +165,4 @@ function get_action() {
 //     let path = 'get_data'
 //     return fetchApi(path, params)
 // }
-export const Api = { get_config, get_home, get_article, get_goods, get_action}
+export const Api = { get_config, get_home, get_article, get_article_detail, get_goods, get_action, get_find, get_goods_info}

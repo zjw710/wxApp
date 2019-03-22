@@ -4,15 +4,15 @@ import './OrderList.scss'
 import { TabNav } from "../TabNav/TabNav";
 
 export default class OrderList extends Component {
+    static defaultProps = {
+        sel_tab: 0
+    }
     constructor(props) {
 
         super(props)
         this.changeTab = this.changeTab.bind(this)
 
-        var sel_tab = 0
-        if (this.props.sel_tab) {
-            sel_tab = this.props.sel_tab
-        }
+        var sel_tab = this.props.sel_tab
         this.setState({
             sel_tab: sel_tab
         })

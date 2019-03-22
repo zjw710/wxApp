@@ -3,8 +3,11 @@ import { View, Input } from '@tarojs/components'
 import './TabNav.scss'
 
 export default class TabNav extends Component {
+    static defaultProps = {
+        menu_list: [],
+        sel_tab:0
+    }
     constructor(props) {
-
         super(props)
         var sel_tab = this.props.sel_tab
         this.setState({
