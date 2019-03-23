@@ -41,8 +41,8 @@ export default class OrderList extends Component {
     }
 
     render() {
-        var menu_list = ['全部', '待支付', '已支付', '已完成', '已取消']
-        var order_list = [
+        // var menu_list = ['全部', '待支付', '已支付', '已完成', '已取消']
+        var order_list = {order:1,menu:['全部', '待支付', '已支付', '已完成', '已取消'],style:'style1',data:[
             {
                 order_no:'201903151025',sta:2,sta_desc:'已支付',goods_list:[
                     { src: 'https://img10.360buyimg.com/n7/jfs/t1/24714/24/8640/124174/5c77ab53E9e515e2e/8b1aa5d1fc7a5e23.jpg', g_name: '小米手机', g_desc:'小米8屏幕指纹版 6GB+128GB 黑色 全网通4G 双卡双待 全面屏拍照游戏智能',o_price:10.00,price:8.00},                
@@ -64,14 +64,17 @@ export default class OrderList extends Component {
                     { src: 'https://img14.360buyimg.com/n7/jfs/t27616/251/1425719819/224805/20c2401e/5bc831fdN61f8d9d2.jpg', g_name: '小米8', g_desc: '小米8屏幕指纹版 6GB+128GB 黑色 全网通4G 双卡双待 全面屏拍照游戏智能', o_price: 10.00, price: 8.00 }
                 ]
             }
-        ]
+        ]}
+        let order_data = order_list.data
+        let menu_list = order_list.menu
+
         return (
             <View className='order'>
                 <View>
                     <TabNav menu_list={menu_list} sel_tab={this.state.sel_tab} changeTab={(index) => { this.changeTab(index) }}></TabNav>                     
                 </View>
                 <View className='order-list'>
-                    {order_list.map((item,index)=>{
+                    {order_data.map((item,index)=>{
                         return(
                             <View taroKey={index} className='order-list-item' onClick={this.goToPage.bind(this, item.path)}>
                                 <View className='order-list-item-title'>
