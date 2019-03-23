@@ -2,6 +2,9 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Input } from '@tarojs/components'
 import './OrderList.scss'
 import { TabNav } from "../TabNav/TabNav";
+import { Api } from "../../utils/services";
+import { Common } from "../../utils/common";
+import { AtLoadMore } from 'taro-ui'
 
 export default class OrderList extends Component {
     static defaultProps = {
@@ -16,18 +19,54 @@ export default class OrderList extends Component {
         this.setState({
             sel_tab: sel_tab
         })
+        this.C_PAGE = 1//当前页数
+        this.PAGE_SIZE = 10//一页多少条数据
+        this.HAS_MORE = true//是否还有更多数据
+        this.SHOW_MORE = false//是否隐藏加载更多
+        this.CAT = sel_tab//分类,默认为全部
+        this.IS_INIT = 0   
         this.goToPage = this.goToPage.bind(this)
 
     }
     // 重新选择菜单
     changeTab(index) {        
+        this.initLoadSta()
         this.setState({
             sel_tab: index
         })
+        this.CAT = index
+        console.log("index:")
+        console.log(index)
+        this.loadMore()
     }
-    componentWillMount() { }
+    /**
+     * 初始化加载状态
+     */
+    initLoadSta() {
+        this.C_PAGE = 1
+        this.HAS_MORE = true
+        this.SHOW_MORE = true
+        this.setState({
+            load_status: 'more'
+        })
+        this.IS_INIT = 1
+    }
+        /**
+     * 加载更多数据
+     */
+    loadMore() {
+        Common.loadMore(this, (page, cat) => Api.get_order(page, cat), 'order_arr')
+    }
+    componentWillMount() {
+        this.initLoadSta()
+        this.loadMore()  
+    }
 
-    componentDidMount() { }
+    componentDidMount() { 
+        if (this.props.getChild) {
+            this.props.getChild(this)//传递子组件对象给父组件
+        } 
+    }
 
     componentWillUnmount() { }
 
@@ -41,37 +80,33 @@ export default class OrderList extends Component {
     }
 
     render() {
+        //如果需要请求网络进行初始化，但未初始化，则初始化一次
+        // if (this.props.show_more && !this.IS_INIT) {
+             
+        // }
+
+         
+
         // var menu_list = ['全部', '待支付', '已支付', '已完成', '已取消']
-        var order_list = {order:1,menu:['全部', '待支付', '已支付', '已完成', '已取消'],style:'style1',data:[
-            {
-                order_no:'201903151025',sta:2,sta_desc:'已支付',goods_list:[
-                    { src: 'https://img10.360buyimg.com/n7/jfs/t1/24714/24/8640/124174/5c77ab53E9e515e2e/8b1aa5d1fc7a5e23.jpg', g_name: '小米手机', g_desc:'小米8屏幕指纹版 6GB+128GB 黑色 全网通4G 双卡双待 全面屏拍照游戏智能',o_price:10.00,price:8.00},                
-                ], path: '/pages/index/other/other'
-            },
-            {
-                order_no: '201903151025', sta: 1, sta_desc: '未支付', goods_list: [
-                    { src: 'https://img10.360buyimg.com/n7/jfs/t1/8112/20/10485/366920/5c2336deEab272fe3/12b58de5020ca1a1.jpg', g_name: '苹果手机', g_desc: '【春季福利重磅来袭！】iPhone7128GB低至3499元！iPhone7Plus128GB内存4399元抢！经典7系列全面开抢！', o_price: 10.00, price: 8.00 },
-                    { src: 'https://img14.360buyimg.com/n7/jfs/t1/6425/40/3887/217009/5bd716e9E4886d5d8/b3da975f4047ded3.jpg', g_name: '华为手机', g_desc: '【直降100元，领券立减100，送耳机】屏幕指纹解锁手机，前置拍照美颜！评价晒单有机会得2000京豆，推荐购买送豪礼！查看更多优惠', o_price: 10.00, price: 8.00 }
-                ]
-            },
-            {
-                order_no: '201903151025', sta: 3, sta_desc: '已完成', goods_list: [
-                    { src: 'https://img13.360buyimg.com/n7/jfs/t27112/273/1423275096/265013/d92b3181/5be3cb5bN334c8048.jpg', g_name: '一加6T全速旗舰手机', g_desc: '购机立享白条3期免息！一加6T全速旗舰，轻快流畅，光感屏幕指纹，手持城市夜景！一加品牌更多精彩猛戳查看！', o_price: 10.00, price: 8.00 }
-                ]
-            },
-            {
-                order_no: '201903151025', sta: 4, sta_desc: '已取消', goods_list: [
-                    { src: 'https://img14.360buyimg.com/n7/jfs/t27616/251/1425719819/224805/20c2401e/5bc831fdN61f8d9d2.jpg', g_name: '小米8', g_desc: '小米8屏幕指纹版 6GB+128GB 黑色 全网通4G 双卡双待 全面屏拍照游戏智能', o_price: 10.00, price: 8.00 }
-                ]
-            }
-        ]}
+        var order_list = {order:1,menus:[],style:'style1',data:[]}        
         let order_data = order_list.data
-        let menu_list = order_list.menu
+        let menus = order_list.menus
+        let style = 'style1'
+
+        if (this.state.data_arr) {
+            let order_arr = this.state.data_arr
+
+            console.log("order_arr:")
+            console.log(order_arr)
+            order_data = order_arr['data']
+            style = order_arr['style']
+            menus = order_arr['menus']
+        } 
 
         return (
             <View className='order'>
                 <View>
-                    <TabNav menu_list={menu_list} sel_tab={this.state.sel_tab} changeTab={(index) => { this.changeTab(index) }}></TabNav>                     
+                    <TabNav menu_list={menus} sel_tab={this.state.sel_tab} changeTab={(index) => { this.changeTab(index) }}></TabNav>                     
                 </View>
                 <View className='order-list'>
                     {order_data.map((item,index)=>{
@@ -106,6 +141,7 @@ export default class OrderList extends Component {
                         )
                     })}
                 </View>
+                {this.SHOW_MORE && <AtLoadMore style="height:10px;" status={this.state.load_status} />}
             </View>
 
         )

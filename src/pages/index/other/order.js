@@ -24,7 +24,9 @@ export default class Order extends Component {
 
     componentWillMount() { }
 
-    componentDidMount() { }
+    componentDidMount() {
+   
+     }
 
     componentWillUnmount() { }
 
@@ -32,10 +34,20 @@ export default class Order extends Component {
 
     componentDidHide() { }
 
+    //用于获取子组件的对象
+    getChild(ref){
+        this.child = ref
+    }    
+    onReachBottom(){   
+        if (this.child) {
+            this.child.loadMore()//调用子组件的加载更多
+        }          
+    }
+
     render() {
         return (
             <View className='index'>
-                <OrderList sel_tab={this.state.sel_tab}></OrderList>
+                <OrderList sel_tab={this.state.sel_tab} getChild={(ref) => { this.getChild(ref)}}></OrderList>
             </View>
         )
     }

@@ -161,8 +161,13 @@ function get_find() {
     const params = {}
     return fetchApi(path, params)
 }
-// function get_data(params) {
-//     let path = 'get_data'
-//     return fetchApi(path, params)
-// }
-export const Api = { get_config, get_home, get_article, get_article_detail, get_goods, get_action, get_find, get_goods_info}
+/**
+ * 获取订单列表
+ */
+function get_order(page,cat) {
+    let path = 'get_order'
+    const params = {page: page, cat: cat}
+    return fetchApi(path, params)
+}
+
+export const Api = { get_config,get_order, get_home, get_article, get_article_detail, get_goods, get_action, get_find, get_goods_info}

@@ -76,6 +76,7 @@ export default class GoodsDetail extends Component {
                     <Text className='detail-desc-title'>服务详情</Text>
                     <RichText className='detail-desc-txt'>4口之家小户型，优惠新房任你选</RichText>                    
                 </View>
+                <View>购买</View>
             </View>
             
         )
