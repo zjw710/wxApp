@@ -8,8 +8,10 @@ import icon_03 from '../../images/icon_03.png'
 import icon_04 from '../../images/icon_04.png'
 
 export default class Center extends Component {
+    static defaultProps = {
+        center_arr: { order_sta:{path:'',status: [{ desc: '', src: '', path: '' }]}, titles: [{ desc: '', src: '', path: '' }] }//data: [{ txt: '', type: '' }]
+    }
     constructor(props) {
-
         super(props)
         this.goToPage = this.goToPage.bind(this)
 
@@ -33,18 +35,14 @@ export default class Center extends Component {
 
     render() {
         var user_info = { src: header,name:'Tigo007'}
-        var order_sta_arr = [{ desc: '', src: '', path: '' }]
-        if (this.props.order_sta_arr){
-            order_sta_arr = this.props.order_sta_arr
-        }        
-        var center_title_arr = [{ desc: '', src: '', path: '' }]
-        if (this.props.center_title_arr) {
-            center_title_arr = this.props.center_title_arr
-        }
+
+        let center_arr = this.props.center_arr
+        let order_sta_arr = center_arr.order_sta.status      
+        let center_title_arr = center_arr.titles
+        let all_path = center_arr.order_sta.path
         
         // [{ desc: '未支付', src: icon_01, path: '/pages/index/user/order?type=1' }, { desc: '已支付', src: icon_02, path: '/pages/index/user/order?type=2' }, { desc: '已完成', src: icon_03, path: '/pages/index/user/order?type=3' }, { desc: '已取消', src: icon_04, path: '/pages/index/user/order?type=4'}]
-        // var other_list = [{ desc: '我的订单', src: icon_01, path: '/pages/index/user/order' }, { desc: '我的购物车', src: icon_02, path: '/pages/index/user/order' }, { desc: '我的资料', src: icon_03, path: '/pages/index/user/order' }, { desc: '关于我们', src: icon_04, path: '/pages/index/user/order' }]
-        var all_path = '/pages/index/user/order'
+        // var other_list = [{ desc: '我的订单', src: icon_01, path: '/pages/index/user/order' }, { desc: '我的购物车', src: icon_02, path: '/pages/index/user/order' }, { desc: '我的资料', src: icon_03, path: '/pages/index/user/order' }, { desc: '关于我们', src: icon_04, path: '/pages/index/user/order' }]   
         return (
             <View className='center'>
                 <View className='center-header'>   

@@ -13,6 +13,7 @@ function fetchApi(path, params, check_token = true) {
     let userInfo = Taro.getStorageSync('userInfo')
     params.openid = userInfo.openid
     params.m_id = userInfo.m_id
+    params.wx_id = 1
     
     if (check_token) {
         //统一获取收集到的表单formid,用于给用户发模板消息
@@ -103,6 +104,31 @@ function get_home(){
     return fetchApi(path, params)
 }
 /**
+ * 获取action页数据,菜单三
+ */
+function get_action() {
+    let path = 'get_action'
+    const params = {}
+    return fetchApi(path, params)
+}
+/**
+ * 获取find页数据,菜单二
+ */
+function get_find() {
+    let path = 'get_find'
+    const params = {}
+    return fetchApi(path, params)
+}
+/**
+ * 获取个人中心页数据,菜单四
+ */
+function get_center() {
+    let path = 'get_center'
+    const params = {}
+    return fetchApi(path, params)
+}
+
+/**
  * 获取文章数据列表
  * @param {第几页} page 
  * @param {分类} cat 
@@ -145,22 +171,7 @@ function get_goods_info(g_id) {
     const params = { g_id: g_id}
     return fetchApi(path, params)
 }
-/**
- * 获取action页数据
- */
-function get_action() {
-    let path = 'get_action'
-    const params = {}
-    return fetchApi(path, params)
-}
-/**
- * 获取find页数据
- */
-function get_find() {
-    let path = 'get_find'
-    const params = {}
-    return fetchApi(path, params)
-}
+
 /**
  * 获取订单列表
  */
@@ -170,4 +181,4 @@ function get_order(page,cat) {
     return fetchApi(path, params)
 }
 
-export const Api = { get_config,get_order, get_home, get_article, get_article_detail, get_goods, get_action, get_find, get_goods_info}
+export const Api = { get_config, get_order, get_home, get_center, get_article, get_article_detail, get_goods, get_action, get_find, get_goods_info}

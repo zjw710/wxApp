@@ -5,7 +5,7 @@ import './Slide.scss'
 
 export default class Slide extends Component {
     static defaultProps = {
-        slide_img_arr: { style: 'style1', data: [{ src: '', path: '' }] }
+        slide_img_arr: { show_dot:1,style: 'style1', data: [{ src: '', path: '' }] }
     }
     constructor(props) {
 
@@ -35,6 +35,8 @@ export default class Slide extends Component {
         let slide_img_arr = this.props.slide_img_arr
         let img_data = slide_img_arr['data']
         let style = slide_img_arr['style']
+        let show_dot = slide_img_arr['show_dot']?true:false;
+
 
         switch (style) {
             case 'style1':
@@ -61,7 +63,7 @@ export default class Slide extends Component {
                         indicatorColor='#999'
                         indicatorActiveColor='#333'
                         circular
-                        indicatorDots
+                        indicatorDots={show_dot}
                         autoplay>
                         <View className='slide-imgs'>
                         {img_data.map((item,index) => {

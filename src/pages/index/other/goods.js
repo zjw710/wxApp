@@ -37,9 +37,10 @@ export default class goods extends Component {
     }
 
     render() {
+        let goods_arr = { show_more:1}        
         return (
             <View className='index'>
-                <GoodsList show_more={true} getChild={(ref) => { this.getChild(ref) }}></GoodsList>
+                <GoodsList goods_arr={goods_arr} getChild={(ref) => { this.getChild(ref) }}></GoodsList>
             </View>
         )
     }

@@ -5,8 +5,7 @@ import Taro from '@tarojs/taro'
  * @param {请求的函数} req_fun
  */
 function loadMore(that,req_fun,field) {
-
-    if (!that.HAS_MORE) {
+    if (!that.HAS_MORE || !that.SHOW_MORE) {
         return
     }
     that.setState({
@@ -15,6 +14,7 @@ function loadMore(that,req_fun,field) {
     return req_fun(that.C_PAGE, that.CAT)
         .then(res => {
             if (!res) {
+                
                 return
             }
             var data_new = res[field]['data']

@@ -1,19 +1,21 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,Input } from '@tarojs/components'
+import { View,Input, Button } from '@tarojs/components'
 import './GoodsDetail.scss'
 import { ImageList } from "../ImageList/ImageList";
+import { AtIcon } from 'taro-ui'
 
 export default class GoodsDetail extends Component {
     static defaultProps = {
         goods_detail: {
-            style: 'style1', order: 1, data: {
-                title: '', desc: '', img: '', imgs: { style: '', title: '', data: [] }, price: '', sale: '', remain: ''
+            foot_fix:1,style: 'style1', order: 1, data: {
+                title: '', desc:'', detail: '', img: '', imgs: { style: '', title: '', data: [] }, price: '', sale: '', remain: ''
             }
         }//data:[{title:'',src:'',path:''}]
     }
     constructor(props) {
         
         super(props)
+        this.phoneCall = this.phoneCall.bind(this)
 
     }
 
@@ -27,6 +29,11 @@ export default class GoodsDetail extends Component {
 
     componentDidHide() { }
 
+    phoneCall(){
+        Taro.makePhoneCall({
+            phoneNumber:'13800138006'
+        })
+    }
     render() {
         let goods_detail = this.props.goods_detail
         var goods_data = goods_detail.data
@@ -67,6 +74,7 @@ export default class GoodsDetail extends Component {
                                     </View>
                                 </View>
                             </View>
+        let is_fix = goods_detail.foot_fix
 
         return (
             <View className='detail'>
@@ -74,9 +82,27 @@ export default class GoodsDetail extends Component {
                 <ImageList show_style={style != 'style4' ? style:'style1'} hid_title={true} style={style == 'style4' ? 'display:none;' : ''} img_arr={img_arr}></ImageList>
                 <View className='detail-desc'>
                     <Text className='detail-desc-title'>服务详情</Text>
-                    <RichText className='detail-desc-txt'>4口之家小户型，优惠新房任你选</RichText>                    
+                    <RichText className='detail-desc-txt'>{goods_data.detail}</RichText>                    
                 </View>
-                <View>购买</View>
+                <View className={is_fix ? 'detail-footer detail-footer-fix' :'detail-footer'}>
+                    <View className='detail-footer-phone' onClick={this.phoneCall.bind(this)}>
+                        <AtIcon value='phone' size='25' color=''></AtIcon>
+                        <Text>电话</Text>
+                    </View>
+                    <View className='detail-footer-like'>
+                        <AtIcon value='star' style='display:none;' size='30' color=''></AtIcon>
+                        <AtIcon value='star-2' size='25' color=''></AtIcon>
+                        <Text>收藏</Text>
+                    </View>
+                    <Button className='detail-footer-kefu' openType='contact'>
+                        <AtIcon value='message' size='25' color=''></AtIcon>
+                        <Text>客服</Text>
+                    </Button>
+                    <View className='detail-footer-buy'>
+                        <Button>购买</Button>
+                    </View>
+                    
+                </View>
             </View>
             
         )

@@ -6,14 +6,12 @@ import { TabNav } from "../TabNav/TabNav";
 import { Api } from "../../utils/services";
 import { Common } from "../../utils/common";
 
-// var C_PAGE = 1//当前页数
-// var PAGE_SIZE = 10//一页多少条数据
-// var HAS_MORE = true//是否还有更多数据
-// var SHOW_MORE = false//是否隐藏加载更多
-// var CAT = 0//分类,默认为全部
-// var IS_INIT = 0
 
 export default class GoodsList extends Component {
+    static defaultProps = {
+        getChild: null,
+        goods_arr: {show_more:0, style: 'style1', title: { desc: '', path: '' }, menus: [], data: [{ title: '', desc: '', img: '', price: '', sale: '', remain: '', path: '' }] }
+    }
     constructor(props) {
         // console.log('constructor')
         super(props)
@@ -29,9 +27,11 @@ export default class GoodsList extends Component {
         this.C_PAGE = 1//当前页数
         this.PAGE_SIZE = 10//一页多少条数据
         this.HAS_MORE = true//是否还有更多数据
-        this.SHOW_MORE = false//是否隐藏加载更多
+        this.SHOW_MORE = false//是否显示加载更多
         this.CAT = 0//分类,默认为全部
         this.IS_INIT = 0   
+
+        Taro.loadMore = this.loadMore.bind(this)
     }
 
     componentWillMount() { 
@@ -39,6 +39,7 @@ export default class GoodsList extends Component {
     }
 
     componentDidMount() {
+        console.log("GoodsList componentDidMount")
         if (this.props.getChild) {
             this.props.getChild(this)//传递子组件对象给父组件
         }  
@@ -98,57 +99,11 @@ export default class GoodsList extends Component {
      * 加载更多数据
      */
     loadMore() {
-        Common.loadMore(this, (page, cat) => Api.get_goods(page, cat), 'goods_arr')
-        // if (!HAS_MORE) {
-        //     // console.log("已经没有更多数据了")
-        //     return
-        // }
-        // this.setState({
-        //     load_status: 'loading'
-        // })
-        // return Api.get_goods(C_PAGE, CAT)
-        //     .then(res => {
-        //         if (!res) {
-        //             return
-        //         }
-        //         // console.log()
-        //         var goods_data_new = res['goods_arr']['data']
-        //         if (goods_data_new) {
-        //             var goods_arr = this.state.goods_arr ? this.state.goods_arr : []
-        //             //如果是第一页，直接覆盖数据
-        //             if (C_PAGE == 1) {
-        //                 goods_arr = res['goods_arr']
-        //             } else {
-        //                 var goods_data = goods_arr['data']
-        //                 goods_data.push.apply(goods_data, goods_data_new)
-        //                 goods_arr['data'] = goods_data
-        //             }
-
-        //             this.setState({
-        //                 goods_arr: goods_arr
-        //             })
-
-        //             if (goods_data_new.length < PAGE_SIZE) {
-        //                 HAS_MORE = true
-        //                 this.setState({
-        //                     load_status: 'loading'
-        //                 })
-        //             }
-        //             C_PAGE++
-
-        //         } else {                    
-        //             HAS_MORE = false
-        //             this.setState({
-        //                 load_status: 'noMore'
-        //             })
-        //         }
-        //     })
+        Common.loadMore(this, (page, cat) => Api.get_goods(page, cat), 'goods_arr')       
     }        
     render() {
-        // console.log('this.state.goods_arr:')
-        // console.log(this.state.goods_arr)
         //如果需要请求网络进行初始化，但未初始化，则初始化一次
-        if (this.props.show_more && !this.IS_INIT) {
+        if (this.props.goods_arr['show_more'] && !this.IS_INIT) {
             this.initLoadSta()
             this.loadMore()
         }
@@ -164,7 +119,8 @@ export default class GoodsList extends Component {
         let show_tabnav = false  //是否隐藏分类菜单
 
         //获取传入参数
-        if (this.props.goods_arr) {
+        if (!this.props.goods_arr['show_more']) {
+
             let goods_arr = this.props.goods_arr
             goods_data = goods_arr['data']
             style = goods_arr['style']
@@ -177,8 +133,6 @@ export default class GoodsList extends Component {
             title = goods_arr['title']
             menus = goods_arr['menus']
         }   
-        // console.log("goods_data:")
-        // console.log(goods_data)
         if (title && title['desc']) {
             hid_title = false
         }

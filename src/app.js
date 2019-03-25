@@ -4,6 +4,7 @@ import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 import './app.scss'
 import { Api } from "./utils/services";
 import '@tarojs/async-await'
+import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 
 class App extends Component {
 

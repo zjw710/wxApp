@@ -26,15 +26,7 @@ export default class BaseComponent extends Component {
         loadFun:null
     }
     constructor(props) {
-        super(props)
-
-        // console.log('Index constructor')
-        // this.setState({
-        //     magic_arr: null,
-        //     slide_img_arr: null
-        // });
-
-        // console.log('constructor')
+        super(props)    
         this.IS_INIT = 0
     }
     componentWillMount() {
@@ -45,7 +37,7 @@ export default class BaseComponent extends Component {
     }
 
     componentDidMount() {
-        // console.log('componentDidMount') 
+        // console.log('BaseComponent componentDidMount') 
     }
 
     componentWillUnmount() {
@@ -66,12 +58,15 @@ export default class BaseComponent extends Component {
                 // console.log('get_home：') 
                 // console.log(res)
                 this.setState({
+                    search_arr: res['search_arr'],
                     article_arr: res['article_arr'],
                     goods_arr: res['goods_arr'],
                     imgs_arr: res['imgs_arr'],
                     form_arr: res['form_arr'],
-                    goods_detail_arr: res['goods_detail_arr'],
-                    art_detail_arr: res['article_detail_arr']
+                    // goods_detail_arr: res['goods_detail_arr'],
+                    art_detail_arr: res['article_detail_arr'],
+                    magic_arr: res['magic_arr'],
+                    slide_img_arr: res['slide_arr']
                 });
             })
     }
@@ -79,13 +74,13 @@ export default class BaseComponent extends Component {
      * 初始化页面配置
      */
     initConfig() {
-        return Api.get_config()
-            .then(res => {
-                this.setState({
-                    magic_arr: res['magic_arr'],
-                    slide_img_arr: res['slide_img_arr']
-                });
-            })
+        // return Api.get_config()
+        //     .then(res => {
+        //         this.setState({
+        //             magic_arr: res['magic_arr'],
+        //             slide_img_arr: res['slide_img_arr']
+        //         });
+        //     })
     }
     /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -121,7 +116,7 @@ export default class BaseComponent extends Component {
         }
         let GoodsList = goods_arr.map((item, index) => {
             return (
-                <GoodsList taroKey={index} style={"order:" + item['order'] + ";"} show_more={item['show_more']} goods_arr={item}></GoodsList>
+                <GoodsList taroKey={index} style={"order:" + item['order'] + ";"} goods_arr={item}></GoodsList>
             )
         })
 
@@ -186,22 +181,28 @@ export default class BaseComponent extends Component {
         if (this.state.art_detail_arr) {
             art_detail_arr = this.state.art_detail_arr
         }
-        console.log("art_detail_arr:")
-        console.log(art_detail_arr)
         let ArticleDetail = art_detail_arr.map((item, index) => {
             return (
                 <ArticleDetail taroKey={index} style={"order:" + item['order'] + ";"} article_detail={item}></ArticleDetail>
             )
         })
-
-        let Search = <Search></Search>
+        //初始化搜索数据
+        var search_arr = []
+        if (this.state.search_arr) {
+            search_arr = this.state.search_arr
+        }
+        let Search = search_arr.map((item, index) => {
+            return (
+                <Search taroKey={index} style={"order:" + item['order'] + ";"}></Search>
+            )
+        })
 
         return (
             <View className='index'>
+                {Search}
                 {ArticleDetail}
                 {GoodsDetail}
-                {DataForm}
-                {Search}
+                {DataForm}                
                 {Slide}
                 {MagicSquare}
                 {ImageList}

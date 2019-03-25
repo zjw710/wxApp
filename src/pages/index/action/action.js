@@ -24,7 +24,11 @@ export default class Action extends Component {
         navigationBarTitleText: '发现'
 
     }
+    constructor(props) {
+        super(props)
+    }
     componentWillMount() { 
+        
         // Api.get_action()
         //     .then(res => {
         //         // console.log('get_home：') 
@@ -44,6 +48,11 @@ export default class Action extends Component {
     componentDidShow() { }
 
     componentDidHide() { }
+
+    onReachBottom() {
+        console.log("Action onReachBottom.")
+        Taro.loadMore()
+    }
 
     render() {
         //初始化图片列表数据

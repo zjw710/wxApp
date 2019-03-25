@@ -66,10 +66,67 @@
             margin: 20px 0px;
             border-left: 3px solid black;
             padding-left: 30px;
+            line-height: 70px;
         
         }
         &-txt{
             font-size: 28px;
+            height: 400px;
         }
+    }
+    &-footer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 30px;
+        border: 1px solid #f0f0f0;
+        padding: 10px 0px;
+        &-fix{
+            //悬浮底部
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            z-index: 999;
+            width: 100%;
+        }
+        
+        &-phone{
+            padding-left: 30px;
+        }
+        &-phone,&-like,&-kefu{
+            width: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        &-kefu{
+            margin: 0px;
+            padding: 0px;
+            font-size: 30px;
+            background-color: white;
+            border: none;
+            line-height: 40px;
+            & AtIcon,& Text{
+               margin: 0px;
+               padding: 0px; 
+            }
+            &::after{
+                border: none;
+            }
+        }
+        &-buy{
+            padding-right: 20px;
+            width: 100%;
+            & Button{
+                // width: 300px;
+                border-radius: 50px;
+                margin: 0px 10px;
+                background-color: rgb(87, 190, 173);
+                color: white;
+                font-size: 40px;
+                
+            }
+        }
+
     }
 }
