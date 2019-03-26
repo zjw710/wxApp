@@ -1,8 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,Input, Button } from '@tarojs/components'
+import { View, RichText, Button, Image, Text } from '@tarojs/components'
 import './GoodsDetail.scss'
-import { ImageList } from "../ImageList/ImageList";
-import { AtIcon } from 'taro-ui'
+import ImageList from "../ImageList/ImageList";
+import kefu from "../../images/kefu.png";
+import like from "../../images/like.png";
+import like_active from "../../images/like-active.png";
+import phone from "../../images/phone.png";
 
 export default class GoodsDetail extends Component {
     static defaultProps = {
@@ -56,52 +59,57 @@ export default class GoodsDetail extends Component {
             default:
                 style = 'style1'
                 break;
-        }
-        // console.log(goods_data)
-
-        var detail_goods = <View className='detail-goods' style={style != 'style4' ? 'display:none;' : ''}>
+        }     
+        let detail_goods = null
+        if (style == 'style4') {
+            detail_goods = <View className='detail-goods'>
                                 <View className='detail-goods-img'>
-                                    <Image src={goods_data.img}></Image>
+                                    <Image className='detail-goods-img-img' src={goods_data.img}></Image>
                                 </View>
-
                                 <View className='detail-goods-desc'>
                                     <Text className='detail-goods-desc-title'>{goods_data.title}</Text>
                                     <Text className='detail-goods-desc-desc'>{goods_data.desc}</Text>
                                     <View className='detail-goods-desc-txt'>
                                         <Text className='detail-goods-desc-txt-price'>价格:￥{goods_data.price}</Text>
-                                        <Text>已预约:{goods_data.sale}</Text>
-                                        <Text>剩:{goods_data.remain}</Text>
+                                        <Text className='detail-goods-desc-txt-sale'>已预约:{goods_data.sale}</Text>
+                                        <Text className='detail-goods-desc-txt-remain'>剩:{goods_data.remain}</Text>
                                     </View>
                                 </View>
                             </View>
+        }
+
+        let ImageListCom = null
+        if (style!='style4') {
+            ImageListCom = <ImageList show_style={style} hid_title={true} img_arr={img_arr}></ImageList>
+        }
         let is_fix = goods_detail.foot_fix
+        // let icon_arr = [{ title: '电话', icon: phone }, { title: '收藏', icon: like, icon_a: like_active,active:0 }, { title: '客服', icon: kefu }]
 
         return (
             <View className='detail'>
                 {detail_goods}
-                <ImageList show_style={style != 'style4' ? style:'style1'} hid_title={true} style={style == 'style4' ? 'display:none;' : ''} img_arr={img_arr}></ImageList>
+                {ImageListCom}                
                 <View className='detail-desc'>
                     <Text className='detail-desc-title'>服务详情</Text>
                     <RichText className='detail-desc-txt'>{goods_data.detail}</RichText>                    
                 </View>
                 <View className={is_fix ? 'detail-footer detail-footer-fix' :'detail-footer'}>
                     <View className='detail-footer-phone' onClick={this.phoneCall.bind(this)}>
-                        <AtIcon value='phone' size='25' color=''></AtIcon>
+                        <Image className='detail-footer-img' src={phone}></Image>
                         <Text>电话</Text>
                     </View>
                     <View className='detail-footer-like'>
-                        <AtIcon value='star' style='display:none;' size='30' color=''></AtIcon>
-                        <AtIcon value='star-2' size='25' color=''></AtIcon>
+                        <Image className='detail-footer-img' src={like}></Image>
+                        <Image className='detail-footer-img' src={like_active} style={'display:none;'}></Image>
                         <Text>收藏</Text>
                     </View>
                     <Button className='detail-footer-kefu' openType='contact'>
-                        <AtIcon value='message' size='25' color=''></AtIcon>
+                        <Image className='detail-footer-img' src={kefu}></Image>
                         <Text>客服</Text>
                     </Button>
                     <View className='detail-footer-buy'>
-                        <Button>购买</Button>
-                    </View>
-                    
+                        <Button className='detail-footer-buy-btn'>购买</Button>
+                    </View>                    
                 </View>
             </View>
             

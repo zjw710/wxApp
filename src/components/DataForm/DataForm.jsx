@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input,Button, Textarea } from '@tarojs/components'
+import { View, Input, Button, Textarea, Text } from '@tarojs/components'
 import './DataForm.scss'
 
 export default class DataForm extends Component {
@@ -54,9 +54,9 @@ export default class DataForm extends Component {
                                 </View>
                                 <View className='form-lists-item-input'>                                   
                                     {item.type=='rich'?(
-                                            <Textarea placeholder={'请输入' + item.txt}></Textarea>
+                                            <Textarea className='form-lists-item-input-rich' placeholder={'请输入' + item.txt}></Textarea>
                                         ):(
-                                            <Input placeholder={'请输入' + item.txt}></Input>
+                                            <Input className='form-lists-item-input-input' placeholder={'请输入' + item.txt}></Input>
                                         )
                                     }                                    
                                 </View>
@@ -64,7 +64,7 @@ export default class DataForm extends Component {
                         )
                     })} 
                     <View className='form-lists-summit'>
-                        <Button >{summit}</Button>
+                        <Button className='form-lists-summit-btn'>{summit}</Button>
                     </View>                   
                 </View>
                 

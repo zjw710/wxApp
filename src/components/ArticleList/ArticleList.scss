@@ -62,7 +62,7 @@
                 }
                 &-img{
                     // width: 50%;
-                    & Image{
+                    &-img{
                         width: 200px;
                         height: 200px;
                         border-radius: 5%;
@@ -109,7 +109,7 @@
                     color: #888;   
                     font-size: 30px; 
                     margin-bottom: 20px;
-                    & Text{
+                    &-title,&-desc,&-time{
                         margin-bottom: 20px; 
                     }
                     &-title{
@@ -150,7 +150,7 @@
                 flex-direction: row;
                 justify-content: center;
                 
-                & Image{
+                &-img{
                     width: 230px;
                     height: 230px;
                     margin: 10px 5px;
@@ -192,7 +192,7 @@
                       
                 }
 
-                &-topimg Image{
+                &-topimg-img{
                     width: 450px;
                     height: 400px;
                     margin: 25px 0px;

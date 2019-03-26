@@ -14,6 +14,7 @@ function fetchApi(path, params, check_token = true) {
     params.openid = userInfo.openid
     params.m_id = userInfo.m_id
     params.wx_id = 1
+    params.env = process.env.TARO_ENV //环境：是h5还是微信小程序等
     
     if (check_token) {
         //统一获取收集到的表单formid,用于给用户发模板消息

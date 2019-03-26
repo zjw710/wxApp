@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { Swiper, SwiperItem,Image, View  } from '@tarojs/components'
+import { Swiper, SwiperItem, Image, View, ScrollView  } from '@tarojs/components'
 import './Slide.scss'
 
 
@@ -84,7 +84,7 @@ export default class Slide extends Component {
                         <View className='scrolslide-imgs'>
                         {img_data.map((item,index) => {
                                 return (
-                                    <Image taroKey={index} src={item.src}  onClick={this.goToPage.bind(this,item.path)}></Image>
+                                    <Image className='scrolslide-imgs-img' taroKey={index} src={item.src}  onClick={this.goToPage.bind(this,item.path)}></Image>
                                 )
                             })}
                         </View>

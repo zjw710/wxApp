@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text, Switch, Navigator } from '@tarojs/components'
-// import './user.scss'
-import { OrderList } from "../../../components/OrderList/OrderList";
+import { View } from '@tarojs/components'
+// import './order.scss'
+import OrderList from "../../components/OrderList/OrderList";
 
 
 export default class Order extends Component {

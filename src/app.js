@@ -1,10 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import Index from './pages/index'
-import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
+import Index from './pages/index/'
 import './app.scss'
 import { Api } from "./utils/services";
-import '@tarojs/async-await'
-import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 
 class App extends Component {
 
@@ -16,16 +13,16 @@ class App extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    pages: [
-      'pages/index/index/index',      
-      'pages/index/user/user',             
-      'pages/index/find/find',                        
-      'pages/index/action/action',
-      'pages/index/other/order',        
-      'pages/index/other/article',
-      'pages/index/other/articleinfo',
-      'pages/index/other/goods', 
-      'pages/index/other/goodsinfo'
+    pages: [ 
+      'pages/index/index',
+      'pages/user/user',
+      'pages/find/find',
+      'pages/action/action',
+      'pages/other/order',
+      'pages/other/article',
+      'pages/other/articleinfo',
+      'pages/other/goods',
+      'pages/other/goodsinfo'
        
       
     ],

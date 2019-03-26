@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-// import './index.scss'
-import { GoodsList } from "../../../components/GoodsList/GoodsList";
+// import './goods.scss'
+import GoodsList from "../../components/GoodsList/GoodsList";
 
 export default class goods extends Component {
 
@@ -29,7 +29,6 @@ export default class goods extends Component {
     getChild(ref) {
         this.child = ref
     }
-
     onReachBottom() {
         if (this.child) {
             this.child.loadMore()//调用子组件的加载更多
@@ -45,5 +44,4 @@ export default class goods extends Component {
         )
     }
 }
-// article_arr={article_arr}
 

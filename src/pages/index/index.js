@@ -1,8 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
-import { BaseComponent } from "../../../components/BaseComponent/BaseComponent";
-import { TabBar } from "../../../components/TabBar/TabBar";
-import { Api } from "../../../utils/services";
+import {View} from '@tarojs/components'
+import BaseComponent from "../../components/BaseComponent/BaseComponent";
+import TabBar from "../../components/TabBar/TabBar";
+import { Api } from "../../utils/services";
 import './index.scss'
 
 export default class Index extends Component {
@@ -52,8 +52,8 @@ export default class Index extends Component {
   
   render () {       
     let current_tab = 0
-    return (
-      <View className='index'>    
+    return (      
+      <View className='index'>       
         <BaseComponent loadFun={() => Api.get_home()}></BaseComponent>
         <TabBar current_tab={current_tab}></TabBar>
       </View>

@@ -1,11 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input } from '@tarojs/components'
+import { View, Image, Text } from '@tarojs/components'
 import './Center.scss'
 import header from '../../images/header.png'
-import icon_01 from '../../images/icon_01.png'
-import icon_02 from '../../images/icon_02.png'
-import icon_03 from '../../images/icon_03.png'
-import icon_04 from '../../images/icon_04.png'
 
 export default class Center extends Component {
     static defaultProps = {
@@ -47,9 +43,9 @@ export default class Center extends Component {
             <View className='center'>
                 <View className='center-header'>   
                     <View className='center-header-img'>
-                        <Image src={user_info.src}></Image>
+                        <Image className='center-header-img-img' src={user_info.src}></Image>
                     </View>                                     
-                    <Text>{user_info.name}</Text>
+                    <Text className='center-header-txt'>{user_info.name}</Text>
                 </View>
                 <View className='center-order'>
                     <View className='center-order-title' onClick={this.goToPage.bind(this,all_path)}>
@@ -60,7 +56,7 @@ export default class Center extends Component {
                         {order_sta_arr.map((item, index) => {
                             return (
                                 <View taroKey={index} className='center-order-items-icon' onClick={this.goToPage.bind(this, item.path)}>
-                                    <Image src={item.src}></Image>
+                                    <Image className='center-order-items-icon-img' src={item.src}></Image>
                                     <Text>{item.desc}</Text>
                                 </View>
                             )
@@ -72,7 +68,7 @@ export default class Center extends Component {
                         return(
                             <View taroKey={index} className='center-other-item' onClick={this.goToPage.bind(this, item.path)}>
                                 <View className='center-other-item-desc'>
-                                    <Image src={item.src}></Image>
+                                    <Image className='center-other-item-desc-img' src={item.src}></Image>
                                     <Text>{item.desc}</Text>
                                 </View>
                                 <View className='allow-span'></View>
@@ -80,6 +76,7 @@ export default class Center extends Component {
                         )
                     })}
                 </View>
+                <View style="height:50px;"></View>   
             </View>
 
         )

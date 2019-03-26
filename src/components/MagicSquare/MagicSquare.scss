@@ -28,12 +28,12 @@
                 align-items: center;                
                 margin-top: 20px;            
             }
-            & Text{
+            &-view-txt{
                 font-size: 30px;
                 color: #595959;
                 margin-top: 10px;
             }
-            & Image{
+            &-view-img{
                 width: 95px;
                 height: 95px;
             }
@@ -80,7 +80,7 @@
                     }
                     &-img{
                         margin-right: 30px;
-                        & Image{
+                        &-img{
                             width: 100px;
                             height: 100px;
                         }
@@ -128,7 +128,7 @@
                         align-items: center;
                         width: 50%;
                         background-color: white;
-                        & Image{
+                        &-img{
                             width: 150px;
                             height: 150px;
                         }
@@ -146,11 +146,11 @@
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
-            &>View{
-                display: flex;
-                flex-direction: column;   
+            // & View{
+            //     display: flex;
+            //     flex-direction: column;   
         
-            }
+            // }
             &-view{    
                 display: flex;
                 flex-direction: column;
@@ -181,7 +181,7 @@
                     }
                     &-img{     
                         margin-top: 20px;   
-                        & Image{
+                        &-img{
                             width: 200px;
                             height: 200px;
                         }
@@ -213,8 +213,7 @@
                     }
                     &-img{
                         margin-left: 10px;
-                        & Image{
-                            
+                        &-img{                            
                             width: 100px;
                             height: 100px;
                         }

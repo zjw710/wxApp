@@ -1,10 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input } from '@tarojs/components'
+import { View,Text,Image } from '@tarojs/components'
 import './OrderList.scss'
-import { TabNav } from "../TabNav/TabNav";
+import  TabNav  from "../TabNav/TabNav";
 import { Api } from "../../utils/services";
 import { Common } from "../../utils/common";
-import { AtLoadMore } from 'taro-ui'
+import LoadMore  from "../LoadMore/LoadMore";
 
 export default class OrderList extends Component {
     static defaultProps = {
@@ -83,9 +83,7 @@ export default class OrderList extends Component {
         //如果需要请求网络进行初始化，但未初始化，则初始化一次
         // if (this.props.show_more && !this.IS_INIT) {
              
-        // }
-
-         
+        // }         
 
         // var menu_list = ['全部', '待支付', '已支付', '已完成', '已取消']
         var order_list = {order:1,menus:[],style:'style1',data:[]}        
@@ -113,7 +111,7 @@ export default class OrderList extends Component {
                         return(
                             <View taroKey={index} className='order-list-item' onClick={this.goToPage.bind(this, item.path)}>
                                 <View className='order-list-item-title'>
-                                    <Text>订单号:{item.order_no}</Text>
+                                    <Text className='order-list-item-title-txt'>订单号:{item.order_no}</Text>
                                     <Text className='order-list-item-title-sta'>{item.sta_desc}</Text>
                                 </View>
                                 <View className='order-list-item-goods'>
@@ -121,15 +119,15 @@ export default class OrderList extends Component {
                                         return(
                                             <View taroKey={g_index} className='order-list-item-goods-item'>
                                                 <View className='order-list-item-goods-item-img'>
-                                                    <Image src={g_item.src}></Image>
+                                                    <Image className='order-list-item-goods-item-img-img' src={g_item.src}></Image>
                                                 </View>
                                                 
                                                 <View className='order-list-item-goods-item-desc'>
                                                     <Text className='order-list-item-goods-item-desc-name'>{g_item.g_name}</Text>
                                                     <Text className='order-list-item-goods-item-desc-desc'>{g_item.g_desc}</Text>
-                                                    <View>
-                                                        <Text className='order-list-item-goods-item-desc-price'>￥{g_item.o_price}</Text>
-                                                        <Text>￥{g_item.price}</Text>
+                                                    <View className='order-list-item-goods-item-desc-view'>
+                                                        <Text className='order-list-item-goods-item-desc-view-price'>￥{g_item.o_price}</Text>
+                                                        <Text className='order-list-item-goods-item-desc-view-txt'>￥{g_item.price}</Text>
                                                     </View>
 
                                                 </View>
@@ -141,7 +139,7 @@ export default class OrderList extends Component {
                         )
                     })}
                 </View>
-                {this.SHOW_MORE && <AtLoadMore style="height:10px;" status={this.state.load_status} />}
+                {this.SHOW_MORE && <LoadMore status={this.state.load_status} />}
             </View>
 
         )

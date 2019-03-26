@@ -14,7 +14,7 @@
                 justify-content: space-between;
                 border-bottom: 1px solid #f0f0f0;
                 margin-bottom: 20px;
-                & Text{
+                &-txt{
                     margin:20px 25px;
                 }
                 &-sta{
@@ -32,7 +32,7 @@
                     margin:10px 0px;
                     &-img{
                         // width: 30%;
-                        & Image{
+                        &-img{
                             width: 200px;
                             height: 200px;
                         }
@@ -41,24 +41,24 @@
                         display: flex;
                         flex-direction: column;
                         margin-left: 20px;
-                        & View{
+                        &-view{
                             display: flex;
                             flex-direction: row;
                             justify-content: flex-start;
-                        }
-                        & Text{
-                            margin-bottom: 10px;
-                            //显示两行，超出显示省略号
-                            text-overflow: -o-ellipsis-lastline;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;                            
-                            -webkit-box-orient: vertical;
-                        }
-                        &-price{
-                            color: #888;  
-                            text-decoration: line-through;
-                        }
+                            &-price{
+                                color: #888;  
+                                text-decoration: line-through;
+                            }
+                            &-txt{
+                                margin-bottom: 10px;
+                                //显示两行，超出显示省略号
+                                text-overflow: -o-ellipsis-lastline;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;                            
+                                -webkit-box-orient: vertical;
+                            }
+                        }                                                
                         &-name{
                             -webkit-line-clamp: 1;
                             line-clamp: 1;

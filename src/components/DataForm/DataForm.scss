@@ -29,11 +29,11 @@
                 flex-direction: column;
                 justify-content: center;
                 background-color: #f7f7f7;                
-                & Textarea{
+                &-rich{
                     margin: 20px 20px;
                     height: 190px;
                 }
-                & Input{
+                &-input{
                     margin: 0px 20px;
                     height: 90px;
                 }
@@ -43,7 +43,7 @@
         &-summit{
         margin-top: 30px;
         width: 100%;
-        & Button{
+        &-btn{
             color: white;
             background-color: rgb(87, 190, 173);
         }

@@ -1,8 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-// import './index.scss'
-import { ArticleDetail } from "../../../components/ArticleDetail/ArticleDetail";
-import { Api } from "../../../utils/services";
+// import './articleinfo.scss'
+import { ArticleDetail } from "../../components/ArticleDetail/ArticleDetail";
+import { Api } from "../../utils/services";
 
 export default class ArticleInfo extends Component {
 

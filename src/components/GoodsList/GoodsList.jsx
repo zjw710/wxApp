@@ -1,10 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button, ScrollView } from '@tarojs/components'
 import './GoodsList.scss'
-import { AtLoadMore } from 'taro-ui'
-import { TabNav } from "../TabNav/TabNav";
+import TabNav from "../TabNav/TabNav";
 import { Api } from "../../utils/services";
 import { Common } from "../../utils/common";
+import LoadMore from "../LoadMore/LoadMore";
 
 
 export default class GoodsList extends Component {
@@ -102,7 +102,9 @@ export default class GoodsList extends Component {
         Common.loadMore(this, (page, cat) => Api.get_goods(page, cat), 'goods_arr')       
     }        
     render() {
-        //如果需要请求网络进行初始化，但未初始化，则初始化一次
+        console.log("this.props")
+        console.log(this.props)
+        //如果需要请求网络进行初始化，但未初始化，则初始化一次        
         if (this.props.goods_arr['show_more'] && !this.IS_INIT) {
             this.initLoadSta()
             this.loadMore()
@@ -118,6 +120,7 @@ export default class GoodsList extends Component {
         let hid_title = true
         let show_tabnav = false  //是否隐藏分类菜单
 
+        // console.log(this.state)
         //获取传入参数
         if (!this.props.goods_arr['show_more']) {
 
@@ -139,7 +142,6 @@ export default class GoodsList extends Component {
         if (menus && menus.length > 0) {
             show_tabnav = true
         }
-
         switch (style) {
             case 'style1':
                 style = 'style1'
@@ -166,43 +168,53 @@ export default class GoodsList extends Component {
                             {goods_data.map((item,index) => {
                                 return (
                                     <View taroKey={index} className='goods-lists-item' onClick={this.goToPage.bind(this, item.path)}>
-                                        <Image src={item.img}></Image>
+                                        <Image className='goods-lists-item-img' src={item.img}></Image>
                                         <View className='goods-lists-item-desc'>
                                             <Text className='goods-lists-item-desc-title'>{item.title}</Text>
                                             <Text className='goods-lists-item-desc-desc'>{item.desc}</Text>
                                             <Text className='goods-lists-item-desc-price'>价格:￥{item.price}</Text>
                                             <View className='goods-lists-item-desc-txt'>
-                                                <Text>已预约:{item.sale}</Text>
-                                                <Text>剩:{item.remain}</Text>
-                                                <Button>立即预约</Button>
+                                                <Text className='goods-lists-item-desc-txt-txt'>已预约:{item.sale}</Text>
+                                                <Text className='goods-lists-item-desc-txt-txt'>剩:{item.remain}</Text>
+                                                <Button className='goods-lists-item-desc-txt-btn'>立即预约</Button>
                                             </View>
                                         </View>
                                     </View>
                                 )
                             })}
                         </View> 
-        //滑块样式                        
-        var g_list_style1 = <View className='goods-slide' style={style != 'style3' ? 'display:none;' : ''}>
+        //滑块样式  
+        let g_list_style1 = null
+        if (style == 'style3') {                                  
+            g_list_style1 = <View className='goods-slide'>
                                     <View className="goods-slide-list">
                                         {common_view}
                                     </View>
                                 </View> 
-
-        var g_list_style2 = <View style={style == 'style3' ? 'display:none;' : ''}>{common_view}</View>             
-        var goods_title = <View className='goods-title' onClick={this.goToPage.bind(this, title['path'])}  style={hid_title ? 'display:none;' : ''}>
-                                <Text className='goods-title-desc'>{title['desc']}</Text>
-                                <Text className='goods-title-all'>查看全部</Text>
-                            </View>                  
+        }
+        let g_list_style2 = null
+        if (style !='style3') {
+            g_list_style2 = <View>{common_view}</View>             
+        }
+        // var g_list_style2 = <View style={style == 'style3' ? 'display:none;' : ''}>{common_view}</View>    
+        let goods_title = null  
+        if (!hid_title) {
+            goods_title = <View className='goods-title' onClick={this.goToPage.bind(this, title['path'])}>
+                            <Text className='goods-title-desc'>{title['desc']}</Text>
+                            <Text className='goods-title-all'>查看全部</Text>
+                        </View> 
+        }      
+                                                     
         const goods = <View className='goods'>
                         {goods_title}
                         {g_list_style1} 
                         {g_list_style2} 
                     </View>  
         return (
-            <View className={style}>      
+            <View className={style}>                 
                 {show_tabnav && <TabNav menu_list={menus} sel_tab={this.state.sel_tab} changeTab={(index) => { this.changeTab(index) }}></TabNav>}                          
                 {goods}                
-                {this.SHOW_MORE && <AtLoadMore style="height:10px;" status={this.state.load_status} />}
+                {this.SHOW_MORE && <LoadMore status={this.state.load_status} />}
             </View>                        
         )
     }

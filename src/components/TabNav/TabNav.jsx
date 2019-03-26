@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input } from '@tarojs/components'
+import { View, Input,Text } from '@tarojs/components'
 import './TabNav.scss'
 
 export default class TabNav extends Component {
@@ -34,7 +34,6 @@ export default class TabNav extends Component {
 
     render() {
         var menu_list = this.props.menu_list
-
         return (
             <View className='nav'>
                 <View className='nav-tab'>

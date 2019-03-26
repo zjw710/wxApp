@@ -1,16 +1,11 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text, Switch, Navigator } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import './user.scss'
-import { OrderList } from "../../../components/OrderList/OrderList";
-import { TabBar } from "../../../components/TabBar/TabBar";
-import { Center } from "../../../components/Center/Center";
-import { BaseComponent } from "../../../components/BaseComponent/BaseComponent";
-import icon1 from "../../../images/icon_01.png";
-import icon2 from "../../../images/icon_02.png";
-import icon3 from "../../../images/icon_03.png";
-import icon4 from "../../../images/icon_04.png";
+import TabBar from "../../components/TabBar/TabBar";
+import Center from "../../components/Center/Center";
 
-import { Api } from "../../../utils/services";
+
+import { Api } from "../../utils/services";
 
 export default class User extends Component {
 

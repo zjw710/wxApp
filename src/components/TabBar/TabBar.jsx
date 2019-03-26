@@ -1,41 +1,43 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input } from '@tarojs/components'
-// import './TabBar.scss'
-import { AtTabBar } from 'taro-ui'
+import { View, Image,Text } from '@tarojs/components'
+import './TabBar.scss'
+
+import home from "../../images/home.png";
+import home_active from "../../images/home-active.png";
+import find from "../../images/find.png";
+import find_active from "../../images/find-active.png";
+import action from "../../images/action.png";
+import action_active from "../../images/action-active.png";
+import user from "../../images/user.png";
+import user_active from "../../images/user-active.png";
 
 export default class TabBar extends Component {
-
-    constructor() {
-        
-        super(...arguments)     
-        this.state = {
-            current: 0
-        }
-        // this.handleClick = this.handleClick.bind(this)
+    static defaultProps = {
+        current_tab: 0
+    }
+    constructor(props) {
+        super(props)
     }
     handleClick(value) {
-        this.setState({
-            current: value
-        })
         switch (value) {
             case 0:
                 Taro.redirectTo({
-                    url: `/pages/index/index/index`
+                    url: `/pages/index/index`
                 })
                 break;
             case 1:
                 Taro.redirectTo({
-                    url: `/pages/index/find/find`
+                    url: `/pages/find/find`
                 })
                 break;
             case 2:
                 Taro.redirectTo({
-                    url: `/pages/index/action/action`
+                    url: `/pages/action/action`
                 })
                 break;
             case 3:
                 Taro.redirectTo({
-                    url: `/pages/index/user/user`
+                    url: `/pages/user/user`
                 })
                 break;
             default:
@@ -52,30 +54,25 @@ export default class TabBar extends Component {
     }
 
     componentDidShow() {
-        this.setState({
-            current: this.props.current_tab
-        })
      }
 
     componentDidHide() {
      }
 
     render() {
-        // var name = this.props.name
-        // var current = this.props.current_tab
+        let menu_arr = [{ title: '首页', icon: home,icon_a:home_active }, { title: '发现', icon: find,icon_a:find_active }, { title: '看房', icon: action,icon_a:action_active }, { title: '我的', icon: user,icon_a:user_active}]
         return (
             <View className='tab-bar'>
-                <View style='height:50px;'></View>
-                <AtTabBar fixed tabList={[
-                    { index:0,title: '首页', iconType: 'home' },
-                    { index: 1, title: '发现', iconType: 'message' },
-                    { index: 2,title: '看房', iconType: 'folder' },
-                    { index: 3,title: '我的', iconType: 'user' }
-                ]}
-                    data-myid={10086}
-                    onClick={this.handleClick.bind(this)}
-                    current={this.state.current}
-                />
+                {menu_arr.map((item, index) => {
+                    return (
+                        <View taroKey={index} className='tab-bar-item' onClick={this.handleClick.bind(this,index)}>
+                            <Image className="tab-bar-item-img" src={item.icon} style={index == this.props.current_tab ?'display:none;':''}></Image>
+                            <Image className="tab-bar-item-img" src={item.icon_a} style={index == this.props.current_tab ? '' : 'display:none;'}></Image>
+                            <Text>{item.title}</Text>
+                        </View>
+
+                    )
+                })}                
             </View> 
 
         )

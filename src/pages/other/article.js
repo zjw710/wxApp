@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-// import './index.scss'
-import { ArticleList } from "../../../components/ArticleList/ArticleList";
+import { View } from '@tarojs/components'
+// import './article.scss'
+import { ArticleList } from "../../components/ArticleList/ArticleList";
 
 export default class Article extends Component {
 
@@ -44,5 +44,4 @@ export default class Article extends Component {
         )
     }
 }
-// article_arr={article_arr}
 

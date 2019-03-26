@@ -30,14 +30,10 @@
     }
     &-lists-item-desc{
         // 超出一行隐藏
-        &-title,&-desc,.goods-lists-item-desc-txt Text{
-            text-overflow: -o-ellipsis-lastline;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            line-clamp: 1;
-            -webkit-box-orient: vertical;
+        &-title,&-desc,.goods-lists-item-desc-txt-txt{
+            overflow: hidden;/*超出部分隐藏*/
+            white-space: nowrap;/*不换行*/
+            text-overflow: ellipsis;/*超出部分文字以...显示*/
         }
     }
 
@@ -63,16 +59,16 @@
                 
                 border: none !important;
                 margin-bottom: 0px !important;
-                & Image{
+                &-img{
                     height: 380px !important;
                 }
                 
                 &-desc-txt{                    
                     justify-content: space-between !important;
-                    & Button{
+                    &-btn{
                         display: none;
                     }
-                    & Text{
+                    &-txt{
                         width: 300px !important;
                     }
                 }
@@ -107,7 +103,7 @@
                 
                 border: none !important;
                 margin-bottom: 0px !important;
-                & Image{
+                &-img{
                     height: 330px !important;
                     width: 330px !important ; 
                 }
@@ -118,8 +114,7 @@
                 &-desc-txt Button{
                     display: none;
                 }
-                &-desc-txt Text{
-                    
+                &-desc-txt-txt{                    
                     width: 400px !important;
                 }
             }
@@ -145,7 +140,7 @@
             &-item{
                 margin: 15px 20px;
                 // margin-bottom: 20px;
-                & Image{
+                &-img{
                     width: 250px;
                     height: 250px;
                     border-radius: 5%;
@@ -165,7 +160,7 @@
                     &-desc{  
                         font-size: 27px;            
                     }
-                    & Text{
+                    &-txt-txt{
                         margin-bottom: 10px;
                     }
                     &-price{
@@ -176,7 +171,7 @@
                         font-size: 27px; 
                         justify-content: space-between;
                         margin-right: 120px;
-                        & Button{
+                        &-btn{
                             display: none;
                         }
                     }
@@ -205,7 +200,7 @@
                 
                 border-bottom: 1px solid #eee;
                 margin-bottom: 40px;
-                & Image{
+                &-img{
                     width: 100%;
                     height: 500px;
                     border-radius: 2%;
@@ -234,10 +229,10 @@
                         font-size: 27px; 
                         justify-content: flex-start;
                         align-items: center;
-                        & Text{
+                        &-txt{
                             width: 33%;
                         }
-                        & Button{
+                        &-btn{
                             color: white;
                             font-size: 30px;
                             background-color: rgb(87, 190, 173);

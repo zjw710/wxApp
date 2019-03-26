@@ -92,8 +92,8 @@ export default class MagicSquare extends Component {
                                 {first_row.map((item, index) => {
                                     return (
                                         <View taroKey={index} className='magic-square-first-view'  onClick={this.goToPage.bind(this,item.path)}>
-                                            <Image src={item.icon}></Image>
-                                            <Text>{item.txt}</Text>
+                                            <Image className='magic-square-view-img' src={item.icon}></Image>
+                                            <Text className='magic-square-view-txt'>{item.txt}</Text>
                                         </View>
                                     )
                                 })}
@@ -102,8 +102,8 @@ export default class MagicSquare extends Component {
                                 {second_row.map((item, index) => {
                                     return (
                                         <View taroKey={index} className='magic-square-second-view' onClick={this.goToPage.bind(this, item.path)}>
-                                            <Image src={item.icon}></Image>
-                                            <Text>{item.txt}</Text>
+                                            <Image className='magic-square-view-img' src={item.icon}></Image>
+                                            <Text className='magic-square-view-txt'>{item.txt}</Text>
                                         </View>
                                     )
                                 })}
@@ -123,7 +123,7 @@ export default class MagicSquare extends Component {
                                             </View>
 
                                             <View className='magic-square-view-view-img'>
-                                                <Image src={item.icon}></Image>
+                                                <Image className='magic-square-view-view-img-img' src={item.icon}></Image>
                                             </View>
                                         </View>
                                     </View>
@@ -148,7 +148,7 @@ export default class MagicSquare extends Component {
         var style4 = <View className='magic'>
                         <View className='magic-square'>
                             <View>
-                                <View taroKey={index} className='magic-square-view' onClick={this.goToPage.bind(this, item.path)}>
+                                <View className='magic-square-view' onClick={this.goToPage.bind(this, first_col.path)}>
                                     <View className='magic-square-view-view' style={first_col.v_style}>                                            
                                         <View className='magic-square-view-view-txt' style={first_col.txt_style}>
                                             <Text className='magic-square-view-view-txt-title'>{first_col.txt}</Text>
@@ -156,7 +156,7 @@ export default class MagicSquare extends Component {
                                         </View>
 
                                         <View className='magic-square-view-view-img'>
-                                            <Image src={first_col.icon}></Image>
+                                            <Image className='magic-square-view-view-img-img' src={first_col.icon}></Image>
                                         </View>
                                     </View>
                                 </View>
@@ -172,7 +172,7 @@ export default class MagicSquare extends Component {
                                                 </View>
 
                                                 <View className='magic-square-secview-view-img'>
-                                                    <Image src={item.icon}></Image>
+                                                    <Image className='magic-square-secview-view-img-img' src={item.icon}></Image>
                                                 </View>
                                             </View>
                                         </View>                                                                       

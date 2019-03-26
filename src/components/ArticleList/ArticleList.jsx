@@ -1,17 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Input, Text, Image } from '@tarojs/components'
 import { Api } from "../../utils/services";
-import { AtLoadMore } from 'taro-ui'
+import { LoadMore } from "../LoadMore/LoadMore";
 import { TabNav } from "../TabNav/TabNav";
 import { Common } from "../../utils/common";
 import './ArticleList.scss'
 
-// var C_PAGE = 1//当前页数
-// var PAGE_SIZE = 10//一页多少条数据
-// var HAS_MORE = true//是否还有更多数据
-// var SHOW_MORE = false//是否隐藏加载更多
-// var CAT = 0//分类,默认为全部
-// var IS_INIT = 0
 
 export default class ArticleList extends Component {
     
@@ -100,50 +94,7 @@ export default class ArticleList extends Component {
      * 加载更多数据
      */
     loadMore() {        
-        Common.loadMore(this, (page, cat) => Api.get_article(page, cat),'article_arr')
-        // if (!HAS_MORE) {
-        //     // console.log("已经没有更多数据了")
-        //     return
-        // }
-        // this.setState({
-        //     load_status: 'loading'
-        // })
-        // return Api.get_article(C_PAGE, CAT)
-        //     .then(res => {
-        //         if (!res) {
-        //             return
-        //         }
-        //         var article_data_new = res['article_arr']['data']
-        //         if (article_data_new) {
-        //             var article_arr = this.state.article_arr ? this.state.article_arr:[]
-        //             //如果是第一页，直接覆盖数据
-        //             if (C_PAGE == 1) {
-        //                 article_arr = res['article_arr']                     
-        //             } else {
-        //                 var article_data = article_arr['data']
-        //                 article_data.push.apply(article_data, article_data_new)
-        //                 article_arr['data'] = article_data
-        //             }
-
-        //             this.setState({
-        //                 article_arr: article_arr
-        //             })
-
-        //             if (article_data_new.length < PAGE_SIZE) {
-        //                 HAS_MORE = true
-        //                 this.setState({
-        //                     load_status: 'loading'
-        //                 })
-        //             }
-        //             C_PAGE++
-
-        //         } else {
-        //             HAS_MORE = false
-        //             this.setState({
-        //                 load_status: 'noMore'
-        //             })
-        //         }
-        //     })
+        Common.loadMore(this, (page, cat) => Api.get_article(page, cat),'article_arr')       
     }
     render() {
         //如果需要请求网络进行初始化，但未初始化，则初始化一次
@@ -210,7 +161,7 @@ export default class ArticleList extends Component {
                                 return (
                                     <View taroKey={index} className='article-lists-item' onClick={this.goToPage.bind(this, item.path)}>
                                         <View className='article-lists-item-topimg'>
-                                            <Image src={item.img}></Image>
+                                            <Image className='article-lists-item-topimg-img' src={item.img}></Image>
                                         </View>
                                         <View className='article-lists-item-txt'>
                                             <Text className='article-lists-item-txt-title'>{item.title}</Text>
@@ -218,12 +169,12 @@ export default class ArticleList extends Component {
                                             <Text className='article-lists-item-txt-time'>{item.time}</Text>
                                         </View>
                                         <View className='article-lists-item-img'>
-                                            <Image src={item.img}></Image>
+                                            <Image className='article-lists-item-img-img' src={item.img}></Image>
                                         </View>
                                         <View className='article-lists-item-imgs'>
-                                            <Image src={item.imgs[0]}></Image>
-                                            <Image src={item.imgs[1]}></Image>
-                                            <Image src={item.imgs[2]}></Image>
+                                            <Image className='article-lists-item-imgs-img' src={item.imgs[0]}></Image>
+                                            <Image className='article-lists-item-imgs-img' src={item.imgs[1]}></Image>
+                                            <Image className='article-lists-item-imgs-img' src={item.imgs[2]}></Image>
                                         </View>
 
                                     </View>
@@ -252,7 +203,7 @@ export default class ArticleList extends Component {
             <View className={style}>   
                 {show_tabnav && <TabNav menu_list={menus} sel_tab={this.state.sel_tab} changeTab={(index) => { this.changeTab(index) }}></TabNav>}                
                 {article}
-                {this.SHOW_MORE && <AtLoadMore style="height:10px;" status={this.state.load_status} />}
+                {this.SHOW_MORE && <LoadMore status={this.state.load_status} />}
                 
             </View>
 

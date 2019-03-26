@@ -15,7 +15,7 @@
         // padding: 10px 20px;
         width: 100%;
         &-img{            
-            & Image{
+            &-img{
                 width: 700px;
                 height: 450px;
             }
@@ -47,7 +47,7 @@
                 flex-direction: row;
                 font-size: 30px;  
                 color: black; 
-                & Text{
+                &-price,&-sale,&-remain{
                     margin-top: 15px;
                     width: 33%;
                 }
@@ -81,6 +81,13 @@
         font-size: 30px;
         border: 1px solid #f0f0f0;
         padding: 10px 0px;
+        background-color: white;
+
+        &-img{
+            width:40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
         &-fix{
             //悬浮底部
             position: fixed;
@@ -91,13 +98,13 @@
         }
         
         &-phone{
-            padding-left: 30px;
+            padding-left: 10px;
         }
         &-phone,&-like,&-kefu{
-            width: 120px;
+            width: 200px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            align-items: center;
         }
         &-kefu{
             margin: 0px;
@@ -106,10 +113,10 @@
             background-color: white;
             border: none;
             line-height: 40px;
-            & AtIcon,& Text{
-               margin: 0px;
-               padding: 0px; 
-            }
+            // & Text{
+            //    margin: 0px;
+            //    padding: 0px; 
+            // }
             &::after{
                 border: none;
             }
@@ -117,7 +124,7 @@
         &-buy{
             padding-right: 20px;
             width: 100%;
-            & Button{
+            &-btn{
                 // width: 300px;
                 border-radius: 50px;
                 margin: 0px 10px;
