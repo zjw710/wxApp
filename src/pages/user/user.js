@@ -19,7 +19,7 @@ export default class User extends Component {
         Api.get_center()
             .then(res=>{
                 this.setState({
-                    center_arr: res['center_arr'],         
+                    center_arr: res['center'],         
                 });
             })
      }
@@ -34,9 +34,22 @@ export default class User extends Component {
 
     render() {
         var current_tab = 3
+        //初始化个人中心数据
+        var center_arr = []
+        if (this.state.center_arr) {
+            center_arr = this.state.center_arr
+        }
+        let CenterCom = center_arr.map((item, index) => {
+            return (
+                <View taroKey={index} style={"order:" + item['order'] + ";"}>
+                    <Center center_arr={item} ></Center> 
+                </View>
+
+            )
+        })
         return (
             <View className='index'>
-                <Center center_arr={this.state.center_arr} ></Center>                                
+                {CenterCom}                              
                 <TabBar current_tab={current_tab}></TabBar>
             </View>
         )

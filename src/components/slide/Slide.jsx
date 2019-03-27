@@ -37,7 +37,6 @@ export default class Slide extends Component {
         let style = slide_img_arr['style']
         let show_dot = slide_img_arr['show_dot']?true:false;
 
-
         switch (style) {
             case 'style1':
                 style = 'style1'
@@ -56,49 +55,56 @@ export default class Slide extends Component {
             // { src: 'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg' },
             // {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDOgL-jBSiE8qCXBzDuBTjoAkBl.jpg'},
             // {src:'http://512360.s81i.faiusr.com/2/101/AFEI6KIfEAIYACDQgL-jBSjp1N7tBDDuBTjoAkBl.jpg'}]
-        var slide = null
-
-        var slide2 = <Swiper 
+        let slide = null
+        if (style =='style1') {
+            slide = <Swiper
                         className='slide'
                         indicatorColor='#999'
-                        indicatorActiveColor='#333'
-                        circular
+                        indicatorActiveColor='#333'         
+                        circular                
                         indicatorDots={show_dot}
                         autoplay>
-                        <View className='slide-imgs'>
-                        {img_data.map((item,index) => {
-                                return (
-                                    <SwiperItem taroKey={index} onClick={this.goToPage.bind(this,item.path)}>
-                                        <Image src={item.src}></Image>
-                                    </SwiperItem>
+                        {img_data.map((item, index) => {
+                            return (
+                                <SwiperItem taroKey={index} onClick={this.goToPage.bind(this, item.path)}>
+                                    <View>
+                                        <Image className='slide-img' src={item.src}></Image>
+                                    </View>
+                                    
+                                    
+                                </SwiperItem>
 
-                                )
-                            })}
-                        </View>
+                            )
+                        })}
                     </Swiper>
+        } else if (style == 'style2') {
+            slide = <ScrollView
+                    className='scrolslide'
+                    scrollX
+                    scrollWithAnimation>
+                    <View className='scrolslide-imgs'>
+                        {img_data.map((item, index) => {
+                            return (
+                                <Image className='scrolslide-imgs-img' taroKey={index} src={item.src} onClick={this.goToPage.bind(this, item.path)}></Image>
+                            )
+                        })}
+                    </View>
+                </ScrollView>
+        }
+        
 
-        var slide1 = <ScrollView
-                        className='scrolslide'
-                        scrollX
-                        scrollWithAnimation>
-                        <View className='scrolslide-imgs'>
-                        {img_data.map((item,index) => {
-                                return (
-                                    <Image className='scrolslide-imgs-img' taroKey={index} src={item.src}  onClick={this.goToPage.bind(this,item.path)}></Image>
-                                )
-                            })}
-                        </View>
-                    </ScrollView>
+        
     
         return (
 
             <View>
-                <View style={style!='style1'?'display:none;':''}>
+                {slide}
+                {/* <View style={style!='style1'?'display:none;':''}>
                     {slide1}
                 </View>
                 <View style={style != 'style2' ? 'display:none;' : ''}>
                     {slide2}
-                </View>
+                </View> */}
                 
             </View>            
         )        

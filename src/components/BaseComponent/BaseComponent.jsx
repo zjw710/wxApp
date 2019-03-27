@@ -55,16 +55,21 @@ export default class BaseComponent extends Component {
             .then(res => {
                 // console.log('get_home：') 
                 // console.log(res)
+                if (!res) {
+                    return
+                }
                 this.setState({
-                    search_arr: res['search_arr'],
-                    article_arr: res['article_arr'],
-                    goods_arr: res['goods_arr'],
-                    imgs_arr: res['imgs_arr'],
-                    form_arr: res['form_arr'],
+                    article_arr: res['article'],
+                    form_arr: res['dataform'],
+                    goods_arr: res['goods'],
+                    imgs_arr: res['image'],                    
+                    magic_arr: res['magic'],
+                    search_arr: res['search'],
+                    slide_img_arr: res['slide'],                                                        
                     // goods_detail_arr: res['goods_detail_arr'],
-                    art_detail_arr: res['article_detail_arr'],
-                    magic_arr: res['magic_arr'],
-                    slide_img_arr: res['slide_arr']
+                    // art_detail_arr: res['article_detail'],
+                    
+                    
                 });
             })
     }

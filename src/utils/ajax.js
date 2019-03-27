@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 export default function (api, path, params) {
-
+    
     // return Taro.request({
     //     url: `${api}/${path}`,
     //     data: params,
@@ -15,8 +15,9 @@ export default function (api, path, params) {
         Taro.request({
             url: `${api}/${path}`,
             data: params,
-            header: { 'Content-Type': 'application/json' },
             method: "POST",
+            header: { 'Content-Type': 'application/json' },
+            
         }).then((res) => {
             Taro.hideLoading()
             if (res.statusCode === 200) {                
@@ -27,4 +28,5 @@ export default function (api, path, params) {
         })
     })
     
-}
+}          
+            
