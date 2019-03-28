@@ -75,7 +75,7 @@ export default class ImageList extends Component {
         let main_img = null
         if (img_data.length>0) {
             main_img = <View className='img-main' onClick={this.goToPage.bind(this, img_data[this.state.img_index].path)}>
-                            <Image className='img-main-img' src={img_data[this.state.img_index].src}></Image>
+                            <Image className='img-main-img' src={img_data[this.state.img_index].img}></Image>
                             <View className='img-main-view'>
                                 <Text className='img-main-view-txt'>{img_data[this.state.img_index].title}</Text>
                             </View>
@@ -95,7 +95,7 @@ export default class ImageList extends Component {
                         {img_data.map((item, index) => {
                             return (
                                 <View taroKey={index} className={index == this.state.img_index ? "img-lists-item selected" :"img-lists-item"} onClick={this.selectImg.bind(this,index,item.path)}>
-                                    <Image className='img-lists-item-img' src={item.src}></Image>
+                                    <Image className='img-lists-item-img' src={item.img}></Image>
                                     <View className='img-lists-item-view'>
                                         <Text className='img-lists-item-view-txt'>{item.title}</Text>
                                     </View>                                    

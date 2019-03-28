@@ -104,9 +104,9 @@ export default class ArticleList extends Component {
         }
         //初始化参数        
         //title为空，则不显示标题；menus为空，则不显示分类菜单
-        let init_article_arr = { style: 'style1', title: {desc:'',path:''}, menus: [] ,data: [{ title: '', desc: '', time: '', img: '', imgs: [], path: ''}]}
+        let init_article_arr = { style: 'style1', titles: {desc:'',path:''}, menus: [] ,data: [{ title: '', desc: '', time: '', img: '', imgs: [], path: ''}]}
         let article_data = init_article_arr['data']
-        let title = init_article_arr['title']
+        let title = init_article_arr['titles']
 
         let style = init_article_arr['style']
         let menus = init_article_arr['menus']

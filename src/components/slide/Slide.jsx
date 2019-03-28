@@ -63,15 +63,12 @@ export default class Slide extends Component {
                         indicatorActiveColor='#333'         
                         circular                
                         indicatorDots={show_dot}
-                        autoplay>
+                        autoplay
+                        >
                         {img_data.map((item, index) => {
                             return (
-                                <SwiperItem taroKey={index} onClick={this.goToPage.bind(this, item.path)}>
-                                    <View>
-                                        <Image className='slide-img' src={item.src}></Image>
-                                    </View>
-                                    
-                                    
+                                <SwiperItem className='slide-item' taroKey={index} onClick={this.goToPage.bind(this, item.path)}>                                  
+                                    <Image className='slide-img' src={item.src}></Image>                                        
                                 </SwiperItem>
 
                             )
@@ -97,7 +94,7 @@ export default class Slide extends Component {
     
         return (
 
-            <View>
+            <View>                
                 {slide}
                 {/* <View style={style!='style1'?'display:none;':''}>
                     {slide1}
