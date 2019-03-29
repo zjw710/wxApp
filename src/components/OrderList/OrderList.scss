@@ -44,14 +44,14 @@
                         &-view{
                             display: flex;
                             flex-direction: row;
-                            justify-content: flex-start;
+                            justify-content: flex-start;                            
                             &-price{
                                 color: #888;  
                                 text-decoration: line-through;
                             }
                             &-txt{
                                 margin-bottom: 10px;
-                                //显示两行，超出显示省略号
+                                //显示一行，超出显示省略号
                                 text-overflow: -o-ellipsis-lastline;
                                 overflow: hidden;
                                 text-overflow: ellipsis;
@@ -60,13 +60,26 @@
                             }
                         }                                                
                         &-name{
+                            // 超过一行换行
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
                             -webkit-line-clamp: 1;
                             line-clamp: 1;
+                            -webkit-box-orient: vertical;
+                            margin-bottom: 10px;
                         }
-                        &-desc{
+                        &-desc{   
+                            // 超过两行换行                         
+                            color: #888;                           
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
                             -webkit-line-clamp: 2;
                             line-clamp: 2;
-                            color: #888;   
+                            -webkit-box-orient: vertical;
+                            margin-bottom: 18px;
+                            font-size: 28px;
                         }
                     }
                 }

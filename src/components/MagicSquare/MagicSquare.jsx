@@ -4,7 +4,7 @@ import './MagicSquare.scss'
 
 export default class MagicSquare extends Component {
     static defaultProps = {
-        magic_arr: { style: 'style1', data: [{ txt: '', desc: '', icon: '', v_style: '', path: '', txt_style: '' }] }
+        magic_arr: { style: 'style1', data: [{ title: '', desc: '', img: '', v_style: '', path: '', txt_style: '' }] }
     }
     constructor(props) {
         super(props)        
@@ -92,8 +92,8 @@ export default class MagicSquare extends Component {
                                 {first_row.map((item, index) => {
                                     return (
                                         <View taroKey={index} className='magic-square-first-view'  onClick={this.goToPage.bind(this,item.path)}>
-                                            <Image className='magic-square-view-img' src={item.icon}></Image>
-                                            <Text className='magic-square-view-txt'>{item.txt}</Text>
+                                            <Image className='magic-square-view-img' src={item.img}></Image>
+                                            <Text className='magic-square-view-txt'>{item.title}</Text>
                                         </View>
                                     )
                                 })}
@@ -102,8 +102,8 @@ export default class MagicSquare extends Component {
                                 {second_row.map((item, index) => {
                                     return (
                                         <View taroKey={index} className='magic-square-second-view' onClick={this.goToPage.bind(this, item.path)}>
-                                            <Image className='magic-square-view-img' src={item.icon}></Image>
-                                            <Text className='magic-square-view-txt'>{item.txt}</Text>
+                                            <Image className='magic-square-view-img' src={item.img}></Image>
+                                            <Text className='magic-square-view-txt'>{item.title}</Text>
                                         </View>
                                     )
                                 })}
@@ -118,12 +118,12 @@ export default class MagicSquare extends Component {
                                     <View taroKey={index} className='magic-square-view' onClick={this.goToPage.bind(this, item.path)}>
                                         <View className='magic-square-view-view' style={item.v_style}>                                            
                                             <View className='magic-square-view-view-txt' style={item.txt_style}>
-                                                <Text className='magic-square-view-view-txt-title'>{item.txt}</Text>
+                                                <Text className='magic-square-view-view-txt-title'>{item.title}</Text>
                                                 <Text className='magic-square-view-view-txt-desc'>{item.desc}</Text>
                                             </View>
 
                                             <View className='magic-square-view-view-img'>
-                                                <Image className='magic-square-view-view-img-img' src={item.icon}></Image>
+                                                <Image className='magic-square-view-view-img-img' src={item.img}></Image>
                                             </View>
                                         </View>
                                     </View>
@@ -151,12 +151,12 @@ export default class MagicSquare extends Component {
                                 <View className='magic-square-view' onClick={this.goToPage.bind(this, first_col.path)}>
                                     <View className='magic-square-view-view' style={first_col.v_style}>                                            
                                         <View className='magic-square-view-view-txt' style={first_col.txt_style}>
-                                            <Text className='magic-square-view-view-txt-title'>{first_col.txt}</Text>
+                                            <Text className='magic-square-view-view-txt-title'>{first_col.title}</Text>
                                             <Text className='magic-square-view-view-txt-desc'>{first_col.desc}</Text>
                                         </View>
 
                                         <View className='magic-square-view-view-img'>
-                                            <Image className='magic-square-view-view-img-img' src={first_col.icon}></Image>
+                                            <Image className='magic-square-view-view-img-img' src={first_col.img}></Image>
                                         </View>
                                     </View>
                                 </View>
@@ -167,7 +167,7 @@ export default class MagicSquare extends Component {
                                         <View taroKey={index} className='magic-square-secview' onClick={this.goToPage.bind(this, item.path)}>
                                             <View className='magic-square-secview-view' style={item.v_style}>                                            
                                                 <View className='magic-square-secview-view-txt' style={item.txt_style}>
-                                                    <Text className='magic-square-secview-view-txt-title'>{item.txt}</Text>
+                                                    <Text className='magic-square-secview-view-txt-title'>{item.title}</Text>
                                                     <Text className='magic-square-secview-view-txt-desc'>{item.desc}</Text>
                                                 </View>
 

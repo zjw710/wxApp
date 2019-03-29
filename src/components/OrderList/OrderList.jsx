@@ -123,11 +123,11 @@ export default class OrderList extends Component {
                                                 </View>
                                                 
                                                 <View className='order-list-item-goods-item-desc'>
-                                                    <Text className='order-list-item-goods-item-desc-name'>{g_item.g_name}</Text>
+                                                    <Text className='order-list-item-goods-item-desc-name'>{g_item.g_name}测试字数测试字数测试字数测试字数测试字数</Text>
                                                     <Text className='order-list-item-goods-item-desc-desc'>{g_item.g_desc}</Text>
                                                     <View className='order-list-item-goods-item-desc-view'>
                                                         <Text className='order-list-item-goods-item-desc-view-price'>￥{g_item.o_price}</Text>
-                                                        <Text className='order-list-item-goods-item-desc-view-txt'>￥{g_item.price}</Text>
+                                                        <Text className='order-list-item-goods-item-desc-view-txt'>￥{g_item.price}99999999999</Text>
                                                     </View>
 
                                                 </View>

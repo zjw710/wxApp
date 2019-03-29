@@ -21,11 +21,13 @@ export default class BaseComponent extends Component {
     }
     static defaultProps = {
         isEnable: true,
-        loadFun:null
+        loadFun:null,
+        getChild:null
     }
     constructor(props) {
         super(props)    
-        this.IS_INIT = 0        
+        this.IS_INIT = 0      
+        this.loadData = this.loadData.bind(this)  
     }
     componentWillMount() {
         this.initConfig()
@@ -35,6 +37,9 @@ export default class BaseComponent extends Component {
     }
 
     componentDidMount() {
+        if (this.props.getChild) {
+            this.props.getChild(this)//传递子组件对象给父组件
+        } 
         // console.log('BaseComponent componentDidMount') 
     }
 
@@ -89,11 +94,11 @@ export default class BaseComponent extends Component {
    * 页面相关事件处理函数--监听用户下拉动作
    */
     onPullDownRefresh() {
-        this.initConfig()
-            .then(() => {
-                Taro.stopPullDownRefresh()//加载完成停止加载
-                this.componentDidShow()
-            })
+        // this.initConfig()
+        //     .then(() => {
+        //         Taro.stopPullDownRefresh()//加载完成停止加载
+        //         this.componentDidShow()
+        //     })
     }
     render() {
         //如果未加载数据，则进行加载

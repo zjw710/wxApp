@@ -27,7 +27,7 @@ export default class Article extends Component {
     componentDidHide() { }   
     //用于获取子组件的对象
     getChild(ref){
-        this.child = ref
+        this.child = ref        
     }
    
     onReachBottom(){   

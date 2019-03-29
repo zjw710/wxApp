@@ -5,7 +5,7 @@ import './Slide.scss'
 
 export default class Slide extends Component {
     static defaultProps = {
-        slide_img_arr: { show_dot:1,style: 'style1', data: [{ src: '', path: '' }] }
+        slide_img_arr: { show_dot:1,style: 'style1', data: [{ img: '', path: '' }] }
     }
     constructor(props) {
 
@@ -68,7 +68,7 @@ export default class Slide extends Component {
                         {img_data.map((item, index) => {
                             return (
                                 <SwiperItem className='slide-item' taroKey={index} onClick={this.goToPage.bind(this, item.path)}>                                  
-                                    <Image className='slide-img' src={item.src}></Image>                                        
+                                    <Image className='slide-img' src={item.img}></Image>                                        
                                 </SwiperItem>
 
                             )
@@ -82,7 +82,7 @@ export default class Slide extends Component {
                     <View className='scrolslide-imgs'>
                         {img_data.map((item, index) => {
                             return (
-                                <Image className='scrolslide-imgs-img' taroKey={index} src={item.src} onClick={this.goToPage.bind(this, item.path)}></Image>
+                                <Image className='scrolslide-imgs-img' taroKey={index} src={item.img} onClick={this.goToPage.bind(this, item.path)}></Image>
                             )
                         })}
                     </View>

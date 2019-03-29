@@ -5,6 +5,7 @@ import TabBar from "../../components/TabBar/TabBar";
 import { Api } from "../../utils/services";
 import './index.scss'
 
+// const CHILD = null
 export default class Index extends Component {
 
   config: Config = {
@@ -38,23 +39,26 @@ export default class Index extends Component {
   componentDidHide () {
     // console.log('componentDidHide') 
    }
-
+  //用于获取子组件的对象
+  getChild(ref) {
+    Taro.IndexChild = ref
+  }
+  onShareAppMessage(){
+    
+  }
   /**
  * 页面相关事件处理函数--监听用户下拉动作
  */
-  onPullDownRefresh() {    
-    this.initConfig()
-      .then(() => {        
-        Taro.stopPullDownRefresh()//加载完成停止加载
-        this.componentDidShow()
-      })  
+  onPullDownRefresh() {      
+    Taro.IndexChild.loadData(() => Api.get_home())   
+    Taro.stopPullDownRefresh()     
   }
   
   render () {       
     let current_tab = 0
     return (      
       <View className='index'>       
-        <BaseComponent loadFun={() => Api.get_home()}></BaseComponent>
+        <BaseComponent loadFun={() => Api.get_home()} getChild={(ref) => { this.getChild(ref) }}></BaseComponent>
         <TabBar current_tab={current_tab}></TabBar>
       </View>
     )

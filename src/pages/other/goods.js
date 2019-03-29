@@ -6,10 +6,8 @@ import GoodsList from "../../components/GoodsList/GoodsList";
 export default class goods extends Component {
 
     constructor(props) {
-
         super(props)
         this.child = null
-
     }
     config: Config = {
         navigationBarTitleText: '商品列表'
